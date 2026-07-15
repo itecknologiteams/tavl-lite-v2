@@ -1,0 +1,612 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - img "iTecknologi" [ref=e7]
+      - generic [ref=e9]:
+        - heading "Command Center" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Fleet Monitoring
+    - generic [ref=e14]:
+      - img [ref=e16]
+      - textbox "Search vehicles…" [ref=e19]
+      - generic [ref=e20]:
+        - generic [ref=e21]: Ctrl K
+        - button "Search options" [ref=e22] [cursor=pointer]:
+          - img [ref=e23]
+    - generic [ref=e26]:
+      - button "9+" [active] [ref=e111] [cursor=pointer]:
+        - img [ref=e28]
+        - generic [ref=e112]: 9+
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: BRIAN
+          - generic [ref=e35]: Online
+        - button "Logout" [ref=e37] [cursor=pointer]:
+          - img [ref=e38]
+  - generic [ref=e41]:
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e45]:
+          - button "Show phone" [ref=e46] [cursor=pointer]:
+            - img [ref=e47]
+          - button "Hide vehicle trails" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+          - button "Disable clustering" [ref=e53] [cursor=pointer]:
+            - img [ref=e54]
+          - button "Change map layer" [ref=e57] [cursor=pointer]:
+            - img [ref=e58]
+          - button "Show geofences" [ref=e63] [cursor=pointer]:
+            - img [ref=e64]
+          - button "Select a vehicle first" [disabled] [ref=e66]:
+            - img [ref=e67]
+          - button "Measure distance" [ref=e70] [cursor=pointer]:
+            - img [ref=e71]
+          - button "History (Event Log Closure)" [ref=e78] [cursor=pointer]:
+            - img [ref=e79]
+          - button "WC (Warning Console)" [ref=e83] [cursor=pointer]:
+            - img [ref=e84]
+          - button "Fit all pinned vehicles" [ref=e86] [cursor=pointer]:
+            - img [ref=e87]
+          - button "Expand" [ref=e89] [cursor=pointer]:
+            - img [ref=e90]
+        - generic [ref=e96]:
+          - img [ref=e97]
+          - generic [ref=e99]: 0 on map
+        - generic:
+          - generic:
+            - img
+            - paragraph: No vehicles on map
+            - paragraph: Pin vehicles from the list or click "Show on Map"
+      - generic:
+        - generic:
+          - generic:
+            - img
+          - heading "Search for a Vehicle" [level=2]
+          - paragraph: Use the search bar above to find vehicles by plate number, IMEI, or description.
+          - generic:
+            - generic: Ctrl
+            - generic: +
+            - generic: K
+            - generic: to focus search
+    - complementary [ref=e113]:
+      - generic [ref=e115]:
+        - generic [ref=e116] [cursor=pointer]:
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - img [ref=e120]
+              - generic [ref=e123]: "36"
+            - generic [ref=e124]:
+              - heading "Alert Inbox" [level=3] [ref=e125]
+              - paragraph [ref=e126]: 36 active • 36 new
+          - generic [ref=e127]:
+            - button "Request Break" [ref=e128]:
+              - img [ref=e129]
+            - button "Filter by type" [ref=e132]:
+              - img [ref=e133]
+            - button "Refresh" [ref=e135]:
+              - img [ref=e136]
+            - img [ref=e142]
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - img
+            - textbox "Search by plate, customer, type…" [ref=e147]
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - generic [ref=e150]:
+                - generic [ref=e152]: New — Action Required
+                - generic [ref=e153]: "36"
+              - button "Ack All" [ref=e154] [cursor=pointer]:
+                - img [ref=e155]
+                - text: Ack All
+            - generic [ref=e158]:
+              - generic [ref=e160] [cursor=pointer]:
+                - img [ref=e162]
+                - button "BTU-408" [ref=e164]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:34 PM" [ref=e165]
+                - generic "306:39" [ref=e166]:
+                  - img [ref=e167]
+                - button "Alert snapshot (Locate)" [ref=e170]:
+                  - img [ref=e171]
+                - button "Answered • click to refresh" [ref=e174]:
+                  - img [ref=e175]
+                - button "Acknowledge" [ref=e179]:
+                  - img [ref=e180]
+                - img [ref=e183]
+              - generic [ref=e186] [cursor=pointer]:
+                - img [ref=e188]
+                - button "TME-928" [ref=e190]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:34 PM" [ref=e191]
+                - generic "306:39" [ref=e192]:
+                  - img [ref=e193]
+                - button "Alert snapshot (Locate)" [ref=e196]:
+                  - img [ref=e197]
+                - button "Answered • click to refresh" [ref=e200]:
+                  - img [ref=e201]
+                - button "Acknowledge" [ref=e205]:
+                  - img [ref=e206]
+                - img [ref=e209]
+              - generic [ref=e212] [cursor=pointer]:
+                - img [ref=e214]
+                - button "TME-171" [ref=e216]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:28 PM" [ref=e217]
+                - generic "306:53" [ref=e218]:
+                  - img [ref=e219]
+                - button "Alert snapshot (Locate)" [ref=e222]:
+                  - img [ref=e223]
+                - button "Answered • click to refresh" [ref=e226]:
+                  - img [ref=e227]
+                - button "Acknowledge" [ref=e231]:
+                  - img [ref=e232]
+                - img [ref=e235]
+              - generic [ref=e238] [cursor=pointer]:
+                - img [ref=e240]
+                - button "BQA-756" [ref=e242]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:28 PM" [ref=e243]
+                - generic "306:53" [ref=e244]:
+                  - img [ref=e245]
+                - button "Alert snapshot (Locate)" [ref=e248]:
+                  - img [ref=e249]
+                - button "No call • click to refresh" [ref=e252]:
+                  - img [ref=e253]
+                - button "Acknowledge" [ref=e255]:
+                  - img [ref=e256]
+                - img [ref=e259]
+              - generic [ref=e262] [cursor=pointer]:
+                - img [ref=e264]
+                - button "SBA-900" [ref=e266]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:29 PM" [ref=e267]
+                - generic "306:53" [ref=e268]:
+                  - img [ref=e269]
+                - button "Alert snapshot (Locate)" [ref=e272]:
+                  - img [ref=e273]
+                - button "Answered • click to refresh" [ref=e276]:
+                  - img [ref=e277]
+                - button "Acknowledge" [ref=e281]:
+                  - img [ref=e282]
+                - img [ref=e285]
+              - generic [ref=e288] [cursor=pointer]:
+                - img [ref=e290]
+                - button "SAW-MTT-08" [ref=e292]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:29 PM" [ref=e293]
+                - generic "306:54" [ref=e294]:
+                  - img [ref=e295]
+                - button "Alert snapshot (Locate)" [ref=e298]:
+                  - img [ref=e299]
+                - button "No call • click to refresh" [ref=e302]:
+                  - img [ref=e303]
+                - button "Acknowledge" [ref=e305]:
+                  - img [ref=e306]
+                - img [ref=e309]
+              - generic [ref=e312] [cursor=pointer]:
+                - img [ref=e314]
+                - button "LHE295202523" [ref=e316]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:28 PM" [ref=e317]
+                - generic "306:54" [ref=e318]:
+                  - img [ref=e319]
+                - button "Alert snapshot (Locate)" [ref=e322]:
+                  - img [ref=e323]
+                - button "Answered • click to refresh" [ref=e326]:
+                  - img [ref=e327]
+                - button "Acknowledge" [ref=e331]:
+                  - img [ref=e332]
+                - img [ref=e335]
+              - generic [ref=e338] [cursor=pointer]:
+                - img [ref=e340]
+                - button "AUL 473" [ref=e342]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:29 PM" [ref=e343]
+                - generic "306:54" [ref=e344]:
+                  - img [ref=e345]
+                - button "Alert snapshot (Locate)" [ref=e348]:
+                  - img [ref=e349]
+                - button "Answered • click to refresh" [ref=e352]:
+                  - img [ref=e353]
+                - button "Acknowledge" [ref=e357]:
+                  - img [ref=e358]
+                - img [ref=e361]
+              - generic [ref=e364] [cursor=pointer]:
+                - img [ref=e366]
+                - button "BAJ-8249" [ref=e368]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:34 PM" [ref=e369]
+                - generic "306:54" [ref=e370]:
+                  - img [ref=e371]
+                - button "Alert snapshot (Locate)" [ref=e374]:
+                  - img [ref=e375]
+                - button "Answered • click to refresh" [ref=e378]:
+                  - img [ref=e379]
+                - button "Acknowledge" [ref=e383]:
+                  - img [ref=e384]
+                - img [ref=e387]
+              - generic [ref=e390] [cursor=pointer]:
+                - img [ref=e392]
+                - button "P-4921" [ref=e394]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:31 PM" [ref=e395]
+                - generic "307:53" [ref=e396]:
+                  - img [ref=e397]
+                - button "Alert snapshot (Locate)" [ref=e400]:
+                  - img [ref=e401]
+                - button "No call • click to refresh" [ref=e404]:
+                  - img [ref=e405]
+                - button "Acknowledge" [ref=e407]:
+                  - img [ref=e408]
+                - img [ref=e411]
+              - generic [ref=e414] [cursor=pointer]:
+                - img [ref=e416]
+                - button "KHI1710202448" [ref=e418]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:32 PM" [ref=e419]
+                - generic "307:53" [ref=e420]:
+                  - img [ref=e421]
+                - button "Alert snapshot (Locate)" [ref=e424]:
+                  - img [ref=e425]
+                - button "No call • click to refresh" [ref=e428]:
+                  - img [ref=e429]
+                - button "Acknowledge" [ref=e431]:
+                  - img [ref=e432]
+                - img [ref=e435]
+              - generic [ref=e438] [cursor=pointer]:
+                - img [ref=e440]
+                - button "AJT-770" [ref=e442]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:32 PM" [ref=e443]
+                - generic "307:53" [ref=e444]:
+                  - img [ref=e445]
+                - button "Alert snapshot (Locate)" [ref=e448]:
+                  - img [ref=e449]
+                - button "Answered • click to refresh" [ref=e452]:
+                  - img [ref=e453]
+                - button "Acknowledge" [ref=e457]:
+                  - img [ref=e458]
+                - img [ref=e461]
+              - generic [ref=e464] [cursor=pointer]:
+                - img [ref=e466]
+                - button "TUD-891" [ref=e468]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:33 PM" [ref=e469]
+                - generic "307:54" [ref=e470]:
+                  - img [ref=e471]
+                - button "Alert snapshot (Locate)" [ref=e474]:
+                  - img [ref=e475]
+                - button "Answered • click to refresh" [ref=e478]:
+                  - img [ref=e479]
+                - button "Acknowledge" [ref=e483]:
+                  - img [ref=e484]
+                - img [ref=e487]
+              - generic [ref=e490] [cursor=pointer]:
+                - img [ref=e492]
+                - button "BTU-408" [ref=e494]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:33 PM" [ref=e495]
+                - generic "307:54" [ref=e496]:
+                  - img [ref=e497]
+                - button "Alert snapshot (Locate)" [ref=e500]:
+                  - img [ref=e501]
+                - button "Answered • click to refresh" [ref=e504]:
+                  - img [ref=e505]
+                - button "Acknowledge" [ref=e509]:
+                  - img [ref=e510]
+                - img [ref=e513]
+              - generic [ref=e516] [cursor=pointer]:
+                - img [ref=e518]
+                - button "LB-4207" [ref=e520]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:33 PM" [ref=e521]
+                - generic "307:54" [ref=e522]:
+                  - img [ref=e523]
+                - button "Alert snapshot (Locate)" [ref=e526]:
+                  - img [ref=e527]
+                - button "Answered • click to refresh" [ref=e530]:
+                  - img [ref=e531]
+                - button "Acknowledge" [ref=e535]:
+                  - img [ref=e536]
+                - img [ref=e539]
+              - generic [ref=e542] [cursor=pointer]:
+                - img [ref=e544]
+                - button "RU 450" [ref=e546]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:36 PM" [ref=e547]
+                - generic "308:09" [ref=e548]:
+                  - img [ref=e549]
+                - button "Alert snapshot (Locate)" [ref=e552]:
+                  - img [ref=e553]
+                - button "Answered • click to refresh" [ref=e556]:
+                  - img [ref=e557]
+                - button "Acknowledge" [ref=e561]:
+                  - img [ref=e562]
+                - img [ref=e565]
+              - generic [ref=e568] [cursor=pointer]:
+                - img [ref=e570]
+                - button "KHI171202632" [ref=e572]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:32 PM" [ref=e573]
+                - generic "308:23" [ref=e574]:
+                  - img [ref=e575]
+                - button "Alert snapshot (Locate)" [ref=e578]:
+                  - img [ref=e579]
+                - button "No call • click to refresh" [ref=e582]:
+                  - img [ref=e583]
+                - button "Acknowledge" [ref=e585]:
+                  - img [ref=e586]
+                - img [ref=e589]
+              - generic [ref=e592] [cursor=pointer]:
+                - img [ref=e594]
+                - button "JU-6013" [ref=e596]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:33 PM" [ref=e597]
+                - generic "308:23" [ref=e598]:
+                  - img [ref=e599]
+                - button "Alert snapshot (Locate)" [ref=e602]:
+                  - img [ref=e603]
+                - button "No Answer • click to refresh" [ref=e606]:
+                  - img [ref=e607]
+                - button "Acknowledge" [ref=e611]:
+                  - img [ref=e612]
+                - img [ref=e615]
+              - generic [ref=e618] [cursor=pointer]:
+                - img [ref=e620]
+                - button "JT-3875" [ref=e622]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:33 PM" [ref=e623]
+                - generic "308:23" [ref=e624]:
+                  - img [ref=e625]
+                - button "Alert snapshot (Locate)" [ref=e628]:
+                  - img [ref=e629]
+                - button "Answered • click to refresh" [ref=e632]:
+                  - img [ref=e633]
+                - button "Acknowledge" [ref=e637]:
+                  - img [ref=e638]
+                - img [ref=e641]
+              - generic [ref=e644] [cursor=pointer]:
+                - img [ref=e646]
+                - button "KOW-3519" [ref=e648]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:33 PM" [ref=e649]
+                - generic "308:24" [ref=e650]:
+                  - img [ref=e651]
+                - button "Alert snapshot (Locate)" [ref=e654]:
+                  - img [ref=e655]
+                - button "Answered • click to refresh" [ref=e658]:
+                  - img [ref=e659]
+                - button "Acknowledge" [ref=e663]:
+                  - img [ref=e664]
+                - img [ref=e667]
+              - generic [ref=e670] [cursor=pointer]:
+                - img [ref=e672]
+                - button "AUL 473" [ref=e674]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:29 PM" [ref=e675]
+                - generic "308:24" [ref=e676]:
+                  - img [ref=e677]
+                - button "Alert snapshot (Locate)" [ref=e680]:
+                  - img [ref=e681]
+                - button "Answered • click to refresh" [ref=e684]:
+                  - img [ref=e685]
+                - button "Acknowledge" [ref=e689]:
+                  - img [ref=e690]
+                - img [ref=e693]
+              - generic [ref=e696] [cursor=pointer]:
+                - img [ref=e698]
+                - button "DIK5122025" [ref=e700]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:33 PM" [ref=e701]
+                - generic "308:24" [ref=e702]:
+                  - img [ref=e703]
+                - button "Alert snapshot (Locate)" [ref=e706]:
+                  - img [ref=e707]
+                - button "Answered • click to refresh" [ref=e710]:
+                  - img [ref=e711]
+                - button "Acknowledge" [ref=e715]:
+                  - img [ref=e716]
+                - img [ref=e719]
+              - generic [ref=e722] [cursor=pointer]:
+                - img [ref=e724]
+                - button "KV-2272" [ref=e726]
+                - generic "FMB Battery"
+                - generic "01 Jun 07:36 PM" [ref=e727]
+                - generic "308:24" [ref=e728]:
+                  - img [ref=e729]
+                - button "Alert snapshot (Locate)" [ref=e732]:
+                  - img [ref=e733]
+                - button "Answered • click to refresh" [ref=e736]:
+                  - img [ref=e737]
+                - button "Acknowledge" [ref=e741]:
+                  - img [ref=e742]
+                - img [ref=e745]
+              - generic [ref=e748] [cursor=pointer]:
+                - img [ref=e750]
+                - button "JV-6838" [ref=e753]
+                - generic "LHR S"
+                - generic "01 Jun 07:24 PM" [ref=e754]
+                - generic "302:13" [ref=e755]:
+                  - img [ref=e756]
+                - button "Alert snapshot (Locate)" [ref=e759]:
+                  - img [ref=e760]
+                - button "No call • click to refresh" [ref=e763]:
+                  - img [ref=e764]
+                - button "Acknowledge" [ref=e766]:
+                  - img [ref=e767]
+                - img [ref=e770]
+              - generic [ref=e773] [cursor=pointer]:
+                - img [ref=e775]
+                - button "SWN26920241" [ref=e778]
+                - generic "LHR S"
+                - generic "01 Jun 07:34 PM" [ref=e779]
+                - generic "306:39" [ref=e780]:
+                  - img [ref=e781]
+                - button "Alert snapshot (Locate)" [ref=e784]:
+                  - img [ref=e785]
+                - button "No call • click to refresh" [ref=e788]:
+                  - img [ref=e789]
+                - button "Acknowledge" [ref=e791]:
+                  - img [ref=e792]
+                - img [ref=e795]
+              - generic [ref=e798] [cursor=pointer]:
+                - img [ref=e800]
+                - button "BWY-869" [ref=e803]
+                - generic "KHI L"
+                - generic "01 Jun 07:33 PM" [ref=e804]
+                - generic "306:54" [ref=e805]:
+                  - img [ref=e806]
+                - button "Alert snapshot (Locate)" [ref=e809]:
+                  - img [ref=e810]
+                - button "Ringing • click to refresh" [ref=e813]:
+                  - img [ref=e814]
+                - button "Acknowledge" [ref=e818]:
+                  - img [ref=e819]
+                - img [ref=e822]
+              - generic [ref=e825] [cursor=pointer]:
+                - img [ref=e827]
+                - button "BWD-357" [ref=e830]
+                - generic "LHR L"
+                - generic "01 Jun 07:34 PM" [ref=e831]
+                - generic "306:54" [ref=e832]:
+                  - img [ref=e833]
+                - button "Alert snapshot (Locate)" [ref=e836]:
+                  - img [ref=e837]
+                - button "Answered • click to refresh" [ref=e840]:
+                  - img [ref=e841]
+                - button "Acknowledge" [ref=e845]:
+                  - img [ref=e846]
+                - img [ref=e849]
+              - generic [ref=e852] [cursor=pointer]:
+                - img [ref=e854]
+                - button "LHE151202512" [ref=e857]
+                - generic "LHR S"
+                - generic "01 Jun 07:34 PM" [ref=e858]
+                - generic "306:54" [ref=e859]:
+                  - img [ref=e860]
+                - button "Alert snapshot (Locate)" [ref=e863]:
+                  - img [ref=e864]
+                - button "No call • click to refresh" [ref=e867]:
+                  - img [ref=e868]
+                - button "Acknowledge" [ref=e870]:
+                  - img [ref=e871]
+                - img [ref=e874]
+              - generic [ref=e877] [cursor=pointer]:
+                - img [ref=e879]
+                - button "BJ-9778" [ref=e882]
+                - generic "KHI L"
+                - generic "01 Jun 07:34 PM" [ref=e883]
+                - generic "306:54" [ref=e884]:
+                  - img [ref=e885]
+                - button "Alert snapshot (Locate)" [ref=e888]:
+                  - img [ref=e889]
+                - button "No Answer • click to refresh" [ref=e892]:
+                  - img [ref=e893]
+                - button "Acknowledge" [ref=e897]:
+                  - img [ref=e898]
+                - img [ref=e901]
+              - generic [ref=e904] [cursor=pointer]:
+                - img [ref=e906]
+                - button "AUA-688" [ref=e909]
+                - generic "KHI S"
+                - generic "01 Jun 07:34 PM" [ref=e910]
+                - generic "306:54" [ref=e911]:
+                  - img [ref=e912]
+                - button "Alert snapshot (Locate)" [ref=e915]:
+                  - img [ref=e916]
+                - button "No call • click to refresh" [ref=e919]:
+                  - img [ref=e920]
+                - button "Acknowledge" [ref=e922]:
+                  - img [ref=e923]
+                - img [ref=e926]
+              - generic [ref=e929] [cursor=pointer]:
+                - img [ref=e931]
+                - button "BTA-822" [ref=e934]
+                - generic "KHI L"
+                - generic "01 Jun 07:34 PM" [ref=e935]
+                - generic "306:54" [ref=e936]:
+                  - img [ref=e937]
+                - button "Alert snapshot (Locate)" [ref=e940]:
+                  - img [ref=e941]
+                - button "No call • click to refresh" [ref=e944]:
+                  - img [ref=e945]
+                - button "Acknowledge" [ref=e947]:
+                  - img [ref=e948]
+                - img [ref=e951]
+              - generic [ref=e954] [cursor=pointer]:
+                - img [ref=e956]
+                - button "BK-4081" [ref=e959]
+                - generic "KHI L"
+                - generic "01 Jun 07:35 PM" [ref=e960]
+                - generic "307:54" [ref=e961]:
+                  - img [ref=e962]
+                - button "Alert snapshot (Locate)" [ref=e965]:
+                  - img [ref=e966]
+                - button "No call • click to refresh" [ref=e969]:
+                  - img [ref=e970]
+                - button "Acknowledge" [ref=e972]:
+                  - img [ref=e973]
+                - img [ref=e976]
+              - generic [ref=e979] [cursor=pointer]:
+                - img [ref=e981]
+                - button "ALY-427" [ref=e984]
+                - generic "LHR MOTORWAY"
+                - generic "01 Jun 07:35 PM" [ref=e985]
+                - generic "307:54" [ref=e986]:
+                  - img [ref=e987]
+                - button "Alert snapshot (Locate)" [ref=e990]:
+                  - img [ref=e991]
+                - button "No call • click to refresh" [ref=e994]:
+                  - img [ref=e995]
+                - button "Acknowledge" [ref=e997]:
+                  - img [ref=e998]
+                - img [ref=e1001]
+              - generic [ref=e1004] [cursor=pointer]:
+                - img [ref=e1006]
+                - button "KSR2052025" [ref=e1009]
+                - generic "LHR L"
+                - generic "01 Jun 07:35 PM" [ref=e1010]
+                - generic "307:54" [ref=e1011]:
+                  - img [ref=e1012]
+                - button "Alert snapshot (Locate)" [ref=e1015]:
+                  - img [ref=e1016]
+                - button "No call • click to refresh" [ref=e1019]:
+                  - img [ref=e1020]
+                - button "Acknowledge" [ref=e1022]:
+                  - img [ref=e1023]
+                - img [ref=e1026]
+              - generic [ref=e1029] [cursor=pointer]:
+                - img [ref=e1031]
+                - button "BFQ-565" [ref=e1034]
+                - generic "LHR S"
+                - generic "01 Jun 07:35 PM" [ref=e1035]
+                - generic "307:54" [ref=e1036]:
+                  - img [ref=e1037]
+                - button "Alert snapshot (Locate)" [ref=e1040]:
+                  - img [ref=e1041]
+                - button "No call • click to refresh" [ref=e1044]:
+                  - img [ref=e1045]
+                - button "Acknowledge" [ref=e1047]:
+                  - img [ref=e1048]
+                - img [ref=e1051]
+              - generic [ref=e1054] [cursor=pointer]:
+                - img [ref=e1056]
+                - button "AWC-612" [ref=e1059]
+                - generic "LHR L"
+                - generic "01 Jun 07:36 PM" [ref=e1060]
+                - generic "308:39" [ref=e1061]:
+                  - img [ref=e1062]
+                - button "Alert snapshot (Locate)" [ref=e1065]:
+                  - img [ref=e1066]
+                - button "No call • click to refresh" [ref=e1069]:
+                  - img [ref=e1070]
+                - button "Acknowledge" [ref=e1072]:
+                  - img [ref=e1073]
+                - img [ref=e1076]
+  - contentinfo [ref=e100]:
+    - generic [ref=e102]: Search for vehicles to view their status
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - img [ref=e105]
+        - generic [ref=e107]: WebRTC 111
+      - generic [ref=e108]: System Online
+      - generic [ref=e110]: © 2026 iTecknologi

@@ -1,0 +1,665 @@
+- generic [ref=e104]:
+  - banner [ref=e105]:
+    - generic [ref=e107]:
+      - img "iTecknologi" [ref=e108]
+      - generic [ref=e110]:
+        - heading "Command Center" [level=1] [ref=e111]
+        - paragraph [ref=e112]: Fleet Monitoring
+    - generic [ref=e114]:
+      - generic [ref=e115]:
+        - img [ref=e243]
+        - textbox "Search vehicles…" [active] [ref=e120]: LE
+        - generic [ref=e121]:
+          - button "Search options" [ref=e123] [cursor=pointer]:
+            - img [ref=e124]
+          - button [ref=e237] [cursor=pointer]:
+            - img [ref=e238]
+      - generic [ref=e247]:
+        - generic [ref=e248]:
+          - generic [ref=e249]: Results
+          - generic [ref=e250]: "50"
+        - button "LE-0011 ACTIVE RABIA ADNAN" [ref=e251] [cursor=pointer]:
+          - img [ref=e253]
+          - generic [ref=e257]:
+            - generic [ref=e258]:
+              - generic [ref=e259]: LE-0011
+              - generic [ref=e260]: ACTIVE
+            - paragraph [ref=e261]: RABIA ADNAN
+          - generic [ref=e263]:
+            - img [ref=e264]
+            - img [ref=e267]
+        - button "LE-0026 ACTIVE M/S MUNAF TRADING COMPANY" [ref=e269] [cursor=pointer]:
+          - img [ref=e271]
+          - generic [ref=e275]:
+            - generic [ref=e276]:
+              - generic [ref=e277]: LE-0026
+              - generic [ref=e278]: ACTIVE
+            - paragraph [ref=e279]: M/S MUNAF TRADING COMPANY
+          - generic [ref=e281]:
+            - img [ref=e282]
+            - img [ref=e285]
+        - button "LE-0045 ACTIVE FAIZAN NAWAZ" [ref=e287] [cursor=pointer]:
+          - img [ref=e289]
+          - generic [ref=e293]:
+            - generic [ref=e294]:
+              - generic [ref=e295]: LE-0045
+              - generic [ref=e296]: ACTIVE
+            - paragraph [ref=e297]: FAIZAN NAWAZ
+          - generic [ref=e299]:
+            - img [ref=e300]
+            - img [ref=e303]
+        - button "LE-0085 ACTIVE MALIK MUZAFFAR GOODS COMPANY" [ref=e305] [cursor=pointer]:
+          - img [ref=e307]
+          - generic [ref=e311]:
+            - generic [ref=e312]:
+              - generic [ref=e313]: LE-0085
+              - generic [ref=e314]: ACTIVE
+            - paragraph [ref=e315]: MALIK MUZAFFAR GOODS COMPANY
+          - generic [ref=e317]:
+            - img [ref=e318]
+            - img [ref=e321]
+        - button "LE-0111 ACTIVE MUHAMMAD AZEEM AFRIDI" [ref=e323] [cursor=pointer]:
+          - img [ref=e325]
+          - generic [ref=e329]:
+            - generic [ref=e330]:
+              - generic [ref=e331]: LE-0111
+              - generic [ref=e332]: ACTIVE
+            - paragraph [ref=e333]: MUHAMMAD AZEEM AFRIDI
+          - generic [ref=e335]:
+            - img [ref=e336]
+            - img [ref=e339]
+        - button "LE-0115 ACTIVE TAJWAR MOAZZAM" [ref=e341] [cursor=pointer]:
+          - img [ref=e343]
+          - generic [ref=e347]:
+            - generic [ref=e348]:
+              - generic [ref=e349]: LE-0115
+              - generic [ref=e350]: ACTIVE
+            - paragraph [ref=e351]: TAJWAR MOAZZAM
+          - generic [ref=e353]:
+            - img [ref=e354]
+            - img [ref=e357]
+        - button "LE-0137 ACTIVE ZAM ZAM KARYANA STORE HPA MEEZAN BANK LIMITED" [ref=e359] [cursor=pointer]:
+          - img [ref=e361]
+          - generic [ref=e365]:
+            - generic [ref=e366]:
+              - generic [ref=e367]: LE-0137
+              - generic [ref=e368]: ACTIVE
+            - paragraph [ref=e369]: ZAM ZAM KARYANA STORE HPA MEEZAN BANK LIMITED
+          - generic [ref=e371]:
+            - img [ref=e372]
+            - img [ref=e375]
+        - button "LE-0139 ACTIVE ZAM ZAM KARYANA STORE HPA MEEZAN BANK LIMITED" [ref=e377] [cursor=pointer]:
+          - img [ref=e379]
+          - generic [ref=e383]:
+            - generic [ref=e384]:
+              - generic [ref=e385]: LE-0139
+              - generic [ref=e386]: ACTIVE
+            - paragraph [ref=e387]: ZAM ZAM KARYANA STORE HPA MEEZAN BANK LIMITED
+          - generic [ref=e389]:
+            - img [ref=e390]
+            - img [ref=e393]
+        - button "LE-0149 ACTIVE MR. ADNAN MUSTAFA" [ref=e395] [cursor=pointer]:
+          - img [ref=e397]
+          - generic [ref=e401]:
+            - generic [ref=e402]:
+              - generic [ref=e403]: LE-0149
+              - generic [ref=e404]: ACTIVE
+            - paragraph [ref=e405]: MR. ADNAN MUSTAFA
+          - generic [ref=e407]:
+            - img [ref=e408]
+            - img [ref=e411]
+        - button "LE-0165 ACTIVE AL REHMAN POULTRY FARM/ HP MEEZAN BANK" [ref=e413] [cursor=pointer]:
+          - img [ref=e415]
+          - generic [ref=e419]:
+            - generic [ref=e420]:
+              - generic [ref=e421]: LE-0165
+              - generic [ref=e422]: ACTIVE
+            - paragraph [ref=e423]: AL REHMAN POULTRY FARM/ HP MEEZAN BANK
+          - generic [ref=e425]:
+            - img [ref=e426]
+            - img [ref=e429]
+        - button "LE-0215 ACTIVE ASHRAF" [ref=e431] [cursor=pointer]:
+          - img [ref=e433]
+          - generic [ref=e437]:
+            - generic [ref=e438]:
+              - generic [ref=e439]: LE-0215
+              - generic [ref=e440]: ACTIVE
+            - paragraph [ref=e441]: ASHRAF
+          - generic [ref=e443]:
+            - img [ref=e444]
+            - img [ref=e447]
+        - button "LE-0225 ACTIVE FAHAD ALI" [ref=e449] [cursor=pointer]:
+          - img [ref=e451]
+          - generic [ref=e455]:
+            - generic [ref=e456]:
+              - generic [ref=e457]: LE-0225
+              - generic [ref=e458]: ACTIVE
+            - paragraph [ref=e459]: FAHAD ALI
+          - generic [ref=e461]:
+            - img [ref=e462]
+            - img [ref=e465]
+        - button "LE-0271 ACTIVE GHULAM MUSTAFA" [ref=e467] [cursor=pointer]:
+          - img [ref=e469]
+          - generic [ref=e473]:
+            - generic [ref=e474]:
+              - generic [ref=e475]: LE-0271
+              - generic [ref=e476]: ACTIVE
+            - paragraph [ref=e477]: GHULAM MUSTAFA
+          - generic [ref=e479]:
+            - img [ref=e480]
+            - img [ref=e483]
+        - button "LE-0386 ACTIVE MUHAMMAD ADIL" [ref=e485] [cursor=pointer]:
+          - img [ref=e487]
+          - generic [ref=e491]:
+            - generic [ref=e492]:
+              - generic [ref=e493]: LE-0386
+              - generic [ref=e494]: ACTIVE
+            - paragraph [ref=e495]: MUHAMMAD ADIL
+          - generic [ref=e497]:
+            - img [ref=e498]
+            - img [ref=e501]
+        - button "LE-0444 ACTIVE other" [ref=e503] [cursor=pointer]:
+          - img [ref=e505]
+          - generic [ref=e509]:
+            - generic [ref=e510]:
+              - generic [ref=e511]: LE-0444
+              - generic [ref=e512]: ACTIVE
+            - paragraph [ref=e513]: other
+          - generic [ref=e515]:
+            - img [ref=e516]
+            - img [ref=e519]
+        - button "LE-0450 ACTIVE SINDH TOURIMS DEVELOPMENT CORPORATION" [ref=e521] [cursor=pointer]:
+          - img [ref=e523]
+          - generic [ref=e527]:
+            - generic [ref=e528]:
+              - generic [ref=e529]: LE-0450
+              - generic [ref=e530]: ACTIVE
+            - paragraph [ref=e531]: SINDH TOURIMS DEVELOPMENT CORPORATION
+          - generic [ref=e533]:
+            - img [ref=e534]
+            - img [ref=e537]
+        - button "LE-0541 ACTIVE MEHBOOB QURESHI" [ref=e539] [cursor=pointer]:
+          - img [ref=e541]
+          - generic [ref=e545]:
+            - generic [ref=e546]:
+              - generic [ref=e547]: LE-0541
+              - generic [ref=e548]: ACTIVE
+            - paragraph [ref=e549]: MEHBOOB QURESHI
+          - generic [ref=e551]:
+            - img [ref=e552]
+            - img [ref=e555]
+        - button "LE-0543 ACTIVE MOHAMMAD AJMAL" [ref=e557] [cursor=pointer]:
+          - img [ref=e559]
+          - generic [ref=e563]:
+            - generic [ref=e564]:
+              - generic [ref=e565]: LE-0543
+              - generic [ref=e566]: ACTIVE
+            - paragraph [ref=e567]: MOHAMMAD AJMAL
+          - generic [ref=e569]:
+            - img [ref=e570]
+            - img [ref=e573]
+        - button "LE-0551 ACTIVE FAISAL BASHIR" [ref=e575] [cursor=pointer]:
+          - img [ref=e577]
+          - generic [ref=e581]:
+            - generic [ref=e582]:
+              - generic [ref=e583]: LE-0551
+              - generic [ref=e584]: ACTIVE
+            - paragraph [ref=e585]: FAISAL BASHIR
+          - generic [ref=e587]:
+            - img [ref=e588]
+            - img [ref=e591]
+        - button "LE-0604 ACTIVE RAMEEZ HUSSAIN" [ref=e593] [cursor=pointer]:
+          - img [ref=e595]
+          - generic [ref=e599]:
+            - generic [ref=e600]:
+              - generic [ref=e601]: LE-0604
+              - generic [ref=e602]: ACTIVE
+            - paragraph [ref=e603]: RAMEEZ HUSSAIN
+          - generic [ref=e605]:
+            - img [ref=e606]
+            - img [ref=e609]
+        - button "LE-0719 ACTIVE SALMAN MANSOOR" [ref=e611] [cursor=pointer]:
+          - img [ref=e613]
+          - generic [ref=e617]:
+            - generic [ref=e618]:
+              - generic [ref=e619]: LE-0719
+              - generic [ref=e620]: ACTIVE
+            - paragraph [ref=e621]: SALMAN MANSOOR
+          - generic [ref=e623]:
+            - img [ref=e624]
+            - img [ref=e627]
+        - button "LE-0799 ACTIVE TARIQ MIRZA" [ref=e629] [cursor=pointer]:
+          - img [ref=e631]
+          - generic [ref=e635]:
+            - generic [ref=e636]:
+              - generic [ref=e637]: LE-0799
+              - generic [ref=e638]: ACTIVE
+            - paragraph [ref=e639]: TARIQ MIRZA
+          - generic [ref=e641]:
+            - img [ref=e642]
+            - img [ref=e645]
+        - button "LE-0877 ACTIVE SYED FAISAL HAMEED" [ref=e647] [cursor=pointer]:
+          - img [ref=e649]
+          - generic [ref=e653]:
+            - generic [ref=e654]:
+              - generic [ref=e655]: LE-0877
+              - generic [ref=e656]: ACTIVE
+            - paragraph [ref=e657]: SYED FAISAL HAMEED
+          - generic [ref=e659]:
+            - img [ref=e660]
+            - img [ref=e663]
+        - button "LE-0990 ACTIVE IMRAN" [ref=e665] [cursor=pointer]:
+          - img [ref=e667]
+          - generic [ref=e671]:
+            - generic [ref=e672]:
+              - generic [ref=e673]: LE-0990
+              - generic [ref=e674]: ACTIVE
+            - paragraph [ref=e675]: IMRAN
+          - generic [ref=e677]:
+            - img [ref=e678]
+            - img [ref=e681]
+        - button "LE10-1239 ACTIVE USMAN MAQSOOD" [ref=e683] [cursor=pointer]:
+          - img [ref=e685]
+          - generic [ref=e689]:
+            - generic [ref=e690]:
+              - generic [ref=e691]: LE10-1239
+              - generic [ref=e692]: ACTIVE
+            - paragraph [ref=e693]: USMAN MAQSOOD
+          - generic [ref=e695]:
+            - img [ref=e696]
+            - img [ref=e699]
+        - button "LE10-204 ACTIVE MUHAMMAD SALEEM" [ref=e701] [cursor=pointer]:
+          - img [ref=e703]
+          - generic [ref=e707]:
+            - generic [ref=e708]:
+              - generic [ref=e709]: LE10-204
+              - generic [ref=e710]: ACTIVE
+            - paragraph [ref=e711]: MUHAMMAD SALEEM
+          - generic [ref=e713]:
+            - img [ref=e714]
+            - img [ref=e717]
+        - button "LE-10-272 ACTIVE Lahore" [ref=e719] [cursor=pointer]:
+          - img [ref=e721]
+          - generic [ref=e725]:
+            - generic [ref=e726]:
+              - generic [ref=e727]: LE-10-272
+              - generic [ref=e728]: ACTIVE
+            - paragraph [ref=e729]: Lahore
+          - generic [ref=e731]:
+            - img [ref=e732]
+            - img [ref=e735]
+        - button "LE-1034 ACTIVE AGRI FORCE CHEMICALS ( WAHID GROUP)" [ref=e737] [cursor=pointer]:
+          - img [ref=e739]
+          - generic [ref=e743]:
+            - generic [ref=e744]:
+              - generic [ref=e745]: LE-1034
+              - generic [ref=e746]: ACTIVE
+            - paragraph [ref=e747]: AGRI FORCE CHEMICALS ( WAHID GROUP)
+          - generic [ref=e749]:
+            - img [ref=e750]
+            - img [ref=e753]
+        - button "LE10-4079 ACTIVE MUDASSAR YOUNAS" [ref=e755] [cursor=pointer]:
+          - img [ref=e757]
+          - generic [ref=e761]:
+            - generic [ref=e762]:
+              - generic [ref=e763]: LE10-4079
+              - generic [ref=e764]: ACTIVE
+            - paragraph [ref=e765]: MUDASSAR YOUNAS
+          - generic [ref=e767]:
+            - img [ref=e768]
+            - img [ref=e771]
+        - button "LE10-6170 ACTIVE NOVA ENGINEERING CO. & SBF STIANLEES PIPES (PVT) L" [ref=e773] [cursor=pointer]:
+          - img [ref=e775]
+          - generic [ref=e779]:
+            - generic [ref=e780]:
+              - generic [ref=e781]: LE10-6170
+              - generic [ref=e782]: ACTIVE
+            - paragraph [ref=e783]: NOVA ENGINEERING CO. & SBF STIANLEES PIPES (PVT) L
+          - generic [ref=e785]:
+            - img [ref=e786]
+            - img [ref=e789]
+        - button "LES8424 ACTIVE KKBUSINESS 21 -" [ref=e791] [cursor=pointer]:
+          - img [ref=e793]
+          - generic [ref=e797]:
+            - generic [ref=e798]:
+              - generic [ref=e799]: LES8424
+              - generic [ref=e800]: ACTIVE
+            - paragraph [ref=e801]: KKBUSINESS
+            - generic [ref=e802]:
+              - generic [ref=e803]:
+                - img [ref=e804]
+                - generic [ref=e807]: "21"
+              - generic [ref=e808]:
+                - img [ref=e809]
+                - generic [ref=e811]: "-"
+          - generic [ref=e813]:
+            - img [ref=e814]
+            - img [ref=e817]
+        - button "LE-0056 ACTIVE M. SHAHRUKH SIDDIQUI 1GD5345761 03342991920" [ref=e819] [cursor=pointer]:
+          - img [ref=e821]
+          - generic [ref=e825]:
+            - generic [ref=e826]:
+              - generic [ref=e827]: LE-0056
+              - generic [ref=e828]: ACTIVE
+            - paragraph [ref=e829]: M. SHAHRUKH SIDDIQUI
+            - generic [ref=e830]:
+              - generic [ref=e831]:
+                - img [ref=e832]
+                - generic [ref=e835]: 1GD5345761
+              - generic [ref=e836]:
+                - img [ref=e837]
+                - generic [ref=e839]: "03342991920"
+          - generic [ref=e841]:
+            - img [ref=e842]
+            - img [ref=e845]
+        - button "LE-0305 ACTIVE ATHER GULZAR 1GD0794903 03008213567" [ref=e847] [cursor=pointer]:
+          - img [ref=e849]
+          - generic [ref=e853]:
+            - generic [ref=e854]:
+              - generic [ref=e855]: LE-0305
+              - generic [ref=e856]: ACTIVE
+            - paragraph [ref=e857]: ATHER GULZAR
+            - generic [ref=e858]:
+              - generic [ref=e859]:
+                - img [ref=e860]
+                - generic [ref=e863]: 1GD0794903
+              - generic [ref=e864]:
+                - img [ref=e865]
+                - generic [ref=e867]: "03008213567"
+          - generic [ref=e869]:
+            - img [ref=e870]
+            - img [ref=e873]
+        - button "LE-0372 ACTIVE ZAHA VACATION HOMES JL473QR30C505180 03093176100" [ref=e875] [cursor=pointer]:
+          - img [ref=e877]
+          - generic [ref=e881]:
+            - generic [ref=e882]:
+              - generic [ref=e883]: LE-0372
+              - generic [ref=e884]: ACTIVE
+            - paragraph [ref=e885]: ZAHA VACATION HOMES
+            - generic [ref=e886]:
+              - generic [ref=e887]:
+                - img [ref=e888]
+                - generic [ref=e891]: JL473QR30C505180
+              - generic [ref=e892]:
+                - img [ref=e893]
+                - generic [ref=e895]: "03093176100"
+          - generic [ref=e897]:
+            - img [ref=e898]
+            - img [ref=e901]
+        - button "KHI91020246 ACTIVE DUA NURSERY HPA BANK AL HABIB LIMITED PKT392793 03007039117" [ref=e903] [cursor=pointer]:
+          - img [ref=e905]
+          - generic [ref=e909]:
+            - generic [ref=e910]:
+              - generic [ref=e911]: KHI91020246
+              - generic [ref=e912]: ACTIVE
+            - paragraph [ref=e913]: DUA NURSERY HPA BANK AL HABIB LIMITED
+            - generic [ref=e914]:
+              - generic [ref=e915]:
+                - img [ref=e916]
+                - generic [ref=e919]: PKT392793
+              - generic [ref=e920]:
+                - img [ref=e921]
+                - generic [ref=e923]: "03007039117"
+          - generic [ref=e925]:
+            - img [ref=e926]
+            - img [ref=e929]
+        - button "AAAC-880 ACTIVE ENGINE SAJID ALI LEC91001044" [ref=e931] [cursor=pointer]:
+          - img [ref=e933]
+          - generic [ref=e937]:
+            - generic [ref=e938]:
+              - generic [ref=e939]: AAAC-880
+              - generic [ref=e940]: ACTIVE
+              - generic [ref=e941]: ENGINE
+            - paragraph [ref=e942]: SAJID ALI
+            - generic [ref=e944]:
+              - img [ref=e945]
+              - generic [ref=e948]: LEC91001044
+          - generic [ref=e950]:
+            - img [ref=e951]
+            - img [ref=e954]
+        - button "AAAG-291 ACTIVE ENGINE MUHAMMAD AWAIS QADRI LEB-5065424" [ref=e956] [cursor=pointer]:
+          - img [ref=e958]
+          - generic [ref=e962]:
+            - generic [ref=e963]:
+              - generic [ref=e964]: AAAG-291
+              - generic [ref=e965]: ACTIVE
+              - generic [ref=e966]: ENGINE
+            - paragraph [ref=e967]: MUHAMMAD AWAIS QADRI
+            - generic [ref=e969]:
+              - img [ref=e970]
+              - generic [ref=e973]: LEB-5065424
+          - generic [ref=e975]:
+            - img [ref=e976]
+            - img [ref=e979]
+        - button "AAAV-994 ACTIVE ENGINE ABDUL AZIZ REHMANI G4LESU574021" [ref=e981] [cursor=pointer]:
+          - img [ref=e983]
+          - generic [ref=e987]:
+            - generic [ref=e988]:
+              - generic [ref=e989]: AAAV-994
+              - generic [ref=e990]: ACTIVE
+              - generic [ref=e991]: ENGINE
+            - paragraph [ref=e992]: ABDUL AZIZ REHMANI
+            - generic [ref=e994]:
+              - img [ref=e995]
+              - generic [ref=e998]: G4LESU574021
+          - generic [ref=e1000]:
+            - img [ref=e1001]
+            - img [ref=e1004]
+        - button "AABC-334 ACTIVE ENGINE HYUNDAI NISHAT MOTOR PVT LTD G4LESU604856" [ref=e1006] [cursor=pointer]:
+          - img [ref=e1008]
+          - generic [ref=e1012]:
+            - generic [ref=e1013]:
+              - generic [ref=e1014]: AABC-334
+              - generic [ref=e1015]: ACTIVE
+              - generic [ref=e1016]: ENGINE
+            - paragraph [ref=e1017]: HYUNDAI NISHAT MOTOR PVT LTD
+            - generic [ref=e1019]:
+              - img [ref=e1020]
+              - generic [ref=e1023]: G4LESU604856
+          - generic [ref=e1025]:
+            - img [ref=e1026]
+            - img [ref=e1029]
+        - button "AABP-766 ACTIVE ENGINE SALMAN FEROZE LEB5928377" [ref=e1031] [cursor=pointer]:
+          - img [ref=e1033]
+          - generic [ref=e1037]:
+            - generic [ref=e1038]:
+              - generic [ref=e1039]: AABP-766
+              - generic [ref=e1040]: ACTIVE
+              - generic [ref=e1041]: ENGINE
+            - paragraph [ref=e1042]: SALMAN FEROZE
+            - generic [ref=e1044]:
+              - img [ref=e1045]
+              - generic [ref=e1048]: LEB5928377
+          - generic [ref=e1050]:
+            - img [ref=e1051]
+            - img [ref=e1054]
+        - button "AABX-089 ACTIVE ENGINE IBRAR LEB-H12858620" [ref=e1056] [cursor=pointer]:
+          - img [ref=e1058]
+          - generic [ref=e1062]:
+            - generic [ref=e1063]:
+              - generic [ref=e1064]: AABX-089
+              - generic [ref=e1065]: ACTIVE
+              - generic [ref=e1066]: ENGINE
+            - paragraph [ref=e1067]: IBRAR
+            - generic [ref=e1069]:
+              - img [ref=e1070]
+              - generic [ref=e1073]: LEB-H12858620
+          - generic [ref=e1075]:
+            - img [ref=e1076]
+            - img [ref=e1079]
+        - button "AABZ-364 ACTIVE ENGINE MUHAMMAD ZAID ADEEL LEB-5060497" [ref=e1081] [cursor=pointer]:
+          - img [ref=e1083]
+          - generic [ref=e1087]:
+            - generic [ref=e1088]:
+              - generic [ref=e1089]: AABZ-364
+              - generic [ref=e1090]: ACTIVE
+              - generic [ref=e1091]: ENGINE
+            - paragraph [ref=e1092]: MUHAMMAD ZAID ADEEL
+            - generic [ref=e1094]:
+              - img [ref=e1095]
+              - generic [ref=e1098]: LEB-5060497
+          - generic [ref=e1100]:
+            - img [ref=e1101]
+            - img [ref=e1104]
+        - button "AABZ-372 ACTIVE ENGINE MR. NASEEM LEB-6775603" [ref=e1106] [cursor=pointer]:
+          - img [ref=e1108]
+          - generic [ref=e1112]:
+            - generic [ref=e1113]:
+              - generic [ref=e1114]: AABZ-372
+              - generic [ref=e1115]: ACTIVE
+              - generic [ref=e1116]: ENGINE
+            - paragraph [ref=e1117]: MR. NASEEM
+            - generic [ref=e1119]:
+              - img [ref=e1120]
+              - generic [ref=e1123]: LEB-6775603
+          - generic [ref=e1125]:
+            - img [ref=e1126]
+            - img [ref=e1129]
+        - button "BK-4427 ACTIVE ENGINE MRS RAFFAT KIFAYAT LEB-6735455" [ref=e1131] [cursor=pointer]:
+          - img [ref=e1133]
+          - generic [ref=e1137]:
+            - generic [ref=e1138]:
+              - generic [ref=e1139]: BK-4427
+              - generic [ref=e1140]: ACTIVE
+              - generic [ref=e1141]: ENGINE
+            - paragraph [ref=e1142]: MRS RAFFAT KIFAYAT
+            - generic [ref=e1144]:
+              - img [ref=e1145]
+              - generic [ref=e1148]: LEB-6735455
+          - generic [ref=e1150]:
+            - img [ref=e1151]
+            - img [ref=e1154]
+        - button "(BCU-625) ACTIVE KALEEM (SHAHZAIB AHMED ITECK EMPLOYEE)" [ref=e1156] [cursor=pointer]:
+          - img [ref=e1158]
+          - generic [ref=e1162]:
+            - generic [ref=e1163]:
+              - generic [ref=e1164]: (BCU-625)
+              - generic [ref=e1165]: ACTIVE
+            - paragraph [ref=e1166]: KALEEM (SHAHZAIB AHMED ITECK EMPLOYEE)
+          - generic [ref=e1168]:
+            - img [ref=e1169]
+            - img [ref=e1172]
+        - button "02102025 ACTIVE M/S HB CATTLE FARM" [ref=e1174] [cursor=pointer]:
+          - img [ref=e1176]
+          - generic [ref=e1180]:
+            - generic [ref=e1181]:
+              - generic [ref=e1182]: "02102025"
+              - generic [ref=e1183]: ACTIVE
+            - paragraph [ref=e1184]: M/S HB CATTLE FARM
+          - generic [ref=e1186]:
+            - img [ref=e1187]
+            - img [ref=e1190]
+        - button "0312025 ACTIVE ABDUL JALEEL DARS" [ref=e1192] [cursor=pointer]:
+          - img [ref=e1194]
+          - generic [ref=e1198]:
+            - generic [ref=e1199]:
+              - generic [ref=e1200]: "0312025"
+              - generic [ref=e1201]: ACTIVE
+            - paragraph [ref=e1202]: ABDUL JALEEL DARS
+          - generic [ref=e1204]:
+            - img [ref=e1205]
+            - img [ref=e1208]
+        - button "AAA-739 ACTIVE LEADER AG" [ref=e1210] [cursor=pointer]:
+          - img [ref=e1212]
+          - generic [ref=e1216]:
+            - generic [ref=e1217]:
+              - generic [ref=e1218]: AAA-739
+              - generic [ref=e1219]: ACTIVE
+            - paragraph [ref=e1220]: LEADER AG
+          - generic [ref=e1222]:
+            - img [ref=e1223]
+            - img [ref=e1226]
+        - button "AAAC-488 ACTIVE BILAWAL SALEEM" [ref=e1228] [cursor=pointer]:
+          - img [ref=e1230]
+          - generic [ref=e1234]:
+            - generic [ref=e1235]:
+              - generic [ref=e1236]: AAAC-488
+              - generic [ref=e1237]: ACTIVE
+            - paragraph [ref=e1238]: BILAWAL SALEEM
+          - generic [ref=e1240]:
+            - img [ref=e1241]
+            - img [ref=e1244]
+        - button "AAAC-992 ACTIVE NEXA FLEET SOLUTIONS" [ref=e1246] [cursor=pointer]:
+          - img [ref=e1248]
+          - generic [ref=e1252]:
+            - generic [ref=e1253]:
+              - generic [ref=e1254]: AAAC-992
+              - generic [ref=e1255]: ACTIVE
+            - paragraph [ref=e1256]: NEXA FLEET SOLUTIONS
+          - generic [ref=e1258]:
+            - img [ref=e1259]
+            - img [ref=e1262]
+    - generic [ref=e127]:
+      - button "My Alerts" [ref=e128] [cursor=pointer]:
+        - img [ref=e129]
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - generic [ref=e135]: BRIAN
+          - generic [ref=e136]: Online
+        - button "Logout" [ref=e138] [cursor=pointer]:
+          - img [ref=e139]
+  - generic [ref=e143]:
+    - generic [ref=e144]:
+      - generic [ref=e146]:
+        - button "Hide vehicle trails" [ref=e147] [cursor=pointer]:
+          - img [ref=e148]
+        - button "Disable clustering" [ref=e150] [cursor=pointer]:
+          - img [ref=e151]
+        - button "Change map layer" [ref=e154] [cursor=pointer]:
+          - img [ref=e155]
+        - button "Show geofences" [ref=e160] [cursor=pointer]:
+          - img [ref=e161]
+        - button "Select a vehicle first" [disabled] [ref=e163]:
+          - img [ref=e164]
+        - button "Measure distance" [ref=e167] [cursor=pointer]:
+          - img [ref=e168]
+        - button "History (Event Log Closure)" [ref=e175] [cursor=pointer]:
+          - img [ref=e176]
+        - button "WC (Warning Console)" [ref=e180] [cursor=pointer]:
+          - img [ref=e181]
+        - button "Fit all pinned vehicles" [ref=e183] [cursor=pointer]:
+          - img [ref=e184]
+        - button "Expand" [ref=e186] [cursor=pointer]:
+          - img [ref=e187]
+      - generic [ref=e193]:
+        - img [ref=e194]
+        - generic [ref=e196]: 0 on map
+      - generic:
+        - generic:
+          - img
+          - paragraph: No vehicles on map
+          - paragraph: Pin vehicles from the list or click "Show on Map"
+    - generic:
+      - generic:
+        - generic:
+          - img
+        - heading "Search for a Vehicle" [level=2]
+        - paragraph: Use the search bar above to find vehicles by plate number, IMEI, or description.
+        - generic:
+          - generic: Ctrl
+          - generic: +
+          - generic: K
+          - generic: to focus search
+  - contentinfo [ref=e197]:
+    - generic [ref=e199]: Search for vehicles to view their status
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - img [ref=e202]
+        - generic [ref=e204]: Phone offline
+      - generic [ref=e205]: System Online
+      - generic [ref=e207]: © 2026 iTecknologi
+  - generic [ref=e208]:
+    - generic [ref=e209]:
+      - generic [ref=e210]:
+        - img [ref=e211]
+        - generic [ref=e213]: Phone
+      - generic [ref=e215]:
+        - button [ref=e216] [cursor=pointer]:
+          - img [ref=e217]
+        - button [ref=e220] [cursor=pointer]:
+          - img [ref=e221]
+        - button [ref=e226] [cursor=pointer]:
+          - img [ref=e227]
+    - generic [ref=e232]:
+      - generic [ref=e235]: Offline
+      - button "Configure" [ref=e236] [cursor=pointer]

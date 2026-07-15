@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket Test</title>
+  <style>
+    body { font-family: monospace; padding: 20px; background: #1a1a2e; color: #eee; }
+    #log { white-space: pre-wrap; background: #0f0f23; padding: 15px; border-radius: 8px; max-height: 400px; overflow-y: auto; }
+    button { padding: 10px 20px; margin: 5px; cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 5px; }
+    button:hover { background: #45a049; }
+    .error { color: #ff6b6b; }
+    .success { color: #51cf66; }
+    .info { color: #74c0fc; }
+  </style>
+</head>
+<body>
+  <h1>WebSocket Connection Test</h1>
+  <button onclick="testWS()">Test Plain WS (8088)</button>
+  <button onclick="testWSS()">Test Secure WSS (8089)</button>
+  <button onclick="clearLog()">Clear Log</button>
+  <hr>
+  <div id="log"></div>
+
+  <script>
+    function log(msg, type = '') {
+      const el = document.getElementById('log');
+      const span = document.createElement('span');
+      span.className = type;
+      span.textContent = new Date().toLocaleTimeString() + ' | ' + msg + '\n';
+      el.appendChild(span);
+      el.scrollTop = el.scrollHeight;
+    }
+
+    function clearLog() {
+      document.getElementById('log').innerHTML = '';
+    }
+
+    function testConnection(url) {
+      log('Connecting to: ' + url, 'info');
+      
+      const ws = new WebSocket(url, ['sip']);
+      
+      ws.onopen = function() {
+        log('✅ WebSocket CONNECTED!', 'success');
+        
+        // Send a SIP REGISTER
+        const register = 
+          'REGISTER sip:192.168.21.32 SIP/2.0\r\n' +
+          'Via: SIP/2.0/WS ' + window.location.hostname + ';branch=z9hG4bK' + Date.now() + '\r\n' +
+          'Max-Forwards: 70\r\n' +
+          'To: <sip:100@192.168.21.32>\r\n' +
+          'From: <sip:100@192.168.21.32>;tag=' + Date.now() + '\r\n' +
+          'Call-ID: test' + Date.now() + '@browser\r\n' +
+          'CSeq: 1 REGISTER\r\n' +
+          'Contact: <sip:100@' + window.location.hostname + ';transport=ws>\r\n' +
+          'Expires: 300\r\n' +
+          'Content-Length: 0\r\n\r\n';
+        
+        log('📤 Sending REGISTER...', 'info');
+        ws.send(register);
+      };
+      
+      ws.onclose = function(e) {
+        log('❌ WebSocket CLOSED - Code: ' + e.code + ', Reason: ' + (e.reason || 'none'), 'error');
+        if (e.code === 1006) {
+          log('   Code 1006 = Abnormal closure (browser blocked or server rejected)', 'error');
+        }
+      };
+      
+      ws.onerror = function(e) {
+        log('❌ WebSocket ERROR', 'error');
+      };
+      
+      ws.onmessage = function(e) {
+        log('📩 Response received:', 'success');
+        log(e.data.substring(0, 300) + '...', 'info');
+      };
+      
+      // Timeout
+      setTimeout(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+          log('⏰ Test complete - connection stayed open', 'success');
+          ws.close();
+        }
+      }, 10000);
+    }
+
+    function testWS() {
+      testConnection('ws://192.168.21.32:8088/ws');
+    }
+
+    function testWSS() {
+      testConnection('wss://192.168.21.32:8089/ws');
+    }
+
+    log('Ready to test. Click a button above.', 'info');
+    log('If WS fails but WSS works, your browser may be blocking mixed content.', 'info');
+    log('If WSS fails, you need to trust the certificate first.', 'info');
+  </script>
+</body>
+</html>

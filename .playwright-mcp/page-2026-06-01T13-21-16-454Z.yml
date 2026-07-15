@@ -1,0 +1,66 @@
+- generic [ref=e3]:
+  - generic [ref=e11]:
+    - generic [ref=e13]:
+      - img "iTecknologi" [ref=e14]
+      - generic [ref=e16]:
+        - heading "iTecknologi" [level=2] [ref=e17]
+        - paragraph [ref=e18]: Intelligent Command Center
+    - generic [ref=e19]:
+      - heading "Fleet Security Operations Center" [level=1] [ref=e20]:
+        - text: Fleet Security
+        - text: Operations Center
+      - paragraph [ref=e21]: 24/7 real-time vehicle monitoring, alert management, and rapid response coordination for nationwide fleet protection.
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - img [ref=e25]
+          - generic [ref=e31]:
+            - generic [ref=e32]: 100K+
+            - generic [ref=e33]: Vehicles Monitored
+        - generic [ref=e34]:
+          - img [ref=e36]
+          - generic [ref=e39]:
+            - generic [ref=e40]: 99.97%
+            - generic [ref=e41]: Uptime SLA
+        - generic [ref=e42]:
+          - img [ref=e44]
+          - generic [ref=e46]:
+            - generic [ref=e47]: <30s
+            - generic [ref=e48]: Response Time
+        - generic [ref=e49]:
+          - img [ref=e51]
+          - generic [ref=e57]:
+            - generic [ref=e58]: Nationwide
+            - generic [ref=e59]: Coverage
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - generic [ref=e64]: Systems Operational
+        - paragraph [ref=e65]: © 2026 iTecknologi. All rights reserved.
+      - generic [ref=e66]:
+        - generic [ref=e67]: 18:21
+        - generic [ref=e68]: Monday, Jun 1
+  - generic [ref=e73]:
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - img [ref=e77]
+        - generic [ref=e80]: Secure Access
+      - heading "Sign in" [level=1] [ref=e81]
+      - paragraph [ref=e82]: Enter your credentials to access the operations center
+    - generic [ref=e83]:
+      - generic [ref=e84]:
+        - generic [ref=e85]: Username
+        - generic [ref=e86]:
+          - generic:
+            - img
+          - textbox "Enter your username" [active] [ref=e87]
+      - generic [ref=e88]:
+        - generic [ref=e89]: Password
+        - generic [ref=e90]:
+          - generic:
+            - img
+          - textbox "Enter your password" [ref=e91]
+          - button [ref=e92] [cursor=pointer]:
+            - img [ref=e93]
+      - button "Sign In" [ref=e97] [cursor=pointer]:
+        - img [ref=e98]
+        - text: Sign In
+    - generic [ref=e102]: Web Platform v2.0

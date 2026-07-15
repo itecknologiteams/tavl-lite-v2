@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    @apply bg-dark-100 text-white font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #root {
+    @apply w-full h-screen;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-glass-200 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-500;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-glass bg-glass-50 border border-glass-100;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300 hover:bg-glass-100 hover:shadow-glow;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-primary-500 text-white rounded-lg font-medium;
+    @apply transition-all duration-300 hover:bg-primary-600 hover:shadow-glow;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-glass-100 text-white rounded-lg font-medium;
+    @apply transition-all duration-300 hover:bg-glass-200;
+  }
+
+  .input-primary {
+    @apply px-4 py-2 bg-glass-50 border border-glass-100 rounded-lg;
+    @apply text-white placeholder-gray-500;
+    @apply focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500;
+    @apply transition-all duration-300;
+  }
+}
+
+/* Marker Cluster Styles */
+.custom-cluster-small,
+.custom-cluster-medium,
+.custom-cluster-large {
+  background: transparent !important;
+}
+
+.cluster-marker {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cluster-marker:hover {
+  transform: scale(1.1);
+}
+
+/* Override default MarkerCluster styles */
+.marker-cluster {
+  background-color: rgba(6, 182, 212, 0.4) !important;
+}
+
+.marker-cluster div {
+  background-color: rgba(6, 182, 212, 0.9) !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.marker-cluster-small {
+  background-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.marker-cluster-small div {
+  background-color: rgba(16, 185, 129, 0.9) !important;
+}
+
+.marker-cluster-medium {
+  background-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+.marker-cluster-medium div {
+  background-color: rgba(245, 158, 11, 0.9) !important;
+}
+
+.marker-cluster-large {
+  background-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.marker-cluster-large div {
+  background-color: rgba(239, 68, 68, 0.9) !important;
+}
+
+/* Geofence Styles */
+.geofence-tooltip {
+  background-color: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.geofence-tooltip::before {
+  border-top-color: rgba(30, 41, 59, 0.95) !important;
+}
+
+.geofence-label {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  color: white !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.leaflet-popup-tip {
+  background-color: rgba(30, 41, 59, 0.95) !important;
+}

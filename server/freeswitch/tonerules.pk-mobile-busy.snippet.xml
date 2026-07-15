@@ -1,0 +1,11 @@
+<!--
+  Add this block under <configuration name="tonerules.conf" ...><tones>...</tones>.
+  Rule targets Pakistan mobile busy cadence: 400Hz+425Hz, 500ms on / 500ms off.
+-->
+<rule name="pk-mobile-busy" description="Pakistan mobile network busy tone">
+  <detect>
+    <frequency>400,425</frequency>
+    <cadence on="500" off="500"/>
+    <hits>2</hits>
+  </detect>
+</rule>

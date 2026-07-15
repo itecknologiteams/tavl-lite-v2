@@ -1,0 +1,89 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - img "iTecknologi" [ref=e7]
+      - generic [ref=e9]:
+        - heading "Command Center" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Fleet Monitoring
+    - generic [ref=e14]:
+      - img [ref=e16]
+      - textbox "Search vehicles…" [ref=e19]
+      - generic [ref=e20]:
+        - generic [ref=e21]: Ctrl K
+        - button "Search options" [ref=e22] [cursor=pointer]:
+          - img [ref=e23]
+    - generic [ref=e26]:
+      - button "My Alerts" [ref=e27] [cursor=pointer]:
+        - img [ref=e28]
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: BRIAN
+          - generic [ref=e35]: Online
+        - button "Logout" [ref=e37] [cursor=pointer]:
+          - img [ref=e38]
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e45]:
+        - button "Hide vehicle trails" [ref=e46] [cursor=pointer]:
+          - img [ref=e47]
+        - button "Disable clustering" [ref=e49] [cursor=pointer]:
+          - img [ref=e50]
+        - button "Change map layer" [ref=e53] [cursor=pointer]:
+          - img [ref=e54]
+        - button "Show geofences" [ref=e59] [cursor=pointer]:
+          - img [ref=e60]
+        - button "Select a vehicle first" [disabled] [ref=e62]:
+          - img [ref=e63]
+        - button "Measure distance" [ref=e66] [cursor=pointer]:
+          - img [ref=e67]
+        - button "History (Event Log Closure)" [ref=e74] [cursor=pointer]:
+          - img [ref=e75]
+        - button "WC (Warning Console)" [ref=e79] [cursor=pointer]:
+          - img [ref=e80]
+        - button "Fit all pinned vehicles" [ref=e82] [cursor=pointer]:
+          - img [ref=e83]
+        - button "Expand" [ref=e85] [cursor=pointer]:
+          - img [ref=e86]
+      - generic [ref=e92]:
+        - img [ref=e93]
+        - generic [ref=e95]: 0 on map
+      - generic:
+        - generic:
+          - img
+          - paragraph: No vehicles on map
+          - paragraph: Pin vehicles from the list or click "Show on Map"
+    - generic:
+      - generic:
+        - generic:
+          - img
+        - heading "Search for a Vehicle" [level=2]
+        - paragraph: Use the search bar above to find vehicles by plate number, IMEI, or description.
+        - generic:
+          - generic: Ctrl
+          - generic: +
+          - generic: K
+          - generic: to focus search
+  - contentinfo [ref=e96]:
+    - generic [ref=e98]: Search for vehicles to view their status
+    - generic [ref=e99]:
+      - generic [ref=e100]:
+        - img [ref=e101]
+        - generic [ref=e103]: Connecting...
+      - generic [ref=e104]: System Online
+      - generic [ref=e106]: © 2026 iTecknologi
+  - generic [ref=e107]:
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - img [ref=e110]
+        - generic [ref=e112]: Phone
+        - generic [ref=e113]: "111"
+      - generic [ref=e115]:
+        - button [ref=e116] [cursor=pointer]:
+          - img [ref=e117]
+        - button [ref=e120] [cursor=pointer]:
+          - img [ref=e121]
+        - button [ref=e126] [cursor=pointer]:
+          - img [ref=e127]
+    - generic [ref=e132]:
+      - generic [ref=e135]: Checking...
+      - button "Configure" [ref=e136] [cursor=pointer]

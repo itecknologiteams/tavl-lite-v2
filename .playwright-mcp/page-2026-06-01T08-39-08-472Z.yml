@@ -1,0 +1,441 @@
+- generic [ref=e104]:
+  - banner [ref=e105]:
+    - generic [ref=e107]:
+      - img "iTecknologi" [ref=e108]
+      - generic [ref=e110]:
+        - heading "Command Center" [level=1] [ref=e111]
+        - paragraph [ref=e112]: Fleet Monitoring
+    - generic [ref=e115]:
+      - img [ref=e243]
+      - textbox "Search vehicles…" [ref=e120]
+      - generic [ref=e121]:
+        - generic [ref=e1575]: Ctrl K
+        - button "Search options" [ref=e123] [cursor=pointer]:
+          - img [ref=e124]
+    - generic [ref=e127]:
+      - button "My Alerts" [ref=e128] [cursor=pointer]:
+        - img [ref=e129]
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - generic [ref=e135]: BRIAN
+          - generic [ref=e136]: Online
+        - button "Logout" [ref=e138] [cursor=pointer]:
+          - img [ref=e139]
+  - generic [ref=e143]:
+    - generic [ref=e144]:
+      - generic [ref=e146]:
+        - button "Hide vehicle trails" [ref=e147] [cursor=pointer]:
+          - img [ref=e148]
+        - button "Clear all trails" [ref=e1576] [cursor=pointer]:
+          - img [ref=e1577]
+        - button "Disable clustering" [ref=e150] [cursor=pointer]:
+          - img [ref=e151]
+        - button "Change map layer" [ref=e154] [cursor=pointer]:
+          - img [ref=e155]
+        - button "Show geofences" [ref=e160] [cursor=pointer]:
+          - img [ref=e161]
+        - button "Show nearby POIs (1km)" [ref=e1580] [cursor=pointer]:
+          - img [ref=e164]
+        - button "Measure distance" [ref=e167] [cursor=pointer]:
+          - img [ref=e168]
+        - button "History (Event Log Closure)" [ref=e175] [cursor=pointer]:
+          - img [ref=e176]
+        - button "WC (Warning Console)" [ref=e180] [cursor=pointer]:
+          - img [ref=e181]
+        - button "Fit all pinned vehicles" [ref=e183] [cursor=pointer]:
+          - img [ref=e184]
+        - button "Expand" [ref=e186] [cursor=pointer]:
+          - img [ref=e187]
+      - generic [ref=e192]:
+        - generic [ref=e193]:
+          - img [ref=e194]
+          - generic [ref=e196]: 0 on map
+        - generic [ref=e1581]:
+          - generic [ref=e1582]:
+            - img [ref=e1583]
+            - generic [ref=e1585]: Live Trails
+            - generic [ref=e1586]: 1 vehicle
+          - generic [ref=e1587]:
+            - generic [ref=e1588]:
+              - generic [ref=e1589]: Distance
+              - generic [ref=e1590]: 0m
+            - generic [ref=e1591]:
+              - generic [ref=e1592]: Duration
+              - generic [ref=e1593]: 0s
+            - generic [ref=e1594]:
+              - generic [ref=e1595]:
+                - generic [ref=e1596]: Avg
+                - generic [ref=e1597]: "0"
+                - generic [ref=e1598]: km/h
+              - generic [ref=e1599]:
+                - generic [ref=e1600]: Max
+                - generic [ref=e1601]: "0"
+                - generic [ref=e1602]: km/h
+            - generic [ref=e1605]:
+              - generic [ref=e1606]: "0"
+              - generic [ref=e1607]: "20"
+              - generic [ref=e1608]: "40"
+              - generic [ref=e1609]: "60"
+              - generic [ref=e1610]: 80+
+      - generic:
+        - generic:
+          - img
+          - paragraph: No vehicles on map
+          - paragraph: Pin vehicles from the list or click "Show on Map"
+    - generic [ref=e1612]:
+      - generic [ref=e1613]:
+        - generic [ref=e1615]:
+          - generic [ref=e1616]:
+            - img [ref=e1618]
+            - generic [ref=e1622]:
+              - heading "LE-0011" [level=2] [ref=e1623]
+              - generic [ref=e1624]:
+                - generic [ref=e1625]: moving
+                - generic [ref=e1626]: •
+                - generic "Auto-refreshing every 10s" [ref=e1627]: LIVE
+                - generic [ref=e1629]: •
+                - generic [ref=e1630]: LE-0011
+                - generic "Tracking Device Model" [ref=e1883]: G1CMINI
+          - generic [ref=e1631]:
+            - button "Collapse" [ref=e1632] [cursor=pointer]:
+              - img [ref=e1633]
+            - button [ref=e1635] [cursor=pointer]:
+              - img [ref=e1636]
+        - generic [ref=e1640]:
+          - img [ref=e1641]
+          - generic [ref=e1645]:
+            - generic [ref=e1646]: Current Location
+            - paragraph [ref=e1647]: Sindhi Muslim Co-operative Housing Society, Qasimabad, حیدرآباد, Qasimabad Taluka, Hyderabad District, Hyderabad Division, Sindh, 72000, Pakistan
+            - link "25.38970, 68.33650" [ref=e1648] [cursor=pointer]:
+              - /url: https://www.google.com/maps?q=25.3897,68.3365
+              - text: 25.38970, 68.33650
+              - img [ref=e1649]
+        - generic [ref=e1653]:
+          - generic [ref=e1654]:
+            - generic [ref=e1655]:
+              - generic [ref=e1656]: Information
+              - generic [ref=e1657]:
+                - button "Vehicle Info" [ref=e2802] [cursor=pointer]:
+                  - img [ref=e2804]
+                  - generic [ref=e2808]: Vehicle Info
+                - button "Customer Info" [ref=e2809] [cursor=pointer]:
+                  - img [ref=e2811]
+                  - generic [ref=e2814]: Customer Info
+                - button "Security Info" [ref=e2815] [cursor=pointer]:
+                  - img [ref=e2817]
+                  - generic [ref=e2819]: Security Info
+            - generic [ref=e1902]:
+              - generic [ref=e1903]:
+                - img [ref=e1904]
+                - generic [ref=e1907]:
+                  - generic [ref=e1908]: Customer
+                  - generic [ref=e1909]: RABIA ADNAN
+              - generic [ref=e1910]:
+                - generic [ref=e1911]: Contact (Click to Call)
+                - generic [ref=e1912]:
+                  - button "03023090011" [disabled] [ref=e1913]:
+                    - img [ref=e1914]
+                    - text: "03023090011"
+                  - button "03003093132" [disabled] [ref=e1916]:
+                    - img [ref=e1917]
+                    - text: "03003093132"
+              - generic [ref=e1919]:
+                - generic [ref=e1920]:
+                  - generic [ref=e1921]: Identity
+                  - generic [ref=e2820]:
+                    - generic [ref=e2821]: NIC/CNIC
+                    - generic "4230181120378" [ref=e2822]
+                  - generic [ref=e2823]:
+                    - generic [ref=e2824]: DOB
+                    - generic "23-9-1971" [ref=e2825]
+                - generic [ref=e1928]:
+                  - generic [ref=e1929]: Address
+                  - generic [ref=e2826]:
+                    - generic [ref=e2827]: Address 1
+                    - generic "HOUSE NO 108/2/11 KHAYABAN -E-AMEER KHUSRO PHASE 6 DHA KARACHI" [ref=e2828]
+                  - generic [ref=e2829]:
+                    - generic [ref=e2830]: Email
+                    - generic "ad.bukhari@gmail.com" [ref=e2831]
+          - generic [ref=e1680]:
+            - generic [ref=e1681]:
+              - img [ref=e1682]
+              - generic [ref=e1685]: "6"
+              - generic [ref=e1686]: km/h
+            - generic [ref=e1687]:
+              - img [ref=e1688]
+              - generic [ref=e1690]: 329°
+              - generic [ref=e1691]: Heading
+            - generic [ref=e1692]:
+              - img [ref=e1693]
+              - generic [ref=e1699]: "6"
+              - generic [ref=e1700]: Sats
+          - generic [ref=e1701]:
+            - generic [ref=e1703]:
+              - img [ref=e1704]
+              - generic [ref=e1706]: Vehicle Telemetry
+            - generic [ref=e1707]:
+              - generic [ref=e1708]:
+                - img [ref=e1709]
+                - generic [ref=e1711]:
+                  - generic [ref=e1712]: Ignition
+                  - generic [ref=e1713]: "OFF"
+              - generic [ref=e1714]:
+                - img [ref=e1715]
+                - generic [ref=e1717]:
+                  - generic [ref=e1718]:
+                    - generic [ref=e1719]: ENGINE CUT
+                    - generic "Immobilizer hardware installed (from CRM)" [ref=e1936]: NOT INSTALLED
+                  - generic [ref=e1720]: INACTIVE
+              - generic [ref=e1721]:
+                - img [ref=e1722]
+                - generic [ref=e1726]:
+                  - generic [ref=e1727]: Battery
+                  - generic [ref=e1728]: 12.16V
+              - generic [ref=e1729]:
+                - img [ref=e1730]
+                - generic [ref=e1731]:
+                  - generic [ref=e1732]: GSM Signal
+                  - generic [ref=e1734]: "20"
+              - generic [ref=e1741]:
+                - img [ref=e1742]
+                - generic [ref=e1744]:
+                  - generic [ref=e1745]: Altitude
+                  - generic [ref=e1746]: 36m
+              - generic [ref=e1747]:
+                - img [ref=e1748]
+                - generic [ref=e1751]:
+                  - generic [ref=e1752]: GPS Time
+                  - generic "2026-06-01 13:00:49" [ref=e1753]
+          - generic [ref=e1755]:
+            - generic [ref=e1756]:
+              - generic "Thunderstorm" [ref=e1757]: ⛈️
+              - generic [ref=e1758]:
+                - generic [ref=e1759]: 39°C
+                - generic [ref=e1760]: Feels 44°C
+            - generic [ref=e1762]:
+              - generic [ref=e1763]:
+                - generic [ref=e1764]: Humidity
+                - generic [ref=e1765]: 42%
+              - generic [ref=e1766]:
+                - generic [ref=e1767]: Wind
+                - generic [ref=e1768]: 14 km/h
+              - generic "Thunderstorm" [ref=e1769]
+          - generic [ref=e1770]:
+            - generic [ref=e1771]:
+              - generic [ref=e1772]:
+                - img [ref=e1773]
+                - text: Last Update
+              - generic [ref=e1776]: 38 minutes ago
+            - generic [ref=e1777]:
+              - generic [ref=e1778]: GPS Status
+              - generic [ref=e1779]: ● Valid
+          - generic [ref=e1780]:
+            - generic [ref=e1781]: Telemetry Snapshot
+            - generic [ref=e1782]:
+              - generic [ref=e2832]:
+                - generic [ref=e2833]: Name
+                - generic "LE-0011" [ref=e2834]
+              - generic [ref=e2835]:
+                - generic [ref=e2836]: Speed
+                - generic "6 Km/h" [ref=e2837]
+              - generic [ref=e2838]:
+                - generic [ref=e2839]: ACC
+                - generic "OFF" [ref=e2840]
+              - generic [ref=e2841]:
+                - generic [ref=e2842]: GPS Time
+                - generic "2026-06-01 13:00:49" [ref=e2843]
+              - generic [ref=e2844]:
+                - generic [ref=e2845]: Coordinates
+                - generic "25.389700,68.336500" [ref=e2846]
+              - generic [ref=e2847]:
+                - generic [ref=e2848]: GPS
+                - generic "Valid" [ref=e2849]
+              - generic [ref=e2850]:
+                - generic [ref=e2851]: Satellites
+                - generic "6" [ref=e2852]
+              - generic [ref=e2853]:
+                - generic [ref=e2854]: Location
+                - generic "Sindhi Muslim Co-operative Housing Society, Qasimabad, حیدرآباد, Qasimabad Taluka, Hyderabad District, Hyderabad Division, Sindh, 72000, Pakistan" [ref=e2855]
+              - generic [ref=e2856]:
+                - generic [ref=e2857]: Ignition Status
+                - generic "0" [ref=e2858]
+              - generic [ref=e2859]:
+                - generic [ref=e2860]: DOUT 1
+                - generic "0" [ref=e2861]
+              - generic [ref=e2862]:
+                - generic [ref=e2863]: Battery
+                - generic "12.16V" [ref=e2864]
+              - generic [ref=e2865]:
+                - generic [ref=e2866]: BB Volt
+                - generic "0.00V" [ref=e2867]
+              - generic [ref=e2868]:
+                - generic [ref=e2869]: Power Voltages
+                - generic "None" [ref=e2870]
+              - generic [ref=e2871]:
+                - generic [ref=e2872]: GSM Signal
+                - generic "20" [ref=e2873]
+          - generic [ref=e1979]:
+            - generic [ref=e1981]:
+              - img [ref=e1982]
+              - generic [ref=e1984]: iTeck App Info
+            - generic [ref=e1985]:
+              - img [ref=e1986]
+              - generic [ref=e1988]: No iTeck app found for this customer
+              - generic [ref=e1989]: Customer may not have installed the app
+          - generic [ref=e1826]:
+            - generic [ref=e1827]:
+              - generic [ref=e1828]:
+                - generic [ref=e1829]:
+                  - img [ref=e1830]
+                  - generic [ref=e1833]: Vehicle Alerts
+                  - generic [ref=e1990]: "3"
+                - button "Refresh alerts" [disabled] [ref=e1834]:
+                  - img [ref=e1835]
+              - generic [ref=e1840]:
+                - generic [ref=e1841]:
+                  - button "All" [ref=e1842] [cursor=pointer]
+                  - button "Eventlog" [ref=e1843] [cursor=pointer]
+                  - button "Console" [ref=e1844] [cursor=pointer]
+                - combobox "Quick range" [ref=e1845]:
+                  - option "Last 24 hours"
+                  - option "Last 7 days" [selected]
+                  - option "Last 30 days"
+            - generic [ref=e1847]:
+              - generic "Your Vehicle LE-0011 has left zone Karachi, 2026-05-31 07:26:10" [ref=e1991] [cursor=pointer]:
+                - generic [ref=e1992]:
+                  - generic [ref=e1993]: 🏙️
+                  - generic [ref=e1994]:
+                    - generic [ref=e1995]:
+                      - generic [ref=e1996]:
+                        - generic [ref=e1997]: Console (Karachi)
+                        - generic [ref=e1998]: Con
+                      - generic [ref=e1999]: Geofence
+                    - generic [ref=e2000]:
+                      - generic [ref=e2001]: 2026-05-31 07:26:10
+                      - generic [ref=e2002]: • 120 km/h
+                    - generic [ref=e2003]:
+                      - img [ref=e2004]
+                      - generic [ref=e2008]: Success
+                      - generic [ref=e2009]: • 2026-05-31 07:28:31
+              - 'generic "KHI L (Value: 0)" [ref=e2010] [cursor=pointer]':
+                - generic [ref=e2011]:
+                  - generic [ref=e2012]: 🔔
+                  - generic [ref=e2013]:
+                    - generic [ref=e2014]:
+                      - generic [ref=e2015]:
+                        - generic [ref=e2016]: KHI L
+                        - generic [ref=e2017]: Evt
+                      - generic [ref=e2018]: Geofence
+                    - generic [ref=e2019]:
+                      - generic [ref=e2020]: 2026-05-31 07:11:38
+                      - generic [ref=e2021]: • 109 km/h
+              - 'generic "KHI S (Value: 0)" [ref=e2022] [cursor=pointer]':
+                - generic [ref=e2023]:
+                  - generic [ref=e2024]: 🔔
+                  - generic [ref=e2025]:
+                    - generic [ref=e2026]:
+                      - generic [ref=e2027]:
+                        - generic [ref=e2028]: KHI S
+                        - generic [ref=e2029]: Evt
+                      - generic [ref=e2030]: Geofence
+                    - generic [ref=e2031]:
+                      - generic [ref=e2032]: 2026-05-31 07:01:56
+                      - generic [ref=e2033]: • 123 km/h
+        - generic [ref=e2178]:
+          - generic [ref=e2179]:
+            - generic [ref=e2180]:
+              - img [ref=e2181]
+              - generic [ref=e2184]:
+                - heading "Vehicle History" [level=2] [ref=e2185]
+                - paragraph [ref=e2186]: LE-0011
+            - generic [ref=e2187]:
+              - generic [ref=e2188]:
+                - button "Technical" [ref=e2189] [cursor=pointer]
+                - button "Closure" [ref=e2190] [cursor=pointer]
+                - button "Calls" [active] [ref=e2191] [cursor=pointer]
+              - button [ref=e2192] [cursor=pointer]:
+                - img [ref=e2193]
+          - generic [ref=e2874]:
+            - generic [ref=e2875]:
+              - generic [ref=e2876]:
+                - button "7d" [ref=e2877] [cursor=pointer]
+                - button "30d" [ref=e2878] [cursor=pointer]
+                - button "90d" [ref=e2879] [cursor=pointer]
+                - button "All" [ref=e2880] [cursor=pointer]
+              - generic "3023090011, 3003093132" [ref=e2881]: 3 calls
+            - generic [ref=e2882]:
+              - generic "Inbound" [ref=e2884]:
+                - img [ref=e2885]
+                - generic [ref=e2889]:
+                  - generic [ref=e2890]:
+                    - generic [ref=e2891]: "03023090011"
+                    - generic [ref=e2892]: →
+                    - generic [ref=e2893]: Ext 451
+                  - generic "31 May, 07:27 am · Agent-03 · tavl-agents" [ref=e2894]
+                - generic [ref=e2895]: No Answer
+              - generic "Inbound" [ref=e2897]:
+                - img [ref=e2898]
+                - generic [ref=e2902]:
+                  - generic [ref=e2903]:
+                    - generic [ref=e2904]: "03023090011"
+                    - generic [ref=e2905]: →
+                    - generic [ref=e2906]: Ext 455
+                  - generic "31 May, 07:27 am · Agent-07 · tavl-agents" [ref=e2907]
+                - generic [ref=e2908]: No Answer
+              - generic "Inbound" [ref=e2910]:
+                - img [ref=e2911]
+                - generic [ref=e2915]:
+                  - generic [ref=e2916]:
+                    - generic [ref=e2917]: "03023090011"
+                    - generic [ref=e2918]: →
+                    - generic [ref=e2919]: Ext 454
+                  - generic "31 May, 07:27 am · Agent-06 · tavl-agents" [ref=e2920]
+                - generic [ref=e2921]: No Answer
+      - generic [ref=e1851]:
+        - button "Pin" [ref=e1852] [cursor=pointer]:
+          - img [ref=e1853]
+          - text: Pin
+        - button "Center" [ref=e1855] [cursor=pointer]:
+          - img [ref=e1856]
+          - text: Center
+        - button "Track" [ref=e1858] [cursor=pointer]:
+          - img [ref=e1859]
+          - text: Track
+        - button "History" [ref=e1863] [cursor=pointer]:
+          - img [ref=e1864]
+          - text: History
+        - button "Cmd" [ref=e1867] [cursor=pointer]:
+          - img [ref=e1868]
+          - text: Cmd
+  - contentinfo [ref=e197]:
+    - generic [ref=e198]:
+      - generic [ref=e1874]:
+        - generic [ref=e1876]: "1"
+        - text: moving
+      - generic [ref=e1877]:
+        - generic [ref=e1879]: "0"
+        - text: idle
+      - generic [ref=e1880]:
+        - generic [ref=e1882]: "0"
+        - text: offline
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - img [ref=e202]
+        - generic [ref=e204]: Phone offline
+      - generic [ref=e205]: System Online
+      - generic [ref=e207]: © 2026 iTecknologi
+  - generic [ref=e208]:
+    - generic [ref=e209]:
+      - generic [ref=e210]:
+        - img [ref=e211]
+        - generic [ref=e213]: Phone
+      - generic [ref=e215]:
+        - button [ref=e216] [cursor=pointer]:
+          - img [ref=e217]
+        - button [ref=e220] [cursor=pointer]:
+          - img [ref=e221]
+        - button [ref=e226] [cursor=pointer]:
+          - img [ref=e227]
+    - generic [ref=e232]:
+      - generic [ref=e235]: Offline
+      - button "Configure" [ref=e236] [cursor=pointer]

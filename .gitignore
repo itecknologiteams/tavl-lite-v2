@@ -1,0 +1,43 @@
+node_modules
+dist
+dist-electron
+release
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.local
+.vscode
+.idea
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Debug / diagnostic one-off scripts
+check_*.ts
+fix_*.ts
+test_*.ts
+find_*.ts
+flush_*.ts
+diagnose_*.ts
+setup_*.ts
+reload_*.ts
+restore_*.ts
+dump_*.ts
+deep_*.ts
+count_*.ts
+create_test*.ts
+originate_test*.ts
+full_log.ts
+add_playback.ts
+apply_dialplan.ts
+cat_public_xml.ts
+direct_sip_caller.py
+test-robocall.sh
+
+# Graphify knowledge graph output
+graphify-out/
+
+# Internal prompt/planning notes
+docs/prompt1.md

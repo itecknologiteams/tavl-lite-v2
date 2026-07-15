@@ -1,0 +1,742 @@
+- generic [ref=e104]:
+  - banner [ref=e105]:
+    - generic [ref=e107]:
+      - img "iTecknologi" [ref=e108]
+      - generic [ref=e110]:
+        - heading "Command Center" [level=1] [ref=e111]
+        - paragraph [ref=e112]: Fleet Monitoring
+    - generic [ref=e115]:
+      - img [ref=e243]
+      - textbox "Search vehicles…" [ref=e120]
+      - generic [ref=e121]:
+        - generic [ref=e1575]: Ctrl K
+        - button "Search options" [ref=e123] [cursor=pointer]:
+          - img [ref=e124]
+    - generic [ref=e127]:
+      - button "My Alerts" [ref=e128] [cursor=pointer]:
+        - img [ref=e129]
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - generic [ref=e135]: BRIAN
+          - generic [ref=e136]: Online
+        - button "Logout" [ref=e138] [cursor=pointer]:
+          - img [ref=e139]
+  - generic [ref=e143]:
+    - generic [ref=e144]:
+      - generic [ref=e146]:
+        - button "Hide vehicle trails" [ref=e147] [cursor=pointer]:
+          - img [ref=e148]
+        - button "Clear all trails" [ref=e1576] [cursor=pointer]:
+          - img [ref=e1577]
+        - button "Disable clustering" [ref=e150] [cursor=pointer]:
+          - img [ref=e151]
+        - button "Change map layer" [ref=e154] [cursor=pointer]:
+          - img [ref=e155]
+        - button "Show geofences" [ref=e160] [cursor=pointer]:
+          - img [ref=e161]
+        - button "Show nearby POIs (1km)" [ref=e1580] [cursor=pointer]:
+          - img [ref=e164]
+        - button "Measure distance" [ref=e167] [cursor=pointer]:
+          - img [ref=e168]
+        - button "History (Event Log Closure)" [ref=e175] [cursor=pointer]:
+          - img [ref=e176]
+        - button "WC (Warning Console)" [ref=e180] [cursor=pointer]:
+          - img [ref=e181]
+        - button "Fit all pinned vehicles" [ref=e183] [cursor=pointer]:
+          - img [ref=e184]
+        - button "Expand" [ref=e186] [cursor=pointer]:
+          - img [ref=e187]
+      - generic [ref=e192]:
+        - generic [ref=e193]:
+          - img [ref=e194]
+          - generic [ref=e196]: 0 on map
+        - generic [ref=e1581]:
+          - generic [ref=e1582]:
+            - img [ref=e1583]
+            - generic [ref=e1585]: Live Trails
+            - generic [ref=e1586]: 1 vehicle
+          - generic [ref=e1587]:
+            - generic [ref=e1588]:
+              - generic [ref=e1589]: Distance
+              - generic [ref=e1590]: 0m
+            - generic [ref=e1591]:
+              - generic [ref=e1592]: Duration
+              - generic [ref=e1593]: 0s
+            - generic [ref=e1594]:
+              - generic [ref=e1595]:
+                - generic [ref=e1596]: Avg
+                - generic [ref=e1597]: "0"
+                - generic [ref=e1598]: km/h
+              - generic [ref=e1599]:
+                - generic [ref=e1600]: Max
+                - generic [ref=e1601]: "0"
+                - generic [ref=e1602]: km/h
+            - generic [ref=e1605]:
+              - generic [ref=e1606]: "0"
+              - generic [ref=e1607]: "20"
+              - generic [ref=e1608]: "40"
+              - generic [ref=e1609]: "60"
+              - generic [ref=e1610]: 80+
+      - generic:
+        - generic:
+          - img
+          - paragraph: No vehicles on map
+          - paragraph: Pin vehicles from the list or click "Show on Map"
+    - generic [ref=e1612]:
+      - generic [ref=e1613]:
+        - generic [ref=e1615]:
+          - generic [ref=e1616]:
+            - img [ref=e1618]
+            - generic [ref=e1622]:
+              - heading "LE-0011" [level=2] [ref=e1623]
+              - generic [ref=e1624]:
+                - generic [ref=e1625]: moving
+                - generic [ref=e1626]: •
+                - generic "Auto-refreshing every 10s" [ref=e1627]: LIVE
+                - generic [ref=e1629]: •
+                - generic [ref=e1630]: LE-0011
+                - generic "Tracking Device Model" [ref=e1883]: G1CMINI
+          - generic [ref=e1631]:
+            - button "Collapse" [ref=e1632] [cursor=pointer]:
+              - img [ref=e1633]
+            - button [ref=e1635] [cursor=pointer]:
+              - img [ref=e1636]
+        - generic [ref=e1640]:
+          - img [ref=e1641]
+          - generic [ref=e1645]:
+            - generic [ref=e1646]: Current Location
+            - paragraph [ref=e1647]: Sindhi Muslim Co-operative Housing Society, Qasimabad, حیدرآباد, Qasimabad Taluka, Hyderabad District, Hyderabad Division, Sindh, 72000, Pakistan
+            - link "25.38970, 68.33650" [ref=e1648] [cursor=pointer]:
+              - /url: https://www.google.com/maps?q=25.3897,68.3365
+              - text: 25.38970, 68.33650
+              - img [ref=e1649]
+        - generic [ref=e1653]:
+          - generic [ref=e1654]:
+            - generic [ref=e1655]:
+              - generic [ref=e1656]: Information
+              - generic [ref=e1657]:
+                - button "Vehicle Info" [ref=e2106] [cursor=pointer]:
+                  - img [ref=e2108]
+                  - generic [ref=e2112]: Vehicle Info
+                - button "Customer Info" [ref=e2113] [cursor=pointer]:
+                  - img [ref=e2115]
+                  - generic [ref=e2118]: Customer Info
+                - button "Security Info" [ref=e2119] [cursor=pointer]:
+                  - img [ref=e2121]
+                  - generic [ref=e2123]: Security Info
+            - generic [ref=e1902]:
+              - generic [ref=e1903]:
+                - img [ref=e1904]
+                - generic [ref=e1907]:
+                  - generic [ref=e1908]: Customer
+                  - generic [ref=e1909]: RABIA ADNAN
+              - generic [ref=e1910]:
+                - generic [ref=e1911]: Contact (Click to Call)
+                - generic [ref=e1912]:
+                  - button "03023090011" [disabled] [ref=e1913]:
+                    - img [ref=e1914]
+                    - text: "03023090011"
+                  - button "03003093132" [disabled] [ref=e1916]:
+                    - img [ref=e1917]
+                    - text: "03003093132"
+              - generic [ref=e1919]:
+                - generic [ref=e1920]:
+                  - generic [ref=e1921]: Identity
+                  - generic [ref=e2124]:
+                    - generic [ref=e2125]: NIC/CNIC
+                    - generic "4230181120378" [ref=e2126]
+                  - generic [ref=e2127]:
+                    - generic [ref=e2128]: DOB
+                    - generic "23-9-1971" [ref=e2129]
+                - generic [ref=e1928]:
+                  - generic [ref=e1929]: Address
+                  - generic [ref=e2130]:
+                    - generic [ref=e2131]: Address 1
+                    - generic "HOUSE NO 108/2/11 KHAYABAN -E-AMEER KHUSRO PHASE 6 DHA KARACHI" [ref=e2132]
+                  - generic [ref=e2133]:
+                    - generic [ref=e2134]: Email
+                    - generic "ad.bukhari@gmail.com" [ref=e2135]
+          - generic [ref=e1680]:
+            - generic [ref=e1681]:
+              - img [ref=e1682]
+              - generic [ref=e1685]: "6"
+              - generic [ref=e1686]: km/h
+            - generic [ref=e1687]:
+              - img [ref=e1688]
+              - generic [ref=e1690]: 329°
+              - generic [ref=e1691]: Heading
+            - generic [ref=e1692]:
+              - img [ref=e1693]
+              - generic [ref=e1699]: "6"
+              - generic [ref=e1700]: Sats
+          - generic [ref=e1701]:
+            - generic [ref=e1703]:
+              - img [ref=e1704]
+              - generic [ref=e1706]: Vehicle Telemetry
+            - generic [ref=e1707]:
+              - generic [ref=e1708]:
+                - img [ref=e1709]
+                - generic [ref=e1711]:
+                  - generic [ref=e1712]: Ignition
+                  - generic [ref=e1713]: "OFF"
+              - generic [ref=e1714]:
+                - img [ref=e1715]
+                - generic [ref=e1717]:
+                  - generic [ref=e1718]:
+                    - generic [ref=e1719]: ENGINE CUT
+                    - generic "Immobilizer hardware installed (from CRM)" [ref=e1936]: NOT INSTALLED
+                  - generic [ref=e1720]: INACTIVE
+              - generic [ref=e1721]:
+                - img [ref=e1722]
+                - generic [ref=e1726]:
+                  - generic [ref=e1727]: Battery
+                  - generic [ref=e1728]: 12.16V
+              - generic [ref=e1729]:
+                - img [ref=e1730]
+                - generic [ref=e1731]:
+                  - generic [ref=e1732]: GSM Signal
+                  - generic [ref=e1734]: "20"
+              - generic [ref=e1741]:
+                - img [ref=e1742]
+                - generic [ref=e1744]:
+                  - generic [ref=e1745]: Altitude
+                  - generic [ref=e1746]: 36m
+              - generic [ref=e1747]:
+                - img [ref=e1748]
+                - generic [ref=e1751]:
+                  - generic [ref=e1752]: GPS Time
+                  - generic "2026-06-01 13:00:49" [ref=e1753]
+          - generic [ref=e1755]:
+            - generic [ref=e1756]:
+              - generic "Thunderstorm" [ref=e1757]: ⛈️
+              - generic [ref=e1758]:
+                - generic [ref=e1759]: 39°C
+                - generic [ref=e1760]: Feels 44°C
+            - generic [ref=e1762]:
+              - generic [ref=e1763]:
+                - generic [ref=e1764]: Humidity
+                - generic [ref=e1765]: 42%
+              - generic [ref=e1766]:
+                - generic [ref=e1767]: Wind
+                - generic [ref=e1768]: 14 km/h
+              - generic "Thunderstorm" [ref=e1769]
+          - generic [ref=e1770]:
+            - generic [ref=e1771]:
+              - generic [ref=e1772]:
+                - img [ref=e1773]
+                - text: Last Update
+              - generic [ref=e1776]: 38 minutes ago
+            - generic [ref=e1777]:
+              - generic [ref=e1778]: GPS Status
+              - generic [ref=e1779]: ● Valid
+          - generic [ref=e1780]:
+            - generic [ref=e1781]: Telemetry Snapshot
+            - generic [ref=e1782]:
+              - generic [ref=e2136]:
+                - generic [ref=e2137]: Name
+                - generic "LE-0011" [ref=e2138]
+              - generic [ref=e2139]:
+                - generic [ref=e2140]: Speed
+                - generic "6 Km/h" [ref=e2141]
+              - generic [ref=e2142]:
+                - generic [ref=e2143]: ACC
+                - generic "OFF" [ref=e2144]
+              - generic [ref=e2145]:
+                - generic [ref=e2146]: GPS Time
+                - generic "2026-06-01 13:00:49" [ref=e2147]
+              - generic [ref=e2148]:
+                - generic [ref=e2149]: Coordinates
+                - generic "25.389700,68.336500" [ref=e2150]
+              - generic [ref=e2151]:
+                - generic [ref=e2152]: GPS
+                - generic "Valid" [ref=e2153]
+              - generic [ref=e2154]:
+                - generic [ref=e2155]: Satellites
+                - generic "6" [ref=e2156]
+              - generic [ref=e2157]:
+                - generic [ref=e2158]: Location
+                - generic "Sindhi Muslim Co-operative Housing Society, Qasimabad, حیدرآباد, Qasimabad Taluka, Hyderabad District, Hyderabad Division, Sindh, 72000, Pakistan" [ref=e2159]
+              - generic [ref=e2160]:
+                - generic [ref=e2161]: Ignition Status
+                - generic "0" [ref=e2162]
+              - generic [ref=e2163]:
+                - generic [ref=e2164]: DOUT 1
+                - generic "0" [ref=e2165]
+              - generic [ref=e2166]:
+                - generic [ref=e2167]: Battery
+                - generic "12.16V" [ref=e2168]
+              - generic [ref=e2169]:
+                - generic [ref=e2170]: BB Volt
+                - generic "0.00V" [ref=e2171]
+              - generic [ref=e2172]:
+                - generic [ref=e2173]: Power Voltages
+                - generic "None" [ref=e2174]
+              - generic [ref=e2175]:
+                - generic [ref=e2176]: GSM Signal
+                - generic "20" [ref=e2177]
+          - generic [ref=e1979]:
+            - generic [ref=e1981]:
+              - img [ref=e1982]
+              - generic [ref=e1984]: iTeck App Info
+            - generic [ref=e1985]:
+              - img [ref=e1986]
+              - generic [ref=e1988]: No iTeck app found for this customer
+              - generic [ref=e1989]: Customer may not have installed the app
+          - generic [ref=e1826]:
+            - generic [ref=e1827]:
+              - generic [ref=e1828]:
+                - generic [ref=e1829]:
+                  - img [ref=e1830]
+                  - generic [ref=e1833]: Vehicle Alerts
+                  - generic [ref=e1990]: "3"
+                - button "Refresh alerts" [ref=e1834] [cursor=pointer]:
+                  - img [ref=e1835]
+              - generic [ref=e1840]:
+                - generic [ref=e1841]:
+                  - button "All" [ref=e1842] [cursor=pointer]
+                  - button "Eventlog" [ref=e1843] [cursor=pointer]
+                  - button "Console" [ref=e1844] [cursor=pointer]
+                - combobox "Quick range" [ref=e1845]:
+                  - option "Last 24 hours"
+                  - option "Last 7 days" [selected]
+                  - option "Last 30 days"
+            - generic [ref=e1847]:
+              - generic "Your Vehicle LE-0011 has left zone Karachi, 2026-05-31 07:26:10" [ref=e1991] [cursor=pointer]:
+                - generic [ref=e1992]:
+                  - generic [ref=e1993]: 🏙️
+                  - generic [ref=e1994]:
+                    - generic [ref=e1995]:
+                      - generic [ref=e1996]:
+                        - generic [ref=e1997]: Console (Karachi)
+                        - generic [ref=e1998]: Con
+                      - generic [ref=e1999]: Geofence
+                    - generic [ref=e2000]:
+                      - generic [ref=e2001]: 2026-05-31 07:26:10
+                      - generic [ref=e2002]: • 120 km/h
+                    - generic [ref=e2003]:
+                      - img [ref=e2004]
+                      - generic [ref=e2008]: Success
+                      - generic [ref=e2009]: • 2026-05-31 07:28:31
+              - 'generic "KHI L (Value: 0)" [ref=e2010] [cursor=pointer]':
+                - generic [ref=e2011]:
+                  - generic [ref=e2012]: 🔔
+                  - generic [ref=e2013]:
+                    - generic [ref=e2014]:
+                      - generic [ref=e2015]:
+                        - generic [ref=e2016]: KHI L
+                        - generic [ref=e2017]: Evt
+                      - generic [ref=e2018]: Geofence
+                    - generic [ref=e2019]:
+                      - generic [ref=e2020]: 2026-05-31 07:11:38
+                      - generic [ref=e2021]: • 109 km/h
+              - 'generic "KHI S (Value: 0)" [ref=e2022] [cursor=pointer]':
+                - generic [ref=e2023]:
+                  - generic [ref=e2024]: 🔔
+                  - generic [ref=e2025]:
+                    - generic [ref=e2026]:
+                      - generic [ref=e2027]:
+                        - generic [ref=e2028]: KHI S
+                        - generic [ref=e2029]: Evt
+                      - generic [ref=e2030]: Geofence
+                    - generic [ref=e2031]:
+                      - generic [ref=e2032]: 2026-05-31 07:01:56
+                      - generic [ref=e2033]: • 123 km/h
+        - generic [ref=e2178]:
+          - generic [ref=e2179]:
+            - generic [ref=e2180]:
+              - img [ref=e2181]
+              - generic [ref=e2184]:
+                - heading "Vehicle History" [level=2] [ref=e2185]
+                - paragraph [ref=e2186]: LE-0011
+            - generic [ref=e2187]:
+              - generic [ref=e2188]:
+                - button "Technical" [ref=e2189] [cursor=pointer]
+                - button "Closure" [ref=e2190] [cursor=pointer]
+                - button "Calls" [ref=e2191] [cursor=pointer]
+              - button [ref=e2192] [cursor=pointer]:
+                - img [ref=e2193]
+          - generic [ref=e2197]:
+            - generic [ref=e2199]: 101 total records across 4 categories
+            - generic [ref=e2200]:
+              - generic [ref=e2202]:
+                - generic [ref=e2203]:
+                  - generic [ref=e2204]: Events (98)
+                  - generic [ref=e2205]:
+                    - button "Pre-Information 61" [ref=e2206] [cursor=pointer]:
+                      - img [ref=e2207]
+                      - generic [ref=e2209]: Pre-Information
+                      - generic [ref=e2210]: "61"
+                    - button "Events 37" [ref=e2211] [cursor=pointer]:
+                      - img [ref=e2212]
+                      - generic [ref=e2214]: Events
+                      - generic [ref=e2215]: "37"
+                - generic [ref=e2216]:
+                  - generic [ref=e2217]: Communication (2)
+                  - button "Location Calls 2" [ref=e2219] [cursor=pointer]:
+                    - img [ref=e2220]
+                    - generic [ref=e2224]: Location Calls
+                    - generic [ref=e2225]: "2"
+                - generic [ref=e2226]:
+                  - generic [ref=e2227]: Complaints (1)
+                  - button "Complaints (Legacy) 1" [ref=e2229] [cursor=pointer]:
+                    - img [ref=e2230]
+                    - generic [ref=e2232]: Complaints (Legacy)
+                    - generic [ref=e2233]: "1"
+              - generic [ref=e2234]:
+                - generic [ref=e2236]:
+                  - img [ref=e2237]
+                  - textbox "Search logs..." [ref=e2240]
+                - generic [ref=e2241]:
+                  - button "24 Sep 2025, 08:02 AM by ALVIS.BAINJO" [ref=e2243] [cursor=pointer]:
+                    - img [ref=e2244]
+                    - generic [ref=e2246]:
+                      - generic [ref=e2248]: 24 Sep 2025, 08:02 AM
+                      - generic [ref=e2249]: by ALVIS.BAINJO
+                  - button "04 Jul 2025, 05:06 AM by OBAID.RAZA" [ref=e2251] [cursor=pointer]:
+                    - img [ref=e2252]
+                    - generic [ref=e2254]:
+                      - generic [ref=e2256]: 04 Jul 2025, 05:06 AM
+                      - generic [ref=e2257]: by OBAID.RAZA
+                  - button "27 Jun 2025, 02:41 AM by UZAIR.AHMED" [ref=e2259] [cursor=pointer]:
+                    - img [ref=e2260]
+                    - generic [ref=e2262]:
+                      - generic [ref=e2264]: 27 Jun 2025, 02:41 AM
+                      - generic [ref=e2265]: by UZAIR.AHMED
+                  - button "20 Apr 2025, 06:16 AM by UZAIF.TANVEER" [ref=e2267] [cursor=pointer]:
+                    - img [ref=e2268]
+                    - generic [ref=e2270]:
+                      - generic [ref=e2272]: 20 Apr 2025, 06:16 AM
+                      - generic [ref=e2273]: by UZAIF.TANVEER
+                  - button "01 Apr 2025, 03:47 AM by OBAID.RAZA" [ref=e2275] [cursor=pointer]:
+                    - img [ref=e2276]
+                    - generic [ref=e2278]:
+                      - generic [ref=e2280]: 01 Apr 2025, 03:47 AM
+                      - generic [ref=e2281]: by OBAID.RAZA
+                  - button "07 Mar 2025, 02:16 AM by MUHAMMAD.MUSTAFA" [ref=e2283] [cursor=pointer]:
+                    - img [ref=e2284]
+                    - generic [ref=e2286]:
+                      - generic [ref=e2288]: 07 Mar 2025, 02:16 AM
+                      - generic [ref=e2289]: by MUHAMMAD.MUSTAFA
+                  - button "16 Feb 2025, 01:29 AM by M.AZEEN" [ref=e2291] [cursor=pointer]:
+                    - img [ref=e2292]
+                    - generic [ref=e2294]:
+                      - generic [ref=e2296]: 16 Feb 2025, 01:29 AM
+                      - generic [ref=e2297]: by M.AZEEN
+                  - button "02 Feb 2025, 01:20 AM by UZAIR.AHMED" [ref=e2299] [cursor=pointer]:
+                    - img [ref=e2300]
+                    - generic [ref=e2302]:
+                      - generic [ref=e2304]: 02 Feb 2025, 01:20 AM
+                      - generic [ref=e2305]: by UZAIR.AHMED
+                  - button "14 Jan 2025, 03:42 AM by OWAIS.KAZMI" [ref=e2307] [cursor=pointer]:
+                    - img [ref=e2308]
+                    - generic [ref=e2310]:
+                      - generic [ref=e2312]: 14 Jan 2025, 03:42 AM
+                      - generic [ref=e2313]: by OWAIS.KAZMI
+                  - button "27 Dec 2024, 08:45 AM by TALHA.SIRAJ" [ref=e2315] [cursor=pointer]:
+                    - img [ref=e2316]
+                    - generic [ref=e2318]:
+                      - generic [ref=e2320]: 27 Dec 2024, 08:45 AM
+                      - generic [ref=e2321]: by TALHA.SIRAJ
+                  - button "25 Dec 2024, 02:45 AM by ABDUL.BASIT" [ref=e2323] [cursor=pointer]:
+                    - img [ref=e2324]
+                    - generic [ref=e2326]:
+                      - generic [ref=e2328]: 25 Dec 2024, 02:45 AM
+                      - generic [ref=e2329]: by ABDUL.BASIT
+                  - button "22 Dec 2024, 04:42 AM by NAFAY" [ref=e2331] [cursor=pointer]:
+                    - img [ref=e2332]
+                    - generic [ref=e2334]:
+                      - generic [ref=e2336]: 22 Dec 2024, 04:42 AM
+                      - generic [ref=e2337]: by NAFAY
+                  - button "31 Oct 2024, 01:10 AM by SAMUEL.NAWAB" [ref=e2339] [cursor=pointer]:
+                    - img [ref=e2340]
+                    - generic [ref=e2342]:
+                      - generic [ref=e2344]: 31 Oct 2024, 01:10 AM
+                      - generic [ref=e2345]: by SAMUEL.NAWAB
+                  - button "02 Oct 2024, 01:47 AM by M.AYAN.ATEEB" [ref=e2347] [cursor=pointer]:
+                    - img [ref=e2348]
+                    - generic [ref=e2350]:
+                      - generic [ref=e2352]: 02 Oct 2024, 01:47 AM
+                      - generic [ref=e2353]: by M.AYAN.ATEEB
+                  - button "29 Sep 2024, 05:32 AM by ABDULLAH.ASIF" [ref=e2355] [cursor=pointer]:
+                    - img [ref=e2356]
+                    - generic [ref=e2358]:
+                      - generic [ref=e2360]: 29 Sep 2024, 05:32 AM
+                      - generic [ref=e2361]: by ABDULLAH.ASIF
+                  - button "22 Sep 2024, 09:38 AM by DAWOOD.BOSE" [ref=e2363] [cursor=pointer]:
+                    - img [ref=e2364]
+                    - generic [ref=e2366]:
+                      - generic [ref=e2368]: 22 Sep 2024, 09:38 AM
+                      - generic [ref=e2369]: by DAWOOD.BOSE
+                  - button "22 Sep 2024, 09:38 AM by DAWOOD.BOSE" [ref=e2371] [cursor=pointer]:
+                    - img [ref=e2372]
+                    - generic [ref=e2374]:
+                      - generic [ref=e2376]: 22 Sep 2024, 09:38 AM
+                      - generic [ref=e2377]: by DAWOOD.BOSE
+                  - button "04 Sep 2024, 05:30 AM by SHAYAN.ZAFAR" [ref=e2379] [cursor=pointer]:
+                    - img [ref=e2380]
+                    - generic [ref=e2382]:
+                      - generic [ref=e2384]: 04 Sep 2024, 05:30 AM
+                      - generic [ref=e2385]: by SHAYAN.ZAFAR
+                  - button "21 Jun 2024, 05:27 AM by AYYAN.ALI" [ref=e2387] [cursor=pointer]:
+                    - img [ref=e2388]
+                    - generic [ref=e2390]:
+                      - generic [ref=e2392]: 21 Jun 2024, 05:27 AM
+                      - generic [ref=e2393]: by AYYAN.ALI
+                  - button "18 Jun 2024, 02:31 AM by M.KHURRAM.ISRAR" [ref=e2395] [cursor=pointer]:
+                    - img [ref=e2396]
+                    - generic [ref=e2398]:
+                      - generic [ref=e2400]: 18 Jun 2024, 02:31 AM
+                      - generic [ref=e2401]: by M.KHURRAM.ISRAR
+                  - button "11 Jun 2024, 07:20 AM by YAHYA.KHAN" [ref=e2403] [cursor=pointer]:
+                    - img [ref=e2404]
+                    - generic [ref=e2406]:
+                      - generic [ref=e2408]: 11 Jun 2024, 07:20 AM
+                      - generic [ref=e2409]: by YAHYA.KHAN
+                  - button "19 May 2024, 04:41 AM by MOSES.AKHTAR" [ref=e2411] [cursor=pointer]:
+                    - img [ref=e2412]
+                    - generic [ref=e2414]:
+                      - generic [ref=e2416]: 19 May 2024, 04:41 AM
+                      - generic [ref=e2417]: by MOSES.AKHTAR
+                  - button "27 Apr 2024, 02:49 AM by SHAHROZ" [ref=e2419] [cursor=pointer]:
+                    - img [ref=e2420]
+                    - generic [ref=e2422]:
+                      - generic [ref=e2424]: 27 Apr 2024, 02:49 AM
+                      - generic [ref=e2425]: by SHAHROZ
+                  - button "11 Apr 2024, 01:17 AM by M.KHURRAM.ISRAR" [ref=e2427] [cursor=pointer]:
+                    - img [ref=e2428]
+                    - generic [ref=e2430]:
+                      - generic [ref=e2432]: 11 Apr 2024, 01:17 AM
+                      - generic [ref=e2433]: by M.KHURRAM.ISRAR
+                  - button "03 Mar 2024, 03:02 AM by MUHAMMAD.UMER" [ref=e2435] [cursor=pointer]:
+                    - img [ref=e2436]
+                    - generic [ref=e2438]:
+                      - generic [ref=e2440]: 03 Mar 2024, 03:02 AM
+                      - generic [ref=e2441]: by MUHAMMAD.UMER
+                  - button "25 Feb 2024, 03:46 AM by SHAMIR.ASIF" [ref=e2443] [cursor=pointer]:
+                    - img [ref=e2444]
+                    - generic [ref=e2446]:
+                      - generic [ref=e2448]: 25 Feb 2024, 03:46 AM
+                      - generic [ref=e2449]: by SHAMIR.ASIF
+                  - button "28 Jan 2024, 03:23 AM by AWAIZ.JAVEED" [ref=e2451] [cursor=pointer]:
+                    - img [ref=e2452]
+                    - generic [ref=e2454]:
+                      - generic [ref=e2456]: 28 Jan 2024, 03:23 AM
+                      - generic [ref=e2457]: by AWAIZ.JAVEED
+                  - button "19 Jan 2024, 03:06 AM by SABA.CH" [ref=e2459] [cursor=pointer]:
+                    - img [ref=e2460]
+                    - generic [ref=e2462]:
+                      - generic [ref=e2464]: 19 Jan 2024, 03:06 AM
+                      - generic [ref=e2465]: by SABA.CH
+                  - button "16 Jan 2024, 04:45 AM by KHIZAR.AWAN" [ref=e2467] [cursor=pointer]:
+                    - img [ref=e2468]
+                    - generic [ref=e2470]:
+                      - generic [ref=e2472]: 16 Jan 2024, 04:45 AM
+                      - generic [ref=e2473]: by KHIZAR.AWAN
+                  - button "14 Jan 2024, 07:11 AM by ABDULLAH.ASIF" [ref=e2475] [cursor=pointer]:
+                    - img [ref=e2476]
+                    - generic [ref=e2478]:
+                      - generic [ref=e2480]: 14 Jan 2024, 07:11 AM
+                      - generic [ref=e2481]: by ABDULLAH.ASIF
+                  - button "12 Jan 2024, 02:39 AM by SUNAIN.AUSTIN" [ref=e2483] [cursor=pointer]:
+                    - img [ref=e2484]
+                    - generic [ref=e2486]:
+                      - generic [ref=e2488]: 12 Jan 2024, 02:39 AM
+                      - generic [ref=e2489]: by SUNAIN.AUSTIN
+                  - button "03 Jan 2024, 06:15 AM by ARNOLD" [ref=e2491] [cursor=pointer]:
+                    - img [ref=e2492]
+                    - generic [ref=e2494]:
+                      - generic [ref=e2496]: 03 Jan 2024, 06:15 AM
+                      - generic [ref=e2497]: by ARNOLD
+                  - button "01 Jan 2024, 04:47 AM by BRIAN" [ref=e2499] [cursor=pointer]:
+                    - img [ref=e2500]
+                    - generic [ref=e2502]:
+                      - generic [ref=e2504]: 01 Jan 2024, 04:47 AM
+                      - generic [ref=e2505]: by BRIAN
+                  - button "11 Dec 2023, 02:22 AM by FAHAD.ALI" [ref=e2507] [cursor=pointer]:
+                    - img [ref=e2508]
+                    - generic [ref=e2510]:
+                      - generic [ref=e2512]: 11 Dec 2023, 02:22 AM
+                      - generic [ref=e2513]: by FAHAD.ALI
+                  - button "10 Dec 2023, 08:03 AM by M.KHURRAM.ISRAR" [ref=e2515] [cursor=pointer]:
+                    - img [ref=e2516]
+                    - generic [ref=e2518]:
+                      - generic [ref=e2520]: 10 Dec 2023, 08:03 AM
+                      - generic [ref=e2521]: by M.KHURRAM.ISRAR
+                  - button "03 Dec 2023, 07:25 AM by ABDULLAH.ASIF" [ref=e2523] [cursor=pointer]:
+                    - img [ref=e2524]
+                    - generic [ref=e2526]:
+                      - generic [ref=e2528]: 03 Dec 2023, 07:25 AM
+                      - generic [ref=e2529]: by ABDULLAH.ASIF
+                  - button "15 Oct 2023, 07:04 AM by AWAIZ.JAVEED" [ref=e2531] [cursor=pointer]:
+                    - img [ref=e2532]
+                    - generic [ref=e2534]:
+                      - generic [ref=e2536]: 15 Oct 2023, 07:04 AM
+                      - generic [ref=e2537]: by AWAIZ.JAVEED
+                  - button "02 Oct 2023, 01:35 AM by AYYAN.ALI" [ref=e2539] [cursor=pointer]:
+                    - img [ref=e2540]
+                    - generic [ref=e2542]:
+                      - generic [ref=e2544]: 02 Oct 2023, 01:35 AM
+                      - generic [ref=e2545]: by AYYAN.ALI
+                  - button "28 Sep 2023, 05:59 AM by ABDULLAH.ASIF" [ref=e2547] [cursor=pointer]:
+                    - img [ref=e2548]
+                    - generic [ref=e2550]:
+                      - generic [ref=e2552]: 28 Sep 2023, 05:59 AM
+                      - generic [ref=e2553]: by ABDULLAH.ASIF
+                  - button "18 Sep 2023, 03:41 AM by A.WAHAB" [ref=e2555] [cursor=pointer]:
+                    - img [ref=e2556]
+                    - generic [ref=e2558]:
+                      - generic [ref=e2560]: 18 Sep 2023, 03:41 AM
+                      - generic [ref=e2561]: by A.WAHAB
+                  - button "14 Sep 2023, 08:46 AM by ARNOLD" [ref=e2563] [cursor=pointer]:
+                    - img [ref=e2564]
+                    - generic [ref=e2566]:
+                      - generic [ref=e2568]: 14 Sep 2023, 08:46 AM
+                      - generic [ref=e2569]: by ARNOLD
+                  - button "11 Sep 2023, 04:41 AM by AYYAN.ALI" [ref=e2571] [cursor=pointer]:
+                    - img [ref=e2572]
+                    - generic [ref=e2574]:
+                      - generic [ref=e2576]: 11 Sep 2023, 04:41 AM
+                      - generic [ref=e2577]: by AYYAN.ALI
+                  - button "27 Aug 2023, 08:48 AM by AWAIZ.JAVEED" [ref=e2579] [cursor=pointer]:
+                    - img [ref=e2580]
+                    - generic [ref=e2582]:
+                      - generic [ref=e2584]: 27 Aug 2023, 08:48 AM
+                      - generic [ref=e2585]: by AWAIZ.JAVEED
+                  - button "23 Jul 2023, 08:39 AM by AMEER.HAMZA" [ref=e2587] [cursor=pointer]:
+                    - img [ref=e2588]
+                    - generic [ref=e2590]:
+                      - generic [ref=e2592]: 23 Jul 2023, 08:39 AM
+                      - generic [ref=e2593]: by AMEER.HAMZA
+                  - button "21 Jul 2023, 12:15 PM by YASH.DIEL" [ref=e2595] [cursor=pointer]:
+                    - img [ref=e2596]
+                    - generic [ref=e2598]:
+                      - generic [ref=e2600]: 21 Jul 2023, 12:15 PM
+                      - generic [ref=e2601]: by YASH.DIEL
+                  - button "30 Jun 2023, 02:20 AM by AHSAN" [ref=e2603] [cursor=pointer]:
+                    - img [ref=e2604]
+                    - generic [ref=e2606]:
+                      - generic [ref=e2608]: 30 Jun 2023, 02:20 AM
+                      - generic [ref=e2609]: by AHSAN
+                  - button "27 Jun 2023, 07:10 AM by BRIAN" [ref=e2611] [cursor=pointer]:
+                    - img [ref=e2612]
+                    - generic [ref=e2614]:
+                      - generic [ref=e2616]: 27 Jun 2023, 07:10 AM
+                      - generic [ref=e2617]: by BRIAN
+                  - button "24 Apr 2023, 09:57 AM by KEVIN.CHRIS" [ref=e2619] [cursor=pointer]:
+                    - img [ref=e2620]
+                    - generic [ref=e2622]:
+                      - generic [ref=e2624]: 24 Apr 2023, 09:57 AM
+                      - generic [ref=e2625]: by KEVIN.CHRIS
+                  - button "23 Apr 2023, 03:10 AM by MILAD" [ref=e2627] [cursor=pointer]:
+                    - img [ref=e2628]
+                    - generic [ref=e2630]:
+                      - generic [ref=e2632]: 23 Apr 2023, 03:10 AM
+                      - generic [ref=e2633]: by MILAD
+                  - button "20 Apr 2023, 07:56 AM by BRIAN" [ref=e2635] [cursor=pointer]:
+                    - img [ref=e2636]
+                    - generic [ref=e2638]:
+                      - generic [ref=e2640]: 20 Apr 2023, 07:56 AM
+                      - generic [ref=e2641]: by BRIAN
+                  - button "20 Mar 2023, 05:59 AM by AHSAN" [ref=e2643] [cursor=pointer]:
+                    - img [ref=e2644]
+                    - generic [ref=e2646]:
+                      - generic [ref=e2648]: 20 Mar 2023, 05:59 AM
+                      - generic [ref=e2649]: by AHSAN
+                  - button "12 Mar 2023, 07:04 AM by TALHA" [ref=e2651] [cursor=pointer]:
+                    - img [ref=e2652]
+                    - generic [ref=e2654]:
+                      - generic [ref=e2656]: 12 Mar 2023, 07:04 AM
+                      - generic [ref=e2657]: by TALHA
+                  - button "06 Mar 2023, 05:07 AM by AHSAN" [ref=e2659] [cursor=pointer]:
+                    - img [ref=e2660]
+                    - generic [ref=e2662]:
+                      - generic [ref=e2664]: 06 Mar 2023, 05:07 AM
+                      - generic [ref=e2665]: by AHSAN
+                  - button "03 Mar 2023, 03:52 AM by SHAHROZ" [ref=e2667] [cursor=pointer]:
+                    - img [ref=e2668]
+                    - generic [ref=e2670]:
+                      - generic [ref=e2672]: 03 Mar 2023, 03:52 AM
+                      - generic [ref=e2673]: by SHAHROZ
+                  - button "03 Mar 2023, 03:52 AM by SHAHROZ" [ref=e2675] [cursor=pointer]:
+                    - img [ref=e2676]
+                    - generic [ref=e2678]:
+                      - generic [ref=e2680]: 03 Mar 2023, 03:52 AM
+                      - generic [ref=e2681]: by SHAHROZ
+                  - button "13 Feb 2023, 05:23 AM by MILAD" [ref=e2683] [cursor=pointer]:
+                    - img [ref=e2684]
+                    - generic [ref=e2686]:
+                      - generic [ref=e2688]: 13 Feb 2023, 05:23 AM
+                      - generic [ref=e2689]: by MILAD
+                  - button "10 Feb 2023, 04:17 AM by DENZIL" [ref=e2691] [cursor=pointer]:
+                    - img [ref=e2692]
+                    - generic [ref=e2694]:
+                      - generic [ref=e2696]: 10 Feb 2023, 04:17 AM
+                      - generic [ref=e2697]: by DENZIL
+                  - button "25 Dec 2022, 02:55 AM by MILAD" [ref=e2699] [cursor=pointer]:
+                    - img [ref=e2700]
+                    - generic [ref=e2702]:
+                      - generic [ref=e2704]: 25 Dec 2022, 02:55 AM
+                      - generic [ref=e2705]: by MILAD
+                  - button "24 Dec 2022, 04:43 AM by M.ZAIN" [ref=e2707] [cursor=pointer]:
+                    - img [ref=e2708]
+                    - generic [ref=e2710]:
+                      - generic [ref=e2712]: 24 Dec 2022, 04:43 AM
+                      - generic [ref=e2713]: by M.ZAIN
+                  - button "24 Nov 2022, 05:20 AM by AHSAN" [ref=e2715] [cursor=pointer]:
+                    - img [ref=e2716]
+                    - generic [ref=e2718]:
+                      - generic [ref=e2720]: 24 Nov 2022, 05:20 AM
+                      - generic [ref=e2721]: by AHSAN
+                  - button "24 Nov 2022, 05:20 AM by AHSAN" [ref=e2723] [cursor=pointer]:
+                    - img [ref=e2724]
+                    - generic [ref=e2726]:
+                      - generic [ref=e2728]: 24 Nov 2022, 05:20 AM
+                      - generic [ref=e2729]: by AHSAN
+      - generic [ref=e1851]:
+        - button "Pin" [ref=e1852] [cursor=pointer]:
+          - img [ref=e1853]
+          - text: Pin
+        - button "Center" [ref=e1855] [cursor=pointer]:
+          - img [ref=e1856]
+          - text: Center
+        - button "Track" [ref=e1858] [cursor=pointer]:
+          - img [ref=e1859]
+          - text: Track
+        - button "History" [active] [ref=e1863] [cursor=pointer]:
+          - img [ref=e1864]
+          - text: History
+        - button "Cmd" [ref=e1867] [cursor=pointer]:
+          - img [ref=e1868]
+          - text: Cmd
+  - contentinfo [ref=e197]:
+    - generic [ref=e198]:
+      - generic [ref=e1874]:
+        - generic [ref=e1876]: "1"
+        - text: moving
+      - generic [ref=e1877]:
+        - generic [ref=e1879]: "0"
+        - text: idle
+      - generic [ref=e1880]:
+        - generic [ref=e1882]: "0"
+        - text: offline
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - img [ref=e202]
+        - generic [ref=e204]: Phone offline
+      - generic [ref=e205]: System Online
+      - generic [ref=e207]: © 2026 iTecknologi
+  - generic [ref=e208]:
+    - generic [ref=e209]:
+      - generic [ref=e210]:
+        - img [ref=e211]
+        - generic [ref=e213]: Phone
+      - generic [ref=e215]:
+        - button [ref=e216] [cursor=pointer]:
+          - img [ref=e217]
+        - button [ref=e220] [cursor=pointer]:
+          - img [ref=e221]
+        - button [ref=e226] [cursor=pointer]:
+          - img [ref=e227]
+    - generic [ref=e232]:
+      - generic [ref=e235]: Offline
+      - button "Configure" [ref=e236] [cursor=pointer]

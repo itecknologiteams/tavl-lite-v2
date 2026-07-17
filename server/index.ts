@@ -174,7 +174,8 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     const client = wsClients.get(ws);
     const agentId = client?.agentId;
-    console.log(`🔌 WebSocket client disconnected: ${agentId || 'anonymous'}`);
+    const extension = client?.extension;
+    console.log(`🔌 WebSocket client disconnected: ${agentId || 'anonymous'} (ext: ${extension || 'none'})`);
     wsClients.delete(ws);
     
     if (agentId) {
@@ -187,6 +188,15 @@ wss.on('connection', (ws) => {
         c => c.agentId === agentId && c.ws.readyState === WebSocket.OPEN
       );
       if (!hasOtherConnection) {
+        // Remove from FreeSWITCH queue so the agent stops getting offered calls
+        if (extension) {
+          const AUTOCALL_QUEUE = process.env.AUTOCALL_QUEUE || 'tavl-agents';
+          eslConnection.queueRemoveMember(AUTOCALL_QUEUE, extension).catch(() => {});
+          // Log any unmatched (no_answer) calls as missed due to disconnect
+          import('./db/alertDistribution').then(({ updateAgentCallLogMissedByDisconnect }) => {
+            updateAgentCallLogMissedByDisconnect(extension).catch(() => {});
+          }).catch(() => {});
+        }
         setAgentOffline(agentId).then(() => {
           console.log(`👋 Agent ${agentId} marked offline (WebSocket closed)`);
           sendToSupervisors('agent:logout', { userId: agentId, status: 'offline', logoutTime: new Date().toISOString() });
@@ -663,14 +673,37 @@ async function initEslAndWire() {
       console.warn('⚠️ Queue agent reconcile skipped:', e?.message);
     }
 
-    eslConnection.on('callEvent', (event) => broadcast('callEvent', event));
+    eslConnection.on('callEvent', (event) => {
+      broadcast('callEvent', event);
+
+      // Update agent call logs on answer/hangup for tracked agent channels
+      if (event.type === 'answered' && agentRingingChannels.has(event.uniqueId)) {
+        const entry = agentRingingChannels.get(event.uniqueId);
+        if (entry) {
+          import('./db/alertDistribution').then(({ updateAgentCallLogAnswered }) => {
+            updateAgentCallLogAnswered(entry.logId).catch(() => {});
+          }).catch(() => {});
+        }
+      } else if (event.type === 'hangup' && agentRingingChannels.has(event.uniqueId)) {
+        const entry = agentRingingChannels.get(event.uniqueId);
+        if (entry) {
+          import('./db/alertDistribution').then(({ updateAgentCallLogEnded }) => {
+            updateAgentCallLogEnded(entry.logId, event.cause).catch(() => {});
+          }).catch(() => {});
+          agentRingingChannels.delete(event.uniqueId);
+        }
+      }
+    });
     eslConnection.on('callBridged', (event) => broadcast('callBridged', event));
 
     // Cache the CRM lookup keyed by the inbound consumer UUID so we can deliver
     // it to the specific agent whose phone actually rings, not every connected client.
     const screenPopCache = new Map<string, any>();
 
-    eslConnection.on('agentRinging', ({ extension, inboundCall }: { extension: string; inboundCall: any }) => {
+    // Track agent ringing channels → agent_call_logs IDs so we can update outcomes
+    const agentRingingChannels = new Map<string, { logId: number; extension: string }>();
+
+    eslConnection.on('agentRinging', ({ extension, inboundCall, agentChannelUuid }: { extension: string; inboundCall: any; agentChannelUuid?: string }) => {
       const cached = screenPopCache.get(inboundCall.uniqueId);
       const screenPopData = cached || { type: 'screenPop', call: inboundCall, found: false };
       const delivered = sendToExtension(extension, 'screenPop', screenPopData);
@@ -678,6 +711,18 @@ async function initEslAndWire() {
         console.log(`📡 Screen pop → ext ${extension} (${delivered} client(s))`);
       } else {
         console.log(`📡 Screen pop for ext ${extension}: no logged-in client with that extension`);
+      }
+
+      // Log the call offering for per-agent tracking
+      if (agentChannelUuid) {
+        import('./db/alertDistribution').then(({ insertAgentCallLog }) => {
+          insertAgentCallLog(extension, inboundCall.callerId, inboundCall.callerIdName, inboundCall.uniqueId, agentChannelUuid).then((logId) => {
+            if (logId > 0) {
+              agentRingingChannels.set(agentChannelUuid, { logId, extension });
+              setTimeout(() => agentRingingChannels.delete(agentChannelUuid), 120_000);
+            }
+          }).catch(() => {});
+        }).catch(() => {});
       }
     });
 

@@ -92,6 +92,22 @@ class SipService {
       this.remoteAudio = new Audio();
       this.remoteAudio.autoplay = true;
       this.ringtoneAudio = this.buildRingtone();
+
+      // Send SIP BYE/REJECT when the page closes/refreshes (F5)
+      // so FreeSWITCH doesn't keep ringing a dead channel.
+      window.addEventListener('beforeunload', () => {
+        if (this.currentSession) {
+          try {
+            if (this.currentSession.state === SessionState.Established) {
+              this.currentSession.bye();
+            } else if (this.currentSession instanceof Invitation) {
+              this.currentSession.reject();
+            } else if (this.currentSession instanceof Inviter) {
+              this.currentSession.cancel();
+            }
+          } catch {}
+        }
+      });
     }
   }
 

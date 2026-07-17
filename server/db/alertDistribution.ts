@@ -197,6 +197,28 @@ export const initAlertDistributionTables = async (): Promise<void> => {
     await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_aa_status_created ON alert_assignments(status, created_at)`);
     await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_aa_assigned_status_created ON alert_assignments(assigned_to, status, created_at)`);
     await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_aa_vehicle_type_created ON alert_assignments(vehicle_reg, alert_type, created_at)`);
+
+    // Agent call logs table — tracks per-agent call outcomes (answered, missed, rejected)
+    await queryPostgres(`
+      CREATE TABLE IF NOT EXISTS agent_call_logs (
+        id SERIAL PRIMARY KEY,
+        agent_extension VARCHAR(20) NOT NULL,
+        caller_id VARCHAR(50),
+        caller_id_name VARCHAR(255),
+        consumer_uuid VARCHAR(255),
+        agent_channel_uuid VARCHAR(255),
+        outcome VARCHAR(20) NOT NULL DEFAULT 'no_answer',
+        ring_started_at TIMESTAMP DEFAULT NOW(),
+        answered_at TIMESTAMP,
+        ended_at TIMESTAMP,
+        hangup_cause VARCHAR(100),
+        duration_seconds INT DEFAULT 0,
+        created_at TIMESTAMP DEFAULT NOW()
+      )
+    `);
+    await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_agent_call_logs_ext ON agent_call_logs(agent_extension)`);
+    await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_agent_call_logs_channel ON agent_call_logs(agent_channel_uuid)`);
+    await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_agent_call_logs_outcome ON agent_call_logs(outcome)`);
     
     console.log('✅ Alert Distribution tables initialized successfully');
     
@@ -1132,4 +1154,85 @@ export const updateAlertTypeConfig = async (
 
 export const deleteAlertTypeConfig = async (id: number): Promise<void> => {
   await queryPostgres(`DELETE FROM alert_type_config WHERE id = $1`, [id]);
+};
+
+// ============================================
+// Agent Call Logs
+// ============================================
+
+export const insertAgentCallLog = async (
+  extension: string,
+  callerId: string,
+  callerIdName: string,
+  consumerUuid: string,
+  agentChannelUuid: string,
+): Promise<number> => {
+  const result = await queryPostgres(`
+    INSERT INTO agent_call_logs (agent_extension, caller_id, caller_id_name, consumer_uuid, agent_channel_uuid)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING id
+  `, [extension, callerId, callerIdName, consumerUuid, agentChannelUuid]);
+  return result?.[0]?.id || 0;
+};
+
+export const updateAgentCallLogAnswered = async (logId: number): Promise<void> => {
+  await queryPostgres(`
+    UPDATE agent_call_logs
+    SET outcome = 'answered', answered_at = NOW()
+    WHERE id = $1 AND outcome = 'no_answer'
+  `, [logId]);
+};
+
+export const updateAgentCallLogEnded = async (logId: number, hangupCause: string): Promise<void> => {
+  await queryPostgres(`
+    UPDATE agent_call_logs
+    SET outcome = CASE
+      WHEN outcome = 'answered' THEN 'answered'
+      WHEN $2 IN ('ORIGINATOR_CANCEL','CALL_REJECTED','USER_BUSY') THEN 'rejected'
+      ELSE 'missed'
+    END,
+    ended_at = NOW(),
+    hangup_cause = $2,
+    duration_seconds = COALESCE(
+      EXTRACT(EPOCH FROM (NOW() - answered_at))::INT,
+      0
+    )
+    WHERE id = $1
+  `, [logId, hangupCause || 'NO_ANSWER']);
+};
+
+export const updateAgentCallLogMissedByDisconnect = async (extension: string): Promise<void> => {
+  await queryPostgres(`
+    UPDATE agent_call_logs
+    SET outcome = 'missed', ended_at = NOW(), hangup_cause = 'WS_DISCONNECTED'
+    WHERE agent_extension = $1 AND outcome = 'no_answer'
+  `, [extension]);
+};
+
+export const getAgentCallLogs = async (
+  extension?: string,
+  from?: string,
+  to?: string,
+  outcome?: string,
+  limit = 100,
+  offset = 0,
+): Promise<any[]> => {
+  const conditions: string[] = [];
+  const values: any[] = [];
+  let idx = 1;
+
+  if (extension) { conditions.push(`agent_extension = $${idx++}`); values.push(extension); }
+  if (from)      { conditions.push(`ring_started_at >= $${idx++}`); values.push(from); }
+  if (to)        { conditions.push(`ring_started_at <= $${idx++}`); values.push(to); }
+  if (outcome)   { conditions.push(`outcome = $${idx++}`); values.push(outcome); }
+
+  const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+  values.push(limit, offset);
+
+  return queryPostgres(`
+    SELECT * FROM agent_call_logs
+    ${where}
+    ORDER BY ring_started_at DESC
+    LIMIT $${idx++} OFFSET $${idx}
+  `, values);
 };

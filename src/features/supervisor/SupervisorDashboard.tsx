@@ -30,6 +30,7 @@ import { useAlertDistributionStore } from '@store/alertDistributionStore';
 import { StatsOverview } from './components/StatsOverview';
 import { BroadcastModal } from './components/BroadcastModal';
 import StolenVehicleManager from './components/StolenVehicleManager';
+import AgentCallLogs from './components/AgentCallLogs';
 import CDRDashboard from './components/CDRDashboard';
 import LiveCallsPanel from './components/LiveCallsPanel';
 import { SupervisorAlertDashboard, DistributionRulesManager, PerformanceReports, AlertTypeConfigManager, LiveDistributionMonitor, SupervisorVehicleLookup } from '@features/alerts';
@@ -37,7 +38,7 @@ import Softphone, { IncomingCallPopup } from '@features/softphone/Softphone';
 import { ScreenPop } from '@features/softphone';
 import Toaster from '@components/Toaster';
 
-type TabKey = 'distribution' | 'live-monitor' | 'vehicle-lookup' | 'rules' | 'alert-config' | 'reports' | 'stolen' | 'cdr' | 'live-calls';
+type TabKey = 'distribution' | 'live-monitor' | 'vehicle-lookup' | 'rules' | 'alert-config' | 'reports' | 'stolen' | 'cdr' | 'live-calls' | 'call-logs';
 
 export default function SupervisorDashboard() {
   const user = useAuthStore((state) => state.user);
@@ -268,6 +269,12 @@ export default function SupervisorDashboard() {
             count={0}
           />
           <TabButton
+            active={activeTab === 'call-logs'}
+            onClick={() => setActiveTab('call-logs')}
+            icon={<PhoneOff className="w-4 h-4" />}
+            label="Call Logs"
+          />
+          <TabButton
             active={activeTab === 'stolen'}
             onClick={() => setActiveTab('stolen')}
             icon={<AlertTriangle className="w-4 h-4" />}
@@ -327,6 +334,12 @@ export default function SupervisorDashboard() {
           {activeTab === 'live-calls' && (
             <motion.div key="live-calls" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="h-full overflow-hidden px-4 xl:px-6 py-3 xl:py-4">
               <LiveCallsPanel />
+            </motion.div>
+          )}
+
+          {activeTab === 'call-logs' && (
+            <motion.div key="call-logs" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="h-full overflow-y-auto px-4 xl:px-6 py-3 xl:py-4">
+              <AgentCallLogs />
             </motion.div>
           )}
 

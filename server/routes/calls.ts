@@ -816,4 +816,34 @@ router.post('/ami/action', async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * GET /api/calls/agent-call-logs
+ * Query agent call outcome logs.
+ */
+router.get('/agent-call-logs', async (req: Request, res: Response) => {
+  try {
+    const {
+      extension,
+      from,
+      to,
+      outcome,
+      limit = '100',
+      offset = '0',
+    } = req.query as Record<string, string>;
+
+    const { getAgentCallLogs } = await import('../db/alertDistribution');
+    const logs = await getAgentCallLogs(
+      extension,
+      from,
+      to,
+      outcome,
+      parseInt(limit),
+      parseInt(offset),
+    );
+    res.json({ success: true, data: logs });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 export default router;

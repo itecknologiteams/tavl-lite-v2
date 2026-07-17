@@ -267,8 +267,8 @@ class EslConnection extends EventEmitter {
       if (otherLegUuid && destNumber && /^\d{2,5}$/.test(destNumber) && isUserLeg) {
         const inb = this.inboundCalls.get(otherLegUuid);
         if (inb) {
-          console.log(`📞 AGENT RINGING: ext ${destNumber} ← consumer ${otherLegUuid} (${inb.callerId})`);
-          this.emit('agentRinging', { extension: destNumber, inboundCall: inb });
+          console.log(`📞 AGENT RINGING: ext ${destNumber} ← consumer ${otherLegUuid} (${inb.callerId}) agent-ch=${uuid}`);
+          this.emit('agentRinging', { extension: destNumber, inboundCall: inb, agentChannelUuid: uuid });
         }
       }
     }
@@ -749,7 +749,8 @@ class EslConnection extends EventEmitter {
       // static agents in callcenter.conf.xml.
       try { await this._api(`callcenter_config agent set reject_delay_time ${agent} 10`); } catch {}
       try { await this._api(`callcenter_config agent set busy_delay_time ${agent} 60`); } catch {}
-      try { await this._api(`callcenter_config agent set no_answer_delay_time ${agent} 0`); } catch {}
+      try { await this._api(`callcenter_config agent set no_answer_delay_time ${agent} 30`); } catch {}
+      try { await this._api(`callcenter_config agent set max_no_answer ${agent} 3`); } catch {}
       await this._api(`callcenter_config agent set status ${agent} Available`);
       // Link to queue via tier if not already linked
       try { await this._api(`callcenter_config tier add ${queueName} ${agent} 1 ${penalty}`); } catch {}

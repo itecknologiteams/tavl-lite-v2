@@ -750,7 +750,6 @@ class EslConnection extends EventEmitter {
       try { await this._api(`callcenter_config agent set reject_delay_time ${agent} 10`); } catch {}
       try { await this._api(`callcenter_config agent set busy_delay_time ${agent} 60`); } catch {}
       try { await this._api(`callcenter_config agent set no_answer_delay_time ${agent} 30`); } catch {}
-      try { await this._api(`callcenter_config agent set max_no_answer ${agent} 3`); } catch {}
       await this._api(`callcenter_config agent set status ${agent} Available`);
       // Link to queue via tier if not already linked
       try { await this._api(`callcenter_config tier add ${queueName} ${agent} 1 ${penalty}`); } catch {}

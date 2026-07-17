@@ -28,6 +28,11 @@ const OUTCOME_ICONS: Record<string, any> = {
   no_answer: Phone,
 };
 
+const EXTENSIONS = [
+  '449','450','451','452','453','454','455','456','457','458',
+  '459','460','461','462','463','464','465','466','467','468','999',
+];
+
 export default function AgentCallLogs() {
   const [logs, setLogs] = useState<CallLogEntry[]>([]);
   const [loading, setLoading] = useState(true);
@@ -80,7 +85,12 @@ export default function AgentCallLogs() {
       <div className="flex items-center gap-3 mb-4 flex-wrap">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-          <input type="text" value={filterExt} onChange={(e) => setFilterExt(e.target.value.replace(/\D/g, ''))} placeholder="Filter by extension..." className="pl-9 pr-8 py-2 w-48 bg-slate-800/80 border border-white/10 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50" />
+          <select value={filterExt} onChange={(e) => setFilterExt(e.target.value)} className="pl-9 pr-8 py-2 bg-slate-800/80 border border-white/10 rounded-xl text-sm text-white appearance-none cursor-pointer focus:outline-none focus:border-violet-500/50">
+            <option value="">All Extensions</option>
+            {EXTENSIONS.map((ext) => (
+              <option key={ext} value={ext}>Ext {ext}</option>
+            ))}
+          </select>
           {filterExt && (
             <button onClick={() => setFilterExt('')} className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded text-slate-500 hover:text-white">
               <X className="w-3.5 h-3.5" />

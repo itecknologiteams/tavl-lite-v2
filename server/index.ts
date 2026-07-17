@@ -715,14 +715,23 @@ async function initEslAndWire() {
 
       // Log the call offering for per-agent tracking
       if (agentChannelUuid) {
-        import('./db/alertDistribution').then(({ insertAgentCallLog }) => {
-          insertAgentCallLog(extension, inboundCall.callerId, inboundCall.callerIdName, inboundCall.uniqueId, agentChannelUuid).then((logId) => {
+        (async () => {
+          let crmUsername: string | undefined;
+          try {
+            const rows = await queryPostgres(
+              `SELECT username FROM agent_sessions WHERE extension = $1 AND status = 'online' LIMIT 1`,
+              [extension]
+            );
+            crmUsername = rows?.[0]?.username || undefined;
+          } catch {}
+          const { insertAgentCallLog } = await import('./db/alertDistribution');
+          insertAgentCallLog(extension, inboundCall.callerId, inboundCall.callerIdName, inboundCall.uniqueId, agentChannelUuid, crmUsername).then((logId) => {
             if (logId > 0) {
               agentRingingChannels.set(agentChannelUuid, { logId, extension });
               setTimeout(() => agentRingingChannels.delete(agentChannelUuid), 120_000);
             }
           }).catch(() => {});
-        }).catch(() => {});
+        })();
       }
     });
 

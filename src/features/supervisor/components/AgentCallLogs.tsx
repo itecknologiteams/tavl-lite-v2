@@ -4,6 +4,7 @@ import { PhoneOff, PhoneIncoming, PhoneMissed, Phone, RefreshCw, Search, X } fro
 interface CallLogEntry {
   id: number;
   agent_extension: string;
+  crm_username: string | null;
   caller_id: string;
   caller_id_name: string;
   outcome: string;
@@ -126,6 +127,7 @@ export default function AgentCallLogs() {
               <tr className="text-xs text-slate-500 uppercase tracking-wider border-b border-white/5">
                 <th className="text-left py-3 px-4 font-medium">Time</th>
                 <th className="text-left py-3 px-4 font-medium">Extension</th>
+                <th className="text-left py-3 px-4 font-medium">CRM User</th>
                 <th className="text-left py-3 px-4 font-medium">Caller</th>
                 <th className="text-left py-3 px-4 font-medium">Outcome</th>
                 <th className="text-left py-3 px-4 font-medium">Cause</th>
@@ -143,6 +145,9 @@ export default function AgentCallLogs() {
                     </td>
                     <td className="py-3 px-4">
                       <span className="font-mono text-sm text-white">Ext {log.agent_extension}</span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <span className="text-sm text-violet-300/80">{log.crm_username || '-'}</span>
                     </td>
                     <td className="py-3 px-4 text-slate-300 max-w-[160px] truncate" title={log.caller_id}>
                       {log.caller_id_name && <span className="text-white/70">{log.caller_id_name} </span>}

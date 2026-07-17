@@ -205,6 +205,7 @@ export const initAlertDistributionTables = async (): Promise<void> => {
       CREATE TABLE IF NOT EXISTS agent_call_logs (
         id SERIAL PRIMARY KEY,
         agent_extension VARCHAR(20) NOT NULL,
+        crm_username VARCHAR(100),
         caller_id VARCHAR(50),
         caller_id_name VARCHAR(255),
         consumer_uuid VARCHAR(255),
@@ -221,6 +222,8 @@ export const initAlertDistributionTables = async (): Promise<void> => {
     await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_agent_call_logs_ext ON agent_call_logs(agent_extension)`);
     await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_agent_call_logs_channel ON agent_call_logs(agent_channel_uuid)`);
     await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_agent_call_logs_outcome ON agent_call_logs(outcome)`);
+    // Add column if table already exists without it
+    try { await queryPostgres(`ALTER TABLE agent_call_logs ADD COLUMN IF NOT EXISTS crm_username VARCHAR(100)`); } catch {}
     
     console.log('✅ Alert Distribution tables initialized successfully');
     
@@ -1170,12 +1173,13 @@ export const insertAgentCallLog = async (
   callerIdName: string,
   consumerUuid: string,
   agentChannelUuid: string,
+  crmUsername?: string,
 ): Promise<number> => {
   const result = await queryPostgres(`
-    INSERT INTO agent_call_logs (agent_extension, caller_id, caller_id_name, consumer_uuid, agent_channel_uuid)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO agent_call_logs (agent_extension, crm_username, caller_id, caller_id_name, consumer_uuid, agent_channel_uuid)
+    VALUES ($1, $6, $2, $3, $4, $5)
     RETURNING id
-  `, [extension, callerId, callerIdName, consumerUuid, agentChannelUuid]);
+  `, [extension, callerId, callerIdName, consumerUuid, agentChannelUuid, crmUsername || null]);
   return result?.[0]?.id || 0;
 };
 

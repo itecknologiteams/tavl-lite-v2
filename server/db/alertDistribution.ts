@@ -30,7 +30,9 @@ export const initAlertDistributionTables = async (): Promise<void> => {
         UNIQUE(user_id)
       )
     `);
-    
+    // Add extension column if not present
+    try { await queryPostgres(`ALTER TABLE agent_sessions ADD COLUMN IF NOT EXISTS extension VARCHAR(20)`); } catch {}
+
     // Create alert_assignments table
     await queryPostgres(`
       CREATE TABLE IF NOT EXISTS alert_assignments (
@@ -236,7 +238,8 @@ export const upsertAgentSession = async (
   userId: string,
   username: string,
   role: string = 'agent',
-  wsConnectionId?: string
+  wsConnectionId?: string,
+  extension?: string
 ): Promise<any> => {
   // Recalculate actual active alert count from assignments table
   const countResult = await queryPostgres(`
@@ -248,8 +251,8 @@ export const upsertAgentSession = async (
   const actualCount = parseInt(countResult?.[0]?.cnt) || 0;
 
   const result = await queryPostgres(`
-    INSERT INTO agent_sessions (user_id, username, role, status, logged_in_at, last_activity, current_alert_count, ws_connection_id, updated_at)
-    VALUES ($1, $2, $3, 'online', NOW(), NOW(), $5, $4, NOW())
+    INSERT INTO agent_sessions (user_id, username, role, status, logged_in_at, last_activity, current_alert_count, ws_connection_id, extension, updated_at)
+    VALUES ($1, $2, $3, 'online', NOW(), NOW(), $5, $4, $6, NOW())
     ON CONFLICT (user_id) DO UPDATE SET
       username = $2,
       role = $3,
@@ -257,9 +260,10 @@ export const upsertAgentSession = async (
       last_activity = NOW(),
       current_alert_count = $5,
       ws_connection_id = COALESCE($4, agent_sessions.ws_connection_id),
+      extension = COALESCE($6, agent_sessions.extension),
       updated_at = NOW()
     RETURNING *
-  `, [userId, username, role, wsConnectionId, actualCount]);
+  `, [userId, username, role, wsConnectionId, actualCount, extension]);
   
   return result[0];
 };

@@ -460,7 +460,12 @@ export default function LiveCallsPanel() {
                       return (
                         <div key={i} className={`rounded-xl border p-2.5 flex flex-col gap-1 cursor-default ${agentTileBg(agent.statusLabel, agent.paused)}`}>
                           <div className="flex items-center justify-between">
-                            <span className="text-sm font-bold text-white/85">{ext}</span>
+                            <span className="text-sm font-bold text-white/85">
+                              Ext {ext}
+                              {agent.name && agent.name !== `Ext ${ext}` && (
+                                <span className="text-[10px] text-white/45 font-normal ml-1.5">· {agent.name}</span>
+                              )}
+                            </span>
                             <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${agentDotColor(agent.statusLabel, agent.paused)}`} />
                           </div>
                           <div className={`text-[11px] font-semibold ${agentTextColor(agent.statusLabel, agent.paused)}`}>

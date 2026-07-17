@@ -103,7 +103,7 @@ router.post('/login', async (req, res) => {
   }
   
   try {
-    const session = await upsertAgentSession(userId, username, role || 'agent');
+    const session = await upsertAgentSession(userId, username, role || 'agent', undefined, extension);
     console.log(`🔑 Agent logged in: ${username} (${role || 'agent'})`);
     
     // Auto-join callcenter queues only for authorised queue-agent extensions.

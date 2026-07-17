@@ -799,14 +799,13 @@ router.get('/call-stats', async (_req: Request, res: Response) => {
     // esl.ts already computes statusLabel correctly from status+state; just pass through.
     const rawMembers: any[] = queueData.members || [];
 
-    // Enrich agent display names from pbx_admin extensions table
+    // Enrich agent display names from agent_sessions (dynamic CRM login, not static PBX)
     try {
-      const { queryPbxDb } = await import('../db/pbx-admin-db');
-      const extNames: { extension: string; caller_id_name: string }[] = await queryPbxDb(
-        `SELECT extension, caller_id_name FROM extensions WHERE caller_id_name IS NOT NULL AND caller_id_name != ''`,
+      const sessions: { extension: string; username: string }[] = await queryPostgres(
+        `SELECT extension, username FROM agent_sessions WHERE extension IS NOT NULL AND extension != '' AND status = 'online'`,
         []
       );
-      const nameMap = new Map(extNames.map((r) => [r.extension, r.caller_id_name]));
+      const nameMap = new Map(sessions.map((r) => [r.extension, r.username]));
       for (const m of rawMembers) {
         const extNum = (m.interface || '').match(/user\/(\d+)@/)?.[1] || m.name;
         m.name = nameMap.get(extNum) || `Ext ${extNum}`;

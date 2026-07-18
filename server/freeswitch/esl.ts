@@ -931,6 +931,13 @@ class EslConnection extends EventEmitter {
           console.warn(`⚠️ reconcile: failed to remove ${agentName}: ${e.message}`);
         }
       }
+      // Reset max_no_answer=0 on every startup so no agent ever auto-pauses.
+      // This is the permanent fix — queueAddMember no longer sets it, and reconcile
+      // ensures any lingering value from old code is wiped after each restart.
+      for (const ext of allowedExtensions) {
+        try { await this._api(`callcenter_config agent set max_no_answer ${ext}@${FS_DOMAIN} 0`); } catch {}
+      }
+
       if (removed.length) {
         console.log(`🧹 Queue reconcile (${queue}): removed unauthorised agents → ${removed.join(', ')}`);
       }

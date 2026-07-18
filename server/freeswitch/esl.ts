@@ -262,9 +262,10 @@ class EslConnection extends EventEmitter {
       // inbound consumer. If we recognize that consumer as one we are
       // tracking, this is the agent who should receive the screen pop.
       const otherLegUuid = this._h(evt, 'Other-Leg-Unique-ID');
-      const channelName = this._h(evt, 'Channel-Name') || '';
-      const isUserLeg = /^(?:sofia\/[^/]+\/)?\d{2,5}@/.test(channelName) || /^loopback\/\d{2,5}/.test(channelName);
-      if (otherLegUuid && destNumber && /^\d{2,5}$/.test(destNumber) && isUserLeg) {
+      // Accept any channel routed to an agent extension: WebRTC agents have random
+      // SIP usernames (e.g. sofia/internal/qd86m3gm@...) so checking the channel
+      // name would miss them. The Other-Leg-Unique-ID + destNumber check is sufficient.
+      if (otherLegUuid && destNumber && /^\d{2,5}$/.test(destNumber)) {
         const inb = this.inboundCalls.get(otherLegUuid);
         if (inb) {
           console.log(`📞 AGENT RINGING: ext ${destNumber} ← consumer ${otherLegUuid} (${inb.callerId}) agent-ch=${uuid}`);

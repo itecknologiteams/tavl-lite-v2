@@ -28,7 +28,8 @@ interface DatabaseConfig {
 const getConfig = (): DatabaseConfig => {
   // Start with TAVL database (primary for vehicle data - matches Python behavior)
   const config = {
-    server: process.env.DB_SERVER || '192.168.20.253',
+    server: process.env.DB_SERVER || 'ha_crm_listener.itecknologi.internal',
+    port: 1433,
     database: process.env.DB_NAME || 'tavl2',
     user: process.env.DB_USER || 'developer',
     password: process.env.DB_PASSWORD || 'tavldev123',
@@ -38,6 +39,7 @@ const getConfig = (): DatabaseConfig => {
       connectTimeout: 15000,    // 15 seconds to connect
       requestTimeout: 60000,    // 1 minute for queries
       cancelTimeout: 15000,     // 15 seconds to cancel
+      multiSubnetFailover: true,
     },
     pool: {
       max: 5,                   // Smaller pool

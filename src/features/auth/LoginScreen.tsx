@@ -54,7 +54,8 @@ export default function LoginScreen() {
 
       if (isElectron()) {
         const tavlConfig = await (window as any).electron.db.updateConfig({
-          server: '192.168.20.253',
+          server: 'ha_crm_listener.itecknologi.internal',
+          port: 1433,
           database: 'tavl2',
           user: 'developer',
           password: 'tavldev123',

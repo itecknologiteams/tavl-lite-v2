@@ -34,7 +34,8 @@ interface CmdConfig {
 }
 
 const getConfig = (): CmdConfig => ({
-  server: process.env.CMD_SERVER || '192.168.21.33',
+  server: process.env.CMD_SERVER || 'ha_crm_listener.itecknologi.internal',
+  port: 1433,
   database: process.env.CMD_NAME || 'tavl2',
   user: process.env.CMD_USER || 'sa',
   password: process.env.CMD_PASSWORD || 'iteck@1212',
@@ -43,6 +44,7 @@ const getConfig = (): CmdConfig => ({
     trustServerCertificate: true,
     connectTimeout: 15000,
     requestTimeout: 30000,
+    multiSubnetFailover: true,
   },
   pool: {
     max: 10,

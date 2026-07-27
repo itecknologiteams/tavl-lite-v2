@@ -31,7 +31,8 @@ interface DatabaseConfig {
 }
 
 const getConfig = (): DatabaseConfig => ({
-  server: process.env.DB_SERVER || '192.168.20.253',
+  server: process.env.DB_SERVER || 'ha_crm_listener.itecknologi.internal',
+  port: 1433,
   database: process.env.DB_NAME || 'tavl2',
   user: process.env.DB_USER || 'developer',
   password: process.env.DB_PASSWORD || 'tavldev123',
@@ -40,6 +41,7 @@ const getConfig = (): DatabaseConfig => ({
     trustServerCertificate: true,
     connectTimeout: 15000,
     requestTimeout: 60000,
+    multiSubnetFailover: true,
   },
   pool: {
     max: 10,
@@ -136,7 +138,8 @@ export const closeTavlDatabase = async (): Promise<void> => {
 
 // Tracking Database (192.168.20.1) - for ConsoleWarning alerts
 const getTrackingConfig = (): DatabaseConfig => ({
-  server: process.env.TRACKING_SERVER || '192.168.20.1',
+  server: process.env.TRACKING_SERVER || 'ha_listener.itecknologi.internal',
+  port: 1433,
   database: process.env.TRACKING_NAME || 'Tracking',
   user: process.env.TRACKING_USER || 'sa',
   password: process.env.TRACKING_PASSWORD || 'iteck@12',
@@ -145,6 +148,7 @@ const getTrackingConfig = (): DatabaseConfig => ({
     trustServerCertificate: true,
     connectTimeout: 15000,
     requestTimeout: 30000,
+    multiSubnetFailover: true,
   },
   pool: {
     max: 5,

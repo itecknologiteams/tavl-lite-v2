@@ -14,7 +14,8 @@ export async function getTrackingPool(): Promise<sql.ConnectionPool> {
   if (trackingPool?.connected) return trackingPool;
 
   trackingPool = new sql.ConnectionPool({
-    server: process.env.TRACKING_SERVER || '192.168.20.1',
+    server: process.env.TRACKING_SERVER || 'ha_listener.itecknologi.internal',
+    port: 1433,
     database: process.env.TRACKING_NAME || 'Tracking',
     user: process.env.TRACKING_USER || 'sa',
     password: process.env.TRACKING_PASSWORD || 'iteck@12',
@@ -23,6 +24,7 @@ export async function getTrackingPool(): Promise<sql.ConnectionPool> {
       trustServerCertificate: true,
       connectTimeout: 10_000,
       requestTimeout: 20_000,
+      multiSubnetFailover: true,
     },
     pool: {
       max: 10,

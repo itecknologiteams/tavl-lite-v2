@@ -27,7 +27,8 @@ interface MobileAppConfig {
 }
 
 const getConfig = (): MobileAppConfig => ({
-  server: process.env.MOBILEAPP_SERVER || '192.168.20.1',
+  server: process.env.MOBILEAPP_SERVER || 'ha_listener.itecknologi.internal',
+  port: 1433,
   database: process.env.MOBILEAPP_NAME || 'MobileApp',
   user: process.env.MOBILEAPP_USER || 'sa',
   password: process.env.MOBILEAPP_PASSWORD || 'iteck@12',
@@ -36,6 +37,7 @@ const getConfig = (): MobileAppConfig => ({
     trustServerCertificate: true,
     connectTimeout: 15000,
     requestTimeout: 30000,
+    multiSubnetFailover: true,
   },
   pool: {
     max: 5,

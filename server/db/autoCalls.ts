@@ -27,7 +27,8 @@ interface AutoCallsConfig {
 }
 
 const getConfig = (): AutoCallsConfig => ({
-  server: process.env.AUTOCALLS_SERVER || '192.168.20.1',
+  server: process.env.AUTOCALLS_SERVER || 'ha_listener.itecknologi.internal',
+  port: 1433,
   database: process.env.AUTOCALLS_NAME || 'AutoCalls',
   user: process.env.AUTOCALLS_USER || 'sa',
   password: process.env.AUTOCALLS_PASSWORD || 'iteck@12',
@@ -35,6 +36,7 @@ const getConfig = (): AutoCallsConfig => ({
     encrypt: false,
     trustServerCertificate: true,
     connectTimeout: 10000,
+    multiSubnetFailover: true,
     // CallDetails is a ~26M-row view; normal queries run ~2-4s but spike under load.
     // 15s was too tight — a single timeout makes the whole inbox lookup fail and show
     // "No call" for every alert. Give generous headroom (env-tunable).

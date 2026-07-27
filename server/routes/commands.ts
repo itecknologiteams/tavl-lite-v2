@@ -215,7 +215,7 @@ router.post('/send', async (req, res) => {
     });
     
     if (config.type === 'gprs') {
-      // GPRS command - insert into GprsCommandQueue on Command DB (192.168.21.33)
+      // GPRS command - insert into GprsCommandQueue on Command DB (ha_crm_listener)
       if (!imei) {
         return res.status(400).json({ success: false, error: 'Device has no IMEI' });
       }
@@ -232,7 +232,7 @@ router.post('/send', async (req, res) => {
       });
       
     } else {
-      // SMS command - insert into to_be_sent queue on Command DB (192.168.21.33)
+      // SMS command - insert into to_be_sent queue on Command DB (ha_crm_listener)
       if (!simNumber) {
         return res.status(400).json({ success: false, error: 'Device has no SIM number' });
       }
@@ -322,7 +322,7 @@ router.get('/history/:objectId', async (req, res) => {
     const imei = device?.Imei?.trim();
     const simNumber = device?.SimNumber?.trim();
     
-    // All command history queries go to Command DB (192.168.21.33)
+    // All command history queries go to Command DB (ha_crm_listener)
     
     // Get GPRS commands sent
     let gprsSent: any[] = [];

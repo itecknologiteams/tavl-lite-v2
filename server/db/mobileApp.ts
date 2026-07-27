@@ -1,6 +1,6 @@
 /**
  * MobileApp SQL Server Database Connection
- * Host: 192.168.20.1 / Database: MobileApp
+ * Host: ha_listener.itecknologi.internal / Database: MobileApp
  * Contains: AppLogin, Notifications tables
  */
 import sql from 'mssql';

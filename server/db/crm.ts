@@ -1,6 +1,6 @@
 /**
  * CRM SQL Server Database Connection
- * Host: 192.168.21.33 / Database: ERP_Tracking
+ * Host: ha_crm_listener.itecknologi.internal / Database: ERP_Tracking
  */
 import sql from 'mssql';
 

@@ -1,6 +1,6 @@
 /**
  * Command Database Connection (SMS/GPRS commands)
- * Host: 192.168.21.33 / Database: tavl2
+ * Host: ha_crm_listener.itecknologi.internal / Database: tavl2
  * 
  * Tables:
  * - dbo.control_room_sms - SMS commands sent

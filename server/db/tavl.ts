@@ -1,6 +1,6 @@
 /**
  * TAVL SQL Server Database Connection
- * Host: 192.168.20.253 / Database: tavl2
+ * Host: ha_crm_listener.itecknologi.internal / Database: tavl2
  * Also includes Tracking database connection for ConsoleWarning alerts
  */
 import sql from 'mssql';
@@ -136,7 +136,7 @@ export const closeTavlDatabase = async (): Promise<void> => {
   }
 };
 
-// Tracking Database (192.168.20.1) - for ConsoleWarning alerts
+// Tracking Database (ha_listener.itecknologi.internal) - for ConsoleWarning alerts
 const getTrackingConfig = (): DatabaseConfig => ({
   server: process.env.TRACKING_SERVER || 'ha_listener.itecknologi.internal',
   port: 1433,

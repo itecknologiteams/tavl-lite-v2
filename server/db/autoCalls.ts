@@ -1,6 +1,6 @@
 /**
  * AutoCalls SQL Server Database Connection
- * Host: 192.168.20.1 / Database: AutoCalls
+ * Host: ha_listener.itecknologi.internal / Database: AutoCalls
  * Used for robocall status tracking
  */
 import sql from 'mssql';

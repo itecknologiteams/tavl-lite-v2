@@ -1208,7 +1208,10 @@ class SipService {
 
   private cleanupCall() {
     this.stopRingtone();
-    if (this.remoteAudio) this.remoteAudio.srcObject = null;
+    if (this.remoteAudio) {
+      this.remoteAudio.pause();
+      this.remoteAudio.srcObject = null;
+    }
     // If there was a consult session in progress, kill it too
     if (this.consultSession) {
       try {

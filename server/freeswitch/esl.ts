@@ -1043,6 +1043,20 @@ class EslConnection extends EventEmitter {
       await this._api(`uuid_setvar ${partnerChannel} conference_moh_sound local_stream://tavl_moh`).catch(() => {});
       await this._api(`uuid_setvar ${partnerChannel} conference_alone_sound silence_stream://1`).catch(() => {});
 
+      // Suppress "you have been kicked", "person joined", "person left", etc.
+      const silenceConfSounds = [
+        'conference_enter_sound',
+        'conference_exit_sound',
+        'conference_kicked_sound',
+        'conference_muted_sound',
+        'conference_unmuted_sound',
+      ];
+      for (const ch of [agentChannel, partnerChannel]) {
+        for (const s of silenceConfSounds) {
+          await this._api(`uuid_setvar ${ch} ${s} silence_stream://1`).catch(() => {});
+        }
+      }
+
       // Move customer into hold conference first (breaks bridge).
       try {
         await this._api(`uuid_transfer ${partnerChannel} conference:${holdRoom}@default inline`);
@@ -1072,7 +1086,8 @@ class EslConnection extends EventEmitter {
         : `sofia/gateway/${process.env.FREESWITCH_TRUNK || 'trunk-robocall'}/${formattedDest}`;
 
       try {
-        await this._bgapi(`originate {origination_caller_id_name='${callerIdName || 'Conference'}',origination_caller_id_number=${callerId || extension},ignore_early_media=true}${channel} &conference(${conferenceRoom}@default)`);
+        const confVars = 'conference_enter_sound=silence_stream://1,conference_exit_sound=silence_stream://1,conference_kicked_sound=silence_stream://1,conference_muted_sound=silence_stream://1,conference_unmuted_sound=silence_stream://1';
+        await this._bgapi(`originate {origination_caller_id_name='${callerIdName || 'Conference'}',origination_caller_id_number=${callerId || extension},ignore_early_media=true,${confVars}}${channel} &conference(${conferenceRoom}@default)`);
         console.log(`🎤 Third-party originate queued: ${channel} → ${conferenceRoom}`);
       } catch (err: any) {
         console.warn(`⚠️ Third-party originate failed: ${err.message} — conference still active with agent only`);

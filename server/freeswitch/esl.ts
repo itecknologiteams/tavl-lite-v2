@@ -1218,7 +1218,7 @@ class EslConnection extends EventEmitter {
   async endConference(conferenceRoom: string): Promise<{ success: boolean; error?: string }> {
     if (!this.conn || !this.isConnected) return { success: false, error: 'ESL not connected' };
     try {
-      await this._api(`conference ${conferenceRoom} kick all`);
+      await this._api(`conference ${conferenceRoom} hup all`);
       console.log(`📞 Conference ended: room=${conferenceRoom}`);
       return { success: true };
     } catch (err: any) {

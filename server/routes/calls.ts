@@ -688,13 +688,18 @@ router.post('/conference/merge-held', async (req: Request, res: Response) => {
 
 /**
  * POST /api/calls/conference/end
- * Destroy the conference room and disconnect all participants.
+ * Destroy conference + hold rooms and disconnect all participants.
  */
 router.post('/conference/end', async (req: Request, res: Response) => {
   try {
-    const { conferenceRoom } = req.body;
+    const { conferenceRoom, holdRoom } = req.body;
     if (!conferenceRoom) {
       return res.status(400).json({ success: false, error: 'conferenceRoom is required' });
+    }
+    // Destroy hold room if it still exists (customer may not have been merged)
+    if (holdRoom) {
+      const holdResult = await eslConnection.endConference(holdRoom);
+      if (!holdResult.success) console.warn('Hold room cleanup:', holdResult.error);
     }
     const result = await eslConnection.endConference(conferenceRoom);
     res.json(result);

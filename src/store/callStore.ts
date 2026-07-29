@@ -987,13 +987,13 @@ export const useCallStore = create<CallState>((set, get) => {
     },
 
     endConference: async () => {
-      const { conferenceRoom } = get();
+      const { conferenceRoom, holdRoom } = get();
       if (conferenceRoom) {
         try {
           await fetch('/api/calls/conference/end', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ conferenceRoom }),
+            body: JSON.stringify({ conferenceRoom, holdRoom }),
           });
         } catch (e) {
           console.error('Failed to end conference:', e);

@@ -1043,11 +1043,6 @@ class EslConnection extends EventEmitter {
       await this._api(`uuid_setvar ${partnerChannel} conference_moh_sound local_stream://tavl_moh`).catch(() => {});
       await this._api(`uuid_setvar ${partnerChannel} conference_alone_sound silence_stream://1`).catch(() => {});
 
-      // Suppress "you have been kicked" sound only — keep enter/exit/mute sounds.
-      for (const ch of [agentChannel, partnerChannel]) {
-        await this._api(`uuid_setvar ${ch} conference_kicked_sound silence_stream://1`).catch(() => {});
-      }
-
       // Move customer into hold conference first (breaks bridge).
       try {
         await this._api(`uuid_transfer ${partnerChannel} conference:${holdRoom}@default inline`);
@@ -1077,8 +1072,7 @@ class EslConnection extends EventEmitter {
         : `sofia/gateway/${process.env.FREESWITCH_TRUNK || 'trunk-robocall'}/${formattedDest}`;
 
       try {
-        const confVars = 'conference_kicked_sound=silence_stream://1';
-        await this._bgapi(`originate {origination_caller_id_name='${callerIdName || 'Conference'}',origination_caller_id_number=${callerId || extension},ignore_early_media=true,${confVars}}${channel} &conference(${conferenceRoom}@default)`);
+        await this._bgapi(`originate {origination_caller_id_name='${callerIdName || 'Conference'}',origination_caller_id_number=${callerId || extension},ignore_early_media=true}${channel} &conference(${conferenceRoom}@default)`);
         console.log(`🎤 Third-party originate queued: ${channel} → ${conferenceRoom}`);
       } catch (err: any) {
         console.warn(`⚠️ Third-party originate failed: ${err.message} — conference still active with agent only`);
@@ -1183,7 +1177,7 @@ class EslConnection extends EventEmitter {
   async kickFromConference(conferenceRoom: string, memberId: string, uuid?: string): Promise<{ success: boolean; error?: string }> {
     if (!this.conn || !this.isConnected) return { success: false, error: 'ESL not connected' };
     try {
-      await this._api(`conference ${conferenceRoom} kick ${memberId}`);
+      await this._api(`conference ${conferenceRoom} hup ${memberId}`);
       return { success: true };
     } catch (err: any) {
       if (uuid) {

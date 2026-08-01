@@ -1024,8 +1024,9 @@ class EslConnection extends EventEmitter {
 
     const ts = Date.now() % 100000;
     const conferenceRoom = `tavlconf${extension}${ts}`;
-    const holdRoom = `tavlhold${extension}${ts}`;
-    console.log(`🎤 Starting conference ${conferenceRoom}, hold room ${holdRoom}: agent=${agentChannel} partner=${partnerChannel} third=${destination}`);
+    const holdRoom1 = `tavlhold${extension}1${ts}`;
+    const holdRoom2 = `tavlhold${extension}2${ts}`;
+    console.log(`🎤 Starting conference ${conferenceRoom}, hold rooms ${holdRoom1} ${holdRoom2}: agent=${agentChannel} partner=${partnerChannel} third=${destination}`);
 
     try {
       // Keep both legs alive when the bridge breaks — must be set before any transfer.
@@ -1043,10 +1044,10 @@ class EslConnection extends EventEmitter {
       await this._api(`uuid_setvar ${partnerChannel} conference_moh_sound local_stream://tavl_moh`).catch(() => {});
       await this._api(`uuid_setvar ${partnerChannel} conference_alone_sound silence_stream://1`).catch(() => {});
 
-      // Move customer into hold conference first (breaks bridge).
+      // Move customer into hold room 1 first (breaks bridge).
       try {
-        await this._api(`uuid_transfer ${partnerChannel} conference:${holdRoom}@default inline`);
-        console.log(`🎤 Customer moved to hold room ${holdRoom}`);
+        await this._api(`uuid_transfer ${partnerChannel} conference:${holdRoom1}@default inline`);
+        console.log(`🎤 Customer moved to hold room ${holdRoom1}`);
       } catch (err: any) {
         console.warn(`🎤 Customer hold transfer failed: ${err.message}`);
       }
@@ -1071,15 +1072,33 @@ class EslConnection extends EventEmitter {
         ? `user/${formattedDest}@${FS_DOMAIN}`
         : `sofia/gateway/${process.env.FREESWITCH_TRUNK || 'trunk-robocall'}/${formattedDest}`;
 
+      // Originate third party into hold room 2 (private, music only)
+      let thirdPartyUuid = '';
       try {
-        await this._bgapi(`originate {origination_caller_id_name='${callerIdName || 'Conference'}',origination_caller_id_number=${callerId || extension},ignore_early_media=true}${channel} &conference(${conferenceRoom}@default)`);
-        console.log(`🎤 Third-party originate queued: ${channel} → ${conferenceRoom}`);
+        await this._bgapi(`originate {origination_caller_id_name='${callerIdName || 'Conference'}',origination_caller_id_number=${callerId || extension},ignore_early_media=true}${channel} &conference(${holdRoom2}@default)`);
+        console.log(`🎤 Third-party originate queued: ${channel} → ${holdRoom2}`);
+        // Wait a moment for the originate to create the channel, then list holdRoom2 to grab its UUID
+        await new Promise(r => setTimeout(r, 2000));
+        try {
+          const hold2list = await this._api(`conference ${holdRoom2} list`);
+          const lines = hold2list.split('\n').filter((l: string) => l.includes(';'));
+          for (const line of lines) {
+            const parts = line.split(';');
+            if (parts.length >= 3) thirdPartyUuid = parts[2] || '';
+          }
+        } catch {}
       } catch (err: any) {
         console.warn(`⚠️ Third-party originate failed: ${err.message} — conference still active with agent only`);
       }
 
       // Return heldChannelUuid so the client can trigger merge when ready.
-      return { success: true, conferenceRoom, holdRoom, heldChannelUuid: partnerChannel };
+      const heldParticipants = [
+        { holdRoom: holdRoom1, uuid: partnerChannel, destination: 'Current Caller' },
+      ];
+      if (thirdPartyUuid) {
+        heldParticipants.push({ holdRoom: holdRoom2, uuid: thirdPartyUuid, destination });
+      }
+      return { success: true, conferenceRoom, heldParticipants };
     } catch (err: any) {
       return { success: false, error: err.message };
     }
@@ -1123,10 +1142,11 @@ class EslConnection extends EventEmitter {
     conferenceRoom: string;
     callerId?: string;
     callerIdName?: string;
-  }): Promise<{ success: boolean; error?: string }> {
+  }): Promise<{ success: boolean; holdRoom?: string; uuid?: string; error?: string }> {
     if (!this.conn || !this.isConnected) return { success: false, error: 'ESL not connected' };
 
     const { destination, conferenceRoom, callerId, callerIdName } = params;
+    const holdRoom = `tavlhold${Date.now()}`;
     const formattedDest = destination.replace(/[\s\-()]/g, '');
     const isInternal = /^\d{2,5}$/.test(formattedDest);
     const channel = isInternal
@@ -1134,8 +1154,18 @@ class EslConnection extends EventEmitter {
       : `sofia/gateway/${process.env.FREESWITCH_TRUNK || 'trunk-robocall'}/${formattedDest}`;
 
     try {
-      await this._bgapi(`originate {origination_caller_id_name='${callerIdName || 'Conference'}',origination_caller_id_number=${callerId || ''},ignore_early_media=true}${channel} &conference(${conferenceRoom}@default)`);
-      return { success: true };
+      await this._bgapi(`originate {origination_caller_id_name='${callerIdName || 'Conference'}',origination_caller_id_number=${callerId || ''},ignore_early_media=true}${channel} &conference(${holdRoom}@default)`);
+      // Wait briefly then scan the hold room for the new participant's UUID
+      await new Promise(r => setTimeout(r, 2000));
+      let uuid = '';
+      try {
+        const listOut = await this._api(`conference ${holdRoom} list`);
+        for (const line of listOut.split('\n')) {
+          const parts = line.split(';');
+          if (parts.length >= 3) uuid = parts[2] || '';
+        }
+      } catch {}
+      return { success: true, holdRoom, uuid };
     } catch (err: any) {
       return { success: false, error: err.message };
     }

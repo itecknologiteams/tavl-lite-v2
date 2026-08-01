@@ -580,7 +580,8 @@ router.post('/conference/start', async (req: Request, res: Response) => {
 
 /**
  * POST /api/calls/conference/add
- * Add another participant to an existing conference room.
+ * Add another participant to their own private hold room (confidential).
+ * The agent must manually merge them into the main room.
  */
 router.post('/conference/add', async (req: Request, res: Response) => {
   try {

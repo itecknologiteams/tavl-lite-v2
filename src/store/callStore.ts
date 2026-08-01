@@ -64,7 +64,7 @@ interface CallState {
   // Conference state
   isConference: boolean;
   conferenceRoom: string | null;
-  holdRoom: string | null;
+  heldParticipants: Array<{ holdRoom: string; uuid: string; destination: string }>;
   conferenceParticipants: ConferenceParticipant[];
   heldChannelUuid: string | null;
   
@@ -113,7 +113,7 @@ interface CallState {
 
   // Conference actions
   startConference: (destination: string) => Promise<boolean>;
-  mergeConference: () => Promise<boolean>;
+  mergeConference: (holdRoom?: string, heldUuid?: string) => Promise<boolean>;
   addConferenceParticipant: (destination: string) => Promise<boolean>;
   kickConferenceParticipant: (memberId: string) => Promise<boolean>;
   muteConferenceParticipant: (memberId: string) => Promise<boolean>;
@@ -442,7 +442,7 @@ export const useCallStore = create<CallState>((set, get) => {
     audioDevices: [],
     isConference: false,
     conferenceRoom: null,
-    holdRoom: null,
+    heldParticipants: [],
     conferenceParticipants: [],
     heldChannelUuid: null,
 
@@ -855,8 +855,7 @@ export const useCallStore = create<CallState>((set, get) => {
           set({
             isConference: true,
             conferenceRoom: data.conferenceRoom,
-            holdRoom: data.holdRoom || null,
-            heldChannelUuid: data.heldChannelUuid || null,
+            heldParticipants: data.heldParticipants || [],
           });
           setTimeout(() => get().pollConferenceParticipants(), 2000);
           return true;
@@ -872,18 +871,23 @@ export const useCallStore = create<CallState>((set, get) => {
       }
     },
 
-    mergeConference: async () => {
-      const { conferenceRoom, holdRoom, heldChannelUuid } = get();
-      if (!conferenceRoom || !heldChannelUuid) return false;
+    mergeConference: async (holdRoom?: string, heldUuid?: string) => {
+      const { conferenceRoom } = get();
+      const hRoom = holdRoom || get().heldParticipants[0]?.holdRoom;
+      const hUuid = heldUuid || get().heldParticipants[0]?.uuid;
+      if (!conferenceRoom || !hRoom || !hUuid) return false;
       try {
         const response = await fetch('/api/calls/conference/merge-held', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ conferenceRoom, holdRoom, heldChannelUuid }),
+          body: JSON.stringify({ conferenceRoom, holdRoom: hRoom, heldChannelUuid: hUuid }),
         });
         const data = await response.json();
         if (data.success) {
-          set({ heldChannelUuid: null });
+          // Remove merged participant from the held list
+          set((s) => ({
+            heldParticipants: s.heldParticipants.filter(p => p.uuid !== hUuid),
+          }));
           setTimeout(() => get().pollConferenceParticipants(), 1500);
           return true;
         }
@@ -907,7 +911,12 @@ export const useCallStore = create<CallState>((set, get) => {
         });
         const data = await response.json();
         if (data.success) {
-          setTimeout(() => get().pollConferenceParticipants(), 2000);
+          // Track this held participant so agent can merge them later
+          if (data.holdRoom && data.uuid) {
+            set((s) => ({
+              heldParticipants: [...s.heldParticipants, { holdRoom: data.holdRoom, uuid: data.uuid, destination }],
+            }));
+          }
           return true;
         }
         console.error('Add participant failed:', data.error);
@@ -987,22 +996,33 @@ export const useCallStore = create<CallState>((set, get) => {
     },
 
     endConference: async () => {
-      const { conferenceRoom, holdRoom } = get();
-      if (conferenceRoom) {
-        try {
+      const { conferenceRoom, heldParticipants } = get();
+      // Also destroy all hold rooms
+      const holdRooms = heldParticipants.map(p => p.holdRoom);
+      try {
+        for (const hr of holdRooms) {
+          try {
+            await fetch('/api/calls/conference/end', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ conferenceRoom: hr }),
+            });
+          } catch {}
+        }
+        if (conferenceRoom) {
           await fetch('/api/calls/conference/end', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ conferenceRoom, holdRoom }),
+            body: JSON.stringify({ conferenceRoom }),
           });
-        } catch (e) {
-          console.error('Failed to end conference:', e);
         }
+      } catch (e) {
+        console.error('Failed to end conference:', e);
       }
       set({
         isConference: false,
         conferenceRoom: null,
-        holdRoom: null,
+        heldParticipants: [],
         conferenceParticipants: [],
         heldChannelUuid: null,
       });

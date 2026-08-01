@@ -1317,7 +1317,7 @@ export default function Softphone({ railDocked = false }: { railDocked?: boolean
                   <div className="mt-3 p-2 bg-amber-500/10 border border-amber-500/30 rounded-lg">
                     <div className="text-[10px] text-amber-400 mb-1.5">Customer on hold (MoH)</div>
                     <button
-                      onClick={mergeConference}
+                      onClick={() => mergeConference()}
                       className="w-full px-3 py-1.5 bg-amber-500 hover:bg-amber-600 rounded-lg text-xs text-white font-medium transition-colors flex items-center justify-center gap-1.5"
                     >
                       <Users className="w-3.5 h-3.5" />

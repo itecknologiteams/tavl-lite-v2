@@ -594,12 +594,12 @@ router.get('/call-stats', async (_req: Request, res: Response) => {
       queryFusionPbx(`
         SELECT
           COUNT(*)::int                                                                           AS total_calls,
-          COUNT(*) FILTER (WHERE hangup_cause = 'NORMAL_CLEARING' AND billsec > 0)::int          AS answered,
+          COUNT(*) FILTER (WHERE cc_cause = 'answered')::int                                    AS answered,
           COUNT(*) FILTER (WHERE direction = 'inbound')::int                                     AS inbound,
           COUNT(*) FILTER (WHERE direction = 'outbound')::int                                    AS outbound,
-          COALESCE(ROUND(AVG(billsec) FILTER (WHERE billsec > 0)), 0)::int                       AS avg_talk_sec,
+          COALESCE(ROUND(AVG(billsec) FILTER (WHERE cc_cause = 'answered')), 0)::int              AS avg_talk_sec,
           CASE WHEN COUNT(*) > 0
-            THEN ROUND(COUNT(*) FILTER (WHERE hangup_cause = 'NORMAL_CLEARING' AND billsec > 0) * 100.0 / COUNT(*), 1)
+            THEN ROUND(COUNT(*) FILTER (WHERE cc_cause = 'answered') * 100.0 / COUNT(*), 1)
             ELSE 0 END                                                                           AS answer_rate,
           COUNT(*) FILTER (WHERE direction = 'inbound' AND cc_side = 'member' AND cc_cause = 'cancel'
                             AND EXTRACT(EPOCH FROM (end_stamp - start_stamp)) >= 10)::int AS abandoned
@@ -619,8 +619,7 @@ router.get('/call-stats', async (_req: Request, res: Response) => {
         WHERE start_stamp >= $1
           AND direction = 'inbound'
           AND destination_number ~ '^\\d{3,4}$'
-          AND hangup_cause = 'NORMAL_CLEARING'
-          AND billsec > 0
+          AND cc_cause = 'answered'
         GROUP BY destination_number
         ORDER BY calls_answered DESC
         LIMIT 15
@@ -631,7 +630,7 @@ router.get('/call-stats', async (_req: Request, res: Response) => {
           COUNT(*) FILTER (WHERE direction = 'inbound')::int AS offered,
           COUNT(*) FILTER (
             WHERE direction = 'inbound'
-              AND hangup_cause = 'NORMAL_CLEARING' AND billsec > 0
+              AND cc_cause = 'answered'
               AND answer_stamp IS NOT NULL
               AND EXTRACT(EPOCH FROM (answer_stamp - start_stamp)) <= 20
           )::int AS within_sl,
@@ -639,7 +638,7 @@ router.get('/call-stats', async (_req: Request, res: Response) => {
             EXTRACT(EPOCH FROM (answer_stamp - start_stamp))
           ) FILTER (
             WHERE direction = 'inbound'
-              AND hangup_cause = 'NORMAL_CLEARING' AND billsec > 0
+              AND cc_cause = 'answered'
               AND answer_stamp IS NOT NULL
           ), 0)::int, 0) AS asa_sec
         FROM v_xml_cdr WHERE start_stamp >= $1 AND cc_side IS DISTINCT FROM 'agent'

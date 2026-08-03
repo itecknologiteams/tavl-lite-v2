@@ -473,10 +473,11 @@ export default function LiveCallsPanel() {
                           </div>
                           {call ? (
                             <>
+                              <div className={`text-[9px] font-semibold ${call.dir === 'in' ? 'text-emerald-400' : 'text-blue-400'}`}>
+                                {call.dir === 'in' ? '▼ Inbound' : '▲ Outbound'}
+                              </div>
                               <div className="flex items-center gap-1 text-[10px] min-w-0">
-                                {call.dir === 'in'
-                                  ? <ArrowDownLeft className="w-3 h-3 text-emerald-400 flex-shrink-0" />
-                                  : <ArrowUpRight className="w-3 h-3 text-blue-400 flex-shrink-0" />}
+                                <ArrowDownLeft className="w-3 h-3 text-white/40 flex-shrink-0" />
                                 <span className="text-white/70 truncate">{call.number || 'Unknown'}</span>
                               </div>
                               {call.name && <div className="text-[10px] text-white/45 truncate">{call.name}</div>}

@@ -601,7 +601,7 @@ router.get('/call-stats', async (_req: Request, res: Response) => {
           CASE WHEN COUNT(*) > 0
             THEN ROUND(COUNT(*) FILTER (WHERE cc_cause = 'answered') * 100.0 / COUNT(*), 1)
             ELSE 0 END                                                                           AS answer_rate,
-          COUNT(*) FILTER (WHERE direction = 'inbound' AND cc_side = 'member' AND cc_cause = 'cancel'
+          COUNT(*) FILTER (WHERE direction = 'inbound' AND cc_side = 'member' AND cc_cause IN ('cancel','no_answer','timeout')
                             AND EXTRACT(EPOCH FROM (end_stamp - start_stamp)) >= 10)::int AS abandoned
         -- Abandoned = the caller (cc_side='member') leg whose callcenter outcome is
         -- 'cancel' (left the queue without an agent answering). NOTE: this dialplan
@@ -655,7 +655,7 @@ router.get('/call-stats', async (_req: Request, res: Response) => {
         FROM v_xml_cdr
         WHERE direction = 'inbound'
           AND cc_side = 'member'
-          AND cc_cause = 'cancel'
+          AND cc_cause IN ('cancel','no_answer','timeout')
           AND EXTRACT(EPOCH FROM (end_stamp - start_stamp)) >= 10   -- ignore <10s misdials / instant hang-ups
           AND caller_id_number ~ '^[0-9]{6,}$'
           AND start_stamp >= $1

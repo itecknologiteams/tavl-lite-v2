@@ -728,7 +728,7 @@ export default function Softphone({ railDocked = false }: { railDocked?: boolean
     isConference,
     conferenceRoom,
     conferenceParticipants,
-    heldChannelUuid,
+    heldParticipants,
     consultCall,
     transferPhase,
     makeCall,
@@ -1312,17 +1312,21 @@ export default function Softphone({ railDocked = false }: { railDocked?: boolean
                   </div>
                 )}
 
-                {/* Merge button — shown when customer is on hold waiting to be merged */}
-                {isConference && heldChannelUuid && (
-                  <div className="mt-3 p-2 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-                    <div className="text-[10px] text-amber-400 mb-1.5">Customer on hold (MoH)</div>
-                    <button
-                      onClick={() => mergeConference()}
-                      className="w-full px-3 py-1.5 bg-amber-500 hover:bg-amber-600 rounded-lg text-xs text-white font-medium transition-colors flex items-center justify-center gap-1.5"
-                    >
-                      <Users className="w-3.5 h-3.5" />
-                      Merge — Join Customer to Conference
-                    </button>
+                {/* Merge buttons — one per held participant waiting in hold rooms */}
+                {isConference && heldParticipants.length > 0 && (
+                  <div className="mt-3 space-y-1.5">
+                    {heldParticipants.map((hp, idx) => (
+                      <div key={hp.uuid} className="p-2 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+                        <div className="text-[10px] text-amber-400 mb-1.5">On hold: {hp.destination} (MoH)</div>
+                        <button
+                          onClick={() => mergeConference(hp.holdRoom, hp.uuid)}
+                          className="w-full px-3 py-1.5 bg-amber-500 hover:bg-amber-600 rounded-lg text-xs text-white font-medium transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          <Users className="w-3.5 h-3.5" />
+                          Merge — Join to Conference
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 )}
 

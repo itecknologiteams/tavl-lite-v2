@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { PhoneOff, PhoneIncoming, PhoneMissed, Phone, RefreshCw, Search, X } from 'lucide-react';
+import { PhoneOff, PhoneIncoming, PhoneMissed, Phone, RefreshCw, Search, X, Keyboard } from 'lucide-react';
 
 interface CallLogEntry {
   id: number;
@@ -13,6 +13,14 @@ interface CallLogEntry {
   ring_started_at: string;
   answered_at: string | null;
   ended_at: string | null;
+}
+
+interface KeyLogEntry {
+  id: number;
+  agent_extension: string;
+  crm_username: string | null;
+  key_pressed: string;
+  created_at: string;
 }
 
 const OUTCOME_COLORS: Record<string, string> = {
@@ -36,9 +44,11 @@ const EXTENSIONS = [
 
 export default function AgentCallLogs() {
   const [logs, setLogs] = useState<CallLogEntry[]>([]);
+  const [keyLogs, setKeyLogs] = useState<KeyLogEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterExt, setFilterExt] = useState('');
   const [filterOutcome, setFilterOutcome] = useState('');
+  const [view, setView] = useState<'calls' | 'keys'>('calls');
 
   const fetchLogs = useCallback(async () => {
     setLoading(true);
@@ -56,6 +66,19 @@ export default function AgentCallLogs() {
 
   useEffect(() => { fetchLogs(); }, [fetchLogs]);
 
+  const fetchKeyLogs = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/calls/agent-key-logs?limit=200');
+      const json = await res.json();
+      if (json.success) setKeyLogs(json.data || []);
+    } catch {} finally { setLoading(false); }
+  }, []);
+
+  useEffect(() => { if (view === 'keys') fetchKeyLogs(); }, [view, fetchKeyLogs]);
+
+  const handleRefresh = () => view === 'keys' ? fetchKeyLogs() : fetchLogs();
+
   const formatTime = (ts: string) => {
     if (!ts) return '-';
     const d = new Date(ts);
@@ -72,17 +95,26 @@ export default function AgentCallLogs() {
     <div className="h-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <div>
-          <h2 className="text-lg font-bold text-white">Agent Call Logs</h2>
-          <p className="text-xs text-slate-400 mt-0.5">Per-agent call outcomes — answered, missed, rejected</p>
+        <div className="flex items-center gap-3">
+          <div>
+            <h2 className="text-lg font-bold text-white">Agent Call Logs</h2>
+            <p className="text-xs text-slate-400 mt-0.5">
+              {view === 'calls' ? 'Per-agent call outcomes — answered, missed, rejected' : 'F5 / Ctrl+Shift+R key press tracker'}
+            </p>
+          </div>
+          <div className="flex bg-slate-800/50 rounded-xl p-0.5">
+            <button onClick={() => { setView('calls'); }} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${view === 'calls' ? 'bg-violet-500/30 text-violet-300' : 'text-slate-500 hover:text-slate-300'}`}>Call Logs</button>
+            <button onClick={() => { setView('keys'); }} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1 ${view === 'keys' ? 'bg-amber-500/30 text-amber-300' : 'text-slate-500 hover:text-slate-300'}`}><Keyboard className="w-3 h-3" /> F5 Logs</button>
+          </div>
         </div>
-        <button onClick={fetchLogs} disabled={loading} className="flex items-center gap-2 px-3 py-2 bg-slate-700/50 hover:bg-slate-600/50 rounded-xl text-sm text-slate-300 transition-colors">
+        <button onClick={handleRefresh} disabled={loading} className="flex items-center gap-2 px-3 py-2 bg-slate-700/50 hover:bg-slate-600/50 rounded-xl text-sm text-slate-300 transition-colors">
           <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
           Refresh
         </button>
       </div>
 
-      {/* Filters */}
+      {/* Filters — only for call logs */}
+      {view === 'calls' && (
       <div className="flex items-center gap-3 mb-4 flex-wrap">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
@@ -114,8 +146,9 @@ export default function AgentCallLogs() {
           ))}
         </div>
       </div>
-
-      {/* Table */}
+      )}
+      {/* Call Logs Table */}
+      {view === 'calls' && (
       <div className="flex-1 overflow-y-auto rounded-2xl border border-white/5 bg-slate-900/50">
         {loading ? (
           <div className="flex items-center justify-center h-40 text-slate-500 text-sm">Loading...</div>
@@ -174,6 +207,51 @@ export default function AgentCallLogs() {
           </table>
         )}
       </div>
+      )}
+
+      {/* F5 Key Logs Table */}
+      {view === 'keys' && (
+      <div className="flex-1 overflow-y-auto rounded-2xl border border-white/5 bg-slate-900/50">
+        {loading ? (
+          <div className="flex items-center justify-center h-40 text-slate-500 text-sm">Loading...</div>
+        ) : keyLogs.length === 0 ? (
+          <div className="flex items-center justify-center h-40 text-slate-500 text-sm">No F5 / refresh events logged</div>
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-xs text-slate-500 uppercase tracking-wider border-b border-white/5">
+                <th className="text-left py-3 px-4 font-medium">Time</th>
+                <th className="text-left py-3 px-4 font-medium">Extension</th>
+                <th className="text-left py-3 px-4 font-medium">CRM User</th>
+                <th className="text-left py-3 px-4 font-medium">Key</th>
+              </tr>
+            </thead>
+            <tbody>
+              {keyLogs.map((log) => (
+                <tr key={log.id} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+                  <td className="py-3 px-4 text-slate-300 whitespace-nowrap">
+                    <span className="text-xs text-slate-500">{formatDate(log.created_at)} </span>
+                    {formatTime(log.created_at)}
+                  </td>
+                  <td className="py-3 px-4">
+                    <span className="font-mono text-sm text-white">Ext {log.agent_extension}</span>
+                  </td>
+                  <td className="py-3 px-4">
+                    <span className="text-sm text-violet-300/80">{log.crm_username || '-'}</span>
+                  </td>
+                  <td className="py-3 px-4">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/15 text-amber-400 text-xs font-mono font-semibold">
+                      <Keyboard className="w-3 h-3" />
+                      {log.key_pressed}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+      )}
     </div>
   );
 }

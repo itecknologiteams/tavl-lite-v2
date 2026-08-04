@@ -225,6 +225,17 @@ export const initAlertDistributionTables = async (): Promise<void> => {
     // Add column if table already exists without it
     try { await queryPostgres(`ALTER TABLE agent_call_logs ADD COLUMN IF NOT EXISTS crm_username VARCHAR(100)`); } catch {}
     
+    // Agent key-press log — tracks F5 / Ctrl+Shift+R refreshes per agent
+    await queryPostgres(`
+      CREATE TABLE IF NOT EXISTS agent_key_logs (
+        id SERIAL PRIMARY KEY,
+        agent_extension VARCHAR(20) NOT NULL,
+        crm_username VARCHAR(100),
+        key_pressed VARCHAR(20) NOT NULL DEFAULT 'F5',
+        created_at TIMESTAMP DEFAULT NOW()
+      )
+    `);
+    
     console.log('✅ Alert Distribution tables initialized successfully');
     
   } catch (error: any) {
@@ -1243,4 +1254,24 @@ export const getAgentCallLogs = async (
     ORDER BY ring_started_at DESC
     LIMIT $${idx++} OFFSET $${idx}
   `, values);
+};
+
+// Agent key-press log: tracks F5 / Ctrl+Shift+R refreshes
+export const insertAgentKeyLog = async (
+  extension: string,
+  crmUsername?: string,
+  keyPressed = 'F5',
+): Promise<void> => {
+  await queryPostgres(`
+    INSERT INTO agent_key_logs (agent_extension, crm_username, key_pressed)
+    VALUES ($1, $2, $3)
+  `, [extension, crmUsername, keyPressed]);
+};
+
+export const getAgentKeyLogs = async (limit = 100, offset = 0): Promise<any[]> => {
+  return queryPostgres(`
+    SELECT * FROM agent_key_logs
+    ORDER BY created_at DESC
+    LIMIT $1 OFFSET $2
+  `, [limit, offset]);
 };

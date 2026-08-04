@@ -95,7 +95,19 @@ class SipService {
 
       // Send SIP BYE/REJECT when the page closes/refreshes (F5)
       // so FreeSWITCH doesn't keep ringing a dead channel.
+      // Also log the key press for supervisor visibility.
       window.addEventListener('beforeunload', () => {
+        // Log F5/Ctrl+Shift+R key press — use sendBeacon to deliver reliably
+        try {
+          let ext = '';
+          const saved = localStorage.getItem('tavl_softphone_settings');
+          if (saved) ext = JSON.parse(saved).extension || '';
+          let crmUser = '';
+          const auth = sessionStorage.getItem('tavl-auth-session');
+          if (auth) crmUser = JSON.parse(auth)?.state?.user?.username || '';
+          const body = JSON.stringify({ extension: ext, crmUsername: crmUser, key: 'F5' });
+          navigator.sendBeacon('/api/calls/agent-key-log', new Blob([body], { type: 'application/json' }));
+        } catch {}
         if (this.currentSession) {
           try {
             if (this.currentSession.state === SessionState.Established) {

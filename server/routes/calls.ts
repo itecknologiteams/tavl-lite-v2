@@ -852,4 +852,35 @@ router.get('/agent-call-logs', async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * POST /api/calls/agent-key-log
+ * Log agent F5 / Ctrl+Shift+R key press (beacon from beforeunload)
+ */
+router.post('/agent-key-log', async (req: Request, res: Response) => {
+  try {
+    const { extension, crmUsername, key } = req.body;
+    if (!extension) return res.status(400).json({ success: false, error: 'extension required' });
+    const { insertAgentKeyLog } = await import('../db/alertDistribution');
+    await insertAgentKeyLog(extension, crmUsername, key || 'F5');
+    res.json({ success: true });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * GET /api/calls/agent-key-logs
+ * Query agent F5/Ctrl+Shift+R key press history
+ */
+router.get('/agent-key-logs', async (req: Request, res: Response) => {
+  try {
+    const { limit = '100', offset = '0' } = req.query as Record<string, string>;
+    const { getAgentKeyLogs } = await import('../db/alertDistribution');
+    const logs = await getAgentKeyLogs(parseInt(limit), parseInt(offset));
+    res.json({ success: true, data: logs });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 export default router;

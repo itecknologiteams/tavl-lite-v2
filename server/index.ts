@@ -717,6 +717,7 @@ async function initEslAndWire() {
       if (agentChannelUuid) {
         (async () => {
           let crmUsername: string | undefined;
+          let vehicleReg: string | undefined;
           try {
             const rows = await queryPostgres(
               `SELECT username FROM agent_sessions WHERE extension = $1 AND status = 'online' LIMIT 1`,
@@ -724,8 +725,12 @@ async function initEslAndWire() {
             );
             crmUsername = rows?.[0]?.username || undefined;
           } catch {}
+          // Extract vehicle reg from screen pop cache (CRM lookup)
+          if (cached?.vehicles?.length) {
+            vehicleReg = cached.vehicles[0]?.plate || undefined;
+          }
           const { insertAgentCallLog } = await import('./db/alertDistribution');
-          insertAgentCallLog(extension, inboundCall.callerId, inboundCall.callerIdName, inboundCall.uniqueId, agentChannelUuid, crmUsername).then((logId) => {
+          insertAgentCallLog(extension, inboundCall.callerId, inboundCall.callerIdName, inboundCall.uniqueId, agentChannelUuid, crmUsername, vehicleReg).then((logId) => {
             if (logId > 0) {
               agentRingingChannels.set(agentChannelUuid, { logId, extension });
               setTimeout(() => agentRingingChannels.delete(agentChannelUuid), 120_000);

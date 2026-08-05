@@ -216,6 +216,8 @@ export const initAlertDistributionTables = async (): Promise<void> => {
         ended_at TIMESTAMP,
         hangup_cause VARCHAR(100),
         duration_seconds INT DEFAULT 0,
+        vehicle_reg VARCHAR(50),
+        ring_duration_sec INT DEFAULT 0,
         created_at TIMESTAMP DEFAULT NOW()
       )
     `);
@@ -224,6 +226,8 @@ export const initAlertDistributionTables = async (): Promise<void> => {
     await queryPostgres(`CREATE INDEX IF NOT EXISTS idx_agent_call_logs_outcome ON agent_call_logs(outcome)`);
     // Add column if table already exists without it
     try { await queryPostgres(`ALTER TABLE agent_call_logs ADD COLUMN IF NOT EXISTS crm_username VARCHAR(100)`); } catch {}
+    try { await queryPostgres(`ALTER TABLE agent_call_logs ADD COLUMN IF NOT EXISTS vehicle_reg VARCHAR(50)`); } catch {}
+    try { await queryPostgres(`ALTER TABLE agent_call_logs ADD COLUMN IF NOT EXISTS ring_duration_sec INT DEFAULT 0`); } catch {}
     
     // Agent key-press log — tracks F5 / Ctrl+Shift+R refreshes per agent
     await queryPostgres(`
@@ -1185,12 +1189,13 @@ export const insertAgentCallLog = async (
   consumerUuid: string,
   agentChannelUuid: string,
   crmUsername?: string,
+  vehicleReg?: string,
 ): Promise<number> => {
   const result = await queryPostgres(`
-    INSERT INTO agent_call_logs (agent_extension, crm_username, caller_id, caller_id_name, consumer_uuid, agent_channel_uuid)
-    VALUES ($1, $6, $2, $3, $4, $5)
+    INSERT INTO agent_call_logs (agent_extension, crm_username, caller_id, caller_id_name, consumer_uuid, agent_channel_uuid, vehicle_reg)
+    VALUES ($1, $6, $2, $3, $4, $5, $7)
     RETURNING id
-  `, [extension, callerId, callerIdName, consumerUuid, agentChannelUuid, crmUsername || null]);
+  `, [extension, callerId, callerIdName, consumerUuid, agentChannelUuid, crmUsername || null, vehicleReg || null]);
   return result?.[0]?.id || 0;
 };
 
@@ -1212,6 +1217,10 @@ export const updateAgentCallLogEnded = async (logId: number, hangupCause: string
     END,
     ended_at = NOW(),
     hangup_cause = $2,
+    ring_duration_sec = COALESCE(
+      EXTRACT(EPOCH FROM (COALESCE(answered_at, NOW()) - ring_started_at))::INT,
+      0
+    ),
     duration_seconds = COALESCE(
       EXTRACT(EPOCH FROM (NOW() - answered_at))::INT,
       0
@@ -1274,4 +1283,66 @@ export const getAgentKeyLogs = async (limit = 100, offset = 0): Promise<any[]> =
     ORDER BY created_at DESC
     LIMIT $1 OFFSET $2
   `, [limit, offset]);
+};
+
+// Call report for missed/rejected calls with vehicle reg and ring duration
+export const getAgentCallReport = async (params: {
+  crmUsername?: string;
+  outcome?: string;
+  search?: string;
+  from?: string;
+  to?: string;
+  limit?: number;
+  offset?: number;
+}): Promise<{ rows: any[]; summary: { missed: number; rejected: number; perUser: Array<{ username: string; missed: number; rejected: number }> } }> => {
+  const { crmUsername, outcome, search, from, to, limit = 100, offset = 0 } = params;
+  const conditions: string[] = [`outcome IN ('missed','rejected')`];
+  const values: any[] = [];
+  let idx = 1;
+
+  if (crmUsername) { conditions.push(`crm_username = $${idx++}`); values.push(crmUsername); }
+  if (outcome)     { conditions.push(`outcome = $${idx++}`); values.push(outcome); }
+  if (search)      { conditions.push(`(caller_id ILIKE $${idx} OR vehicle_reg ILIKE $${idx} OR crm_username ILIKE $${idx})`); values.push(`%${search}%`); idx++; }
+  if (from)        { conditions.push(`ring_started_at >= $${idx++}`); values.push(from); }
+  if (to)          { conditions.push(`ring_started_at <= $${idx++}`); values.push(to); }
+
+  const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+
+  const rows = await queryPostgres(`
+    SELECT id, agent_extension, crm_username, caller_id, caller_id_name, outcome,
+           hangup_cause, duration_seconds, vehicle_reg, ring_duration_sec,
+           ring_started_at, answered_at, ended_at
+    FROM agent_call_logs
+    ${where}
+    ORDER BY ring_started_at DESC
+    LIMIT $${idx++} OFFSET $${idx}
+  `, [...values, limit, offset]);
+
+  // Summary counts
+  const summaryRows = await queryPostgres(`
+    SELECT 
+      COUNT(*) FILTER (WHERE outcome = 'missed') AS missed,
+      COUNT(*) FILTER (WHERE outcome = 'rejected') AS rejected
+    FROM agent_call_logs
+    ${where}
+  `, values);
+
+  const perUserRows = await queryPostgres(`
+    SELECT crm_username AS username,
+      COUNT(*) FILTER (WHERE outcome = 'missed')::int AS missed,
+      COUNT(*) FILTER (WHERE outcome = 'rejected')::int AS rejected
+    FROM agent_call_logs
+    ${where}
+    GROUP BY crm_username
+    ORDER BY missed + rejected DESC
+  `, values);
+
+  return {
+    rows,
+    summary: {
+      missed: parseInt(summaryRows?.[0]?.missed) || 0,
+      rejected: parseInt(summaryRows?.[0]?.rejected) || 0,
+      perUser: perUserRows || [],
+    },
+  };
 };

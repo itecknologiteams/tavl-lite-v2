@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { PhoneOff, PhoneIncoming, PhoneMissed, Phone, RefreshCw, Search, X, Keyboard } from 'lucide-react';
+import { PhoneOff, PhoneIncoming, PhoneMissed, Phone, RefreshCw, Search, X, Keyboard, BarChart3, TrendingDown } from 'lucide-react';
 
 interface CallLogEntry {
   id: number;
@@ -21,6 +21,25 @@ interface KeyLogEntry {
   crm_username: string | null;
   key_pressed: string;
   created_at: string;
+}
+
+interface ReportEntry {
+  id: number;
+  agent_extension: string;
+  crm_username: string | null;
+  caller_id: string;
+  caller_id_name: string;
+  outcome: string;
+  hangup_cause: string;
+  ring_duration_sec: number;
+  ring_started_at: string;
+  vehicle_reg: string | null;
+}
+
+interface ReportSummary {
+  missed: number;
+  rejected: number;
+  perUser: Array<{ username: string; missed: number; rejected: number }>;
 }
 
 const OUTCOME_COLORS: Record<string, string> = {
@@ -45,10 +64,15 @@ const EXTENSIONS = [
 export default function AgentCallLogs() {
   const [logs, setLogs] = useState<CallLogEntry[]>([]);
   const [keyLogs, setKeyLogs] = useState<KeyLogEntry[]>([]);
+  const [reportRows, setReportRows] = useState<ReportEntry[]>([]);
+  const [reportSummary, setReportSummary] = useState<ReportSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [filterExt, setFilterExt] = useState('');
   const [filterOutcome, setFilterOutcome] = useState('');
-  const [view, setView] = useState<'calls' | 'keys'>('calls');
+  const [reportOutcome, setReportOutcome] = useState('');
+  const [reportUser, setReportUser] = useState('');
+  const [reportSearch, setReportSearch] = useState('');
+  const [view, setView] = useState<'calls' | 'keys' | 'report'>('calls');
 
   const fetchLogs = useCallback(async () => {
     setLoading(true);
@@ -77,7 +101,29 @@ export default function AgentCallLogs() {
 
   useEffect(() => { if (view === 'keys') fetchKeyLogs(); }, [view, fetchKeyLogs]);
 
-  const handleRefresh = () => view === 'keys' ? fetchKeyLogs() : fetchLogs();
+  const fetchReport = useCallback(async () => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({ limit: '200' });
+      if (reportOutcome) params.set('outcome', reportOutcome);
+      if (reportUser) params.set('crmUsername', reportUser);
+      if (reportSearch) params.set('search', reportSearch);
+      const res = await fetch(`/api/calls/agent-call-report?${params}`);
+      const json = await res.json();
+      if (json.success) {
+        setReportRows(json.rows || []);
+        setReportSummary(json.summary || null);
+      }
+    } catch {} finally { setLoading(false); }
+  }, [reportOutcome, reportUser, reportSearch]);
+
+  useEffect(() => { if (view === 'report') fetchReport(); }, [view, fetchReport]);
+
+  const handleRefresh = () => {
+    if (view === 'keys') fetchKeyLogs();
+    else if (view === 'report') fetchReport();
+    else fetchLogs();
+  };
 
   const formatTime = (ts: string) => {
     if (!ts) return '-';
@@ -102,12 +148,15 @@ export default function AgentCallLogs() {
           <div>
             <h2 className="text-lg font-bold text-white">Agent Call Logs</h2>
             <p className="text-xs text-slate-400 mt-0.5">
-              {view === 'calls' ? 'Per-agent call outcomes — answered, missed, rejected' : 'F5 / Ctrl+Shift+R key press tracker'}
+              {view === 'calls' ? 'Per-agent call outcomes — answered, missed, rejected'
+               : view === 'keys' ? 'F5 / Ctrl+Shift+R key press tracker'
+               : 'Missed & Rejected Report by CRM user, phone, vehicle'}
             </p>
           </div>
           <div className="flex bg-slate-800/50 rounded-xl p-0.5">
             <button onClick={() => { setView('calls'); }} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${view === 'calls' ? 'bg-violet-500/30 text-violet-300' : 'text-slate-500 hover:text-slate-300'}`}>Call Logs</button>
             <button onClick={() => { setView('keys'); }} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1 ${view === 'keys' ? 'bg-amber-500/30 text-amber-300' : 'text-slate-500 hover:text-slate-300'}`}><Keyboard className="w-3 h-3" /> F5 Logs</button>
+            <button onClick={() => { setView('report'); }} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1 ${view === 'report' ? 'bg-red-500/30 text-red-300' : 'text-slate-500 hover:text-slate-300'}`}><BarChart3 className="w-3 h-3" /> Report</button>
           </div>
         </div>
         <button onClick={handleRefresh} disabled={loading} className="flex items-center gap-2 px-3 py-2 bg-slate-700/50 hover:bg-slate-600/50 rounded-xl text-sm text-slate-300 transition-colors">
@@ -254,6 +303,114 @@ export default function AgentCallLogs() {
           </table>
         )}
       </div>
+      )}
+
+      {/* Report View */}
+      {view === 'report' && (
+      <>
+        {/* Summary Bar */}
+        {reportSummary && (
+          <div className="flex-shrink-0 grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
+            <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 flex items-center gap-2">
+              <TrendingDown className="w-4 h-4 text-red-400" />
+              <div>
+                <div className="text-xl font-bold text-red-300">{reportSummary.missed + reportSummary.rejected}</div>
+                <div className="text-[10px] text-red-400/60">Total Missed + Rejected</div>
+              </div>
+            </div>
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3 flex items-center gap-2">
+              <PhoneMissed className="w-4 h-4 text-amber-400" />
+              <div>
+                <div className="text-xl font-bold text-amber-300">{reportSummary.missed}</div>
+                <div className="text-[10px] text-amber-400/60">Missed</div>
+              </div>
+            </div>
+            <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-3 flex items-center gap-2">
+              <PhoneOff className="w-4 h-4 text-orange-400" />
+              <div>
+                <div className="text-xl font-bold text-orange-300">{reportSummary.rejected}</div>
+                <div className="text-[10px] text-orange-400/60">Rejected</div>
+              </div>
+            </div>
+            <div className="bg-slate-800/50 border border-white/10 rounded-xl p-3 overflow-y-auto max-h-20">
+              {reportSummary.perUser.slice(0, 5).map(u => (
+                <div key={u.username} className="flex justify-between text-[10px]">
+                  <span className="text-white/70 truncate">{u.username}</span>
+                  <span className="font-mono text-red-300 ml-2">{u.missed}M {u.rejected}R</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Filters */}
+        <div className="flex items-center gap-3 mb-3 flex-wrap flex-shrink-0">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <input type="text" value={reportSearch} onChange={e => setReportSearch(e.target.value)} placeholder="Search phone / vehicle / user..." className="pl-9 pr-3 py-2 w-52 bg-slate-800/80 border border-white/10 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50" />
+          </div>
+          <input type="text" value={reportUser} onChange={e => setReportUser(e.target.value)} placeholder="CRM User..." className="px-3 py-2 w-36 bg-slate-800/80 border border-white/10 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50" />
+          <div className="flex gap-1.5">
+            {['', 'missed', 'rejected'].map(o => (
+              <button key={o} onClick={() => setReportOutcome(o)} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                reportOutcome === o
+                  ? o === 'missed' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                  : o === 'rejected' ? 'bg-red-500/20 text-red-400 border border-red-500/30'
+                  : 'bg-slate-700/50 text-white'
+                  : 'bg-slate-800/50 text-slate-500 hover:text-slate-300'
+              }`}>
+                {o === '' ? 'All' : o.charAt(0).toUpperCase() + o.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Table */}
+        <div className="flex-1 overflow-y-auto rounded-2xl border border-white/5 bg-slate-900/50">
+          {loading ? (
+            <div className="flex items-center justify-center h-40 text-slate-500 text-sm">Loading...</div>
+          ) : reportRows.length === 0 ? (
+            <div className="flex items-center justify-center h-40 text-slate-500 text-sm">No missed/rejected calls found</div>
+          ) : (
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-xs text-slate-500 uppercase tracking-wider border-b border-white/5">
+                  <th className="text-left py-3 px-4 font-medium">Time</th>
+                  <th className="text-left py-3 px-4 font-medium">CRM User</th>
+                  <th className="text-left py-3 px-4 font-medium">Ext</th>
+                  <th className="text-left py-3 px-4 font-medium">Caller</th>
+                  <th className="text-left py-3 px-4 font-medium">Vehicle</th>
+                  <th className="text-left py-3 px-4 font-medium">Outcome</th>
+                  <th className="text-left py-3 px-4 font-medium">Ring Time</th>
+                  <th className="text-left py-3 px-4 font-medium">Cause</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reportRows.map(row => (
+                  <tr key={row.id} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+                    <td className="py-3 px-4 text-slate-300 whitespace-nowrap">
+                      <span className="text-xs text-slate-500">{formatDate(row.ring_started_at)} </span>
+                      {formatTime(row.ring_started_at)}
+                    </td>
+                    <td className="py-3 px-4"><span className="text-sm text-violet-300/80">{row.crm_username || '-'}</span></td>
+                    <td className="py-3 px-4"><span className="font-mono text-sm text-white">Ext {row.agent_extension}</span></td>
+                    <td className="py-3 px-4 text-slate-300 max-w-[140px] truncate" title={row.caller_id}>{row.caller_id || '-'}</td>
+                    <td className="py-3 px-4"><span className="font-mono text-xs text-emerald-400">{row.vehicle_reg || '-'}</span></td>
+                    <td className="py-3 px-4">
+                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium ${row.outcome === 'missed' ? 'bg-amber-500/15 text-amber-400' : 'bg-red-500/15 text-red-400'}`}>
+                        {row.outcome === 'missed' ? <PhoneMissed className="w-3 h-3" /> : <PhoneOff className="w-3 h-3" />}
+                        {row.outcome === 'missed' ? 'Missed' : 'Rejected'}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-slate-400 text-xs tabular-nums">{row.ring_duration_sec > 0 ? `${row.ring_duration_sec}s` : '-'}</td>
+                    <td className="py-3 px-4 text-slate-400 text-[11px] font-mono">{row.hangup_cause || '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </>
       )}
     </div>
   );

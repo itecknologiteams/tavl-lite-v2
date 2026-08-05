@@ -883,4 +883,23 @@ router.get('/agent-key-logs', async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * GET /api/calls/agent-call-report
+ * Report of missed/rejected calls with vehicle reg, ring duration, and per-user summary.
+ */
+router.get('/agent-call-report', async (req: Request, res: Response) => {
+  try {
+    const { crmUsername, outcome, search, from, to, limit = '100', offset = '0' } = req.query as Record<string, string>;
+    const { getAgentCallReport } = await import('../db/alertDistribution');
+    const data = await getAgentCallReport({
+      crmUsername, outcome, search, from, to,
+      limit: parseInt(limit),
+      offset: parseInt(offset),
+    });
+    res.json({ success: true, ...data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 export default router;

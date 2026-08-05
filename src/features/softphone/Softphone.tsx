@@ -964,9 +964,9 @@ function SupervisorAvailableToggle({ extension, username, userId }: { extension:
               {extension}
             </span>
           )}
-          {/* Supervisor Availability Toggle (hardcoded supervisors only) */}
-          {extension && user && ['khizar.awan','samuel.nawab','alister','awaiz.javed'].includes((user.username || '').toLowerCase()) && (
-            <SupervisorAvailableToggle extension={extension} username={user.username} userId={user.id} />
+          {/* Supervisor Availability Toggle — visible to all supervisors */}
+          {extension && user?.role === 'supervisor' && (
+            <SupervisorAvailableToggle extension={extension} username={user.username || ''} userId={user.id} />
           )}
           <div
             className={`w-1.5 h-1.5 rounded-full shrink-0 ${

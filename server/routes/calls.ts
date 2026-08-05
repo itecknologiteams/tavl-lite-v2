@@ -712,7 +712,6 @@ router.post('/conference/end', async (req: Request, res: Response) => {
 // ── Queue Management ──────────────────────────────────────────────
 
 const AUTOCALL_QUEUE = process.env.AUTOCALL_QUEUE || 'tavl-agents';
-const HARDCODED_SUPERVISORS = new Set(['khizar.awan','samuel.nawab','alister','awaiz.javed']);
 
 /**
  * POST /api/calls/queue/supervisor-toggle
@@ -722,12 +721,6 @@ router.post('/queue/supervisor-toggle', async (req: Request, res: Response) => {
   try {
     const { extension, available, userId, username } = req.body;
     if (!extension) return res.status(400).json({ success: false, error: 'extension is required' });
-    if (!userId && !username) return res.status(400).json({ success: false, error: 'userId or username required' });
-    
-    const uname = (username || '').toLowerCase();
-    if (!HARDCODED_SUPERVISORS.has(uname)) {
-      return res.status(403).json({ success: false, error: 'Not an authorised supervisor' });
-    }
 
     if (available) {
       const result = await eslConnection.queueAddMember(AUTOCALL_QUEUE, extension);

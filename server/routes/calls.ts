@@ -809,7 +809,24 @@ router.get('/queue/status', async (_req: Request, res: Response) => {
     const result = await eslConnection.queueStatus(AUTOCALL_QUEUE);
     res.json(result);
   } catch (error: any) {
-    res.status(500).json({ success: false, members: [], callers: [], error: error.message });
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * GET /api/calls/queue/supervisor-status
+ * Check if an extension is currently in the call queue.
+ */
+router.get('/queue/supervisor-status', async (req: Request, res: Response) => {
+  try {
+    const ext = req.query.extension as string;
+    if (!ext) return res.status(400).json({ success: false, error: 'extension required' });
+    const agentName = `${ext}@${process.env.FREESWITCH_HOST || '192.168.20.140'}`;
+    const output = await eslConnection.sendCommand('callcenter_config agent list');
+    const inQueue = (output.output || '').includes(agentName);
+    res.json({ success: true, inQueue });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
   }
 });
 

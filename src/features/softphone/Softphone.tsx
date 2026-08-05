@@ -913,6 +913,14 @@ function SupervisorAvailableToggle({ extension, username, userId }: { extension:
   const [available, setAvailable] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Check actual queue membership on mount — persist across refreshes
+  useEffect(() => {
+    fetch(`/api/calls/queue/supervisor-status?extension=${extension}`)
+      .then(r => r.json())
+      .then(d => { if (d?.inQueue) setAvailable(true); })
+      .catch(() => {});
+  }, [extension]);
+
   const toggle = useCallback(async () => {
     setLoading(true);
     try {

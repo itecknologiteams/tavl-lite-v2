@@ -933,21 +933,9 @@ class EslConnection extends EventEmitter {
         }
       }
       // Reset max_no_answer=0 on every startup so no agent ever auto-pauses.
-      // Also restore agents who were auto-paused by old max_no_answer=3 back to
-      // Available — but only if they're still SIP-registered (online).
-      const regOutput = await this._api('show registrations').catch(() => '');
-      const registeredExts = new Set<string>();
-      for (const line of regOutput.split('\n')) {
-        const parts = line.split(',');
-        const ext = parts[0]?.trim();
-        if (/^\d{3,4}$/.test(ext)) registeredExts.add(ext);
-      }
       for (const ext of allowedExtensions) {
         const agent = `${ext}@${FS_DOMAIN}`;
         try { await this._api(`callcenter_config agent set max_no_answer ${agent} 0`); } catch {}
-        if (registeredExts.has(ext)) {
-          try { await this._api(`callcenter_config agent set status ${agent} Available`); } catch {}
-        }
       }
 
       if (removed.length) {

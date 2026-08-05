@@ -93,9 +93,38 @@ class SipService {
       this.remoteAudio.autoplay = true;
       this.ringtoneAudio = this.buildRingtone();
 
-      // Send SIP BYE/REJECT when the page closes/refreshes (F5)
-      // so FreeSWITCH doesn't keep ringing a dead channel.
-      // Also log the key press for supervisor visibility.
+      // Block F5 / Ctrl+R / Ctrl+Shift+R during an active call — prevents accidental disconnect.
+      // Also show "Leave site?" browser dialog on close/navigate when on a call.
+      window.addEventListener('keydown', (e: KeyboardEvent) => {
+        const onCall = this.currentSession && this.currentSession.state === SessionState.Established;
+        const ringing = this.currentSession && (this.currentSession instanceof Invitation || this.currentSession instanceof Inviter);
+        if (!onCall && !ringing) return;
+        // F5 alone
+        if (e.key === 'F5' && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault();
+          return;
+        }
+        // Ctrl+R, Ctrl+Shift+R, Cmd+R
+        if (e.key === 'r' && (e.ctrlKey || e.metaKey)) {
+          e.preventDefault();
+          return;
+        }
+      });
+
+      // Warn on close/navigate when on a call — browser shows "Leave site?" dialog.
+      window.addEventListener('beforeunload', (e) => {
+        const onCall = this.currentSession && this.currentSession.state === SessionState.Established;
+        const ringing = this.currentSession && (this.currentSession instanceof Invitation || this.currentSession instanceof Inviter);
+        if (onCall || ringing) {
+          e.preventDefault();
+          // Set returnValue for older browsers that require it
+          e.returnValue = 'You are on an active call. Are you sure you want to leave?';
+          return e.returnValue;
+        }
+      });
+
+      // On actual page unload (after user confirmed "Leave"), send SIP BYE for clean disconnect.
+      // This is the safety net: if agent force-closes, FreeSWITCH gets a proper signal.
       window.addEventListener('beforeunload', () => {
         // Log F5/Ctrl+Shift+R key press — use sendBeacon to deliver reliably
         try {

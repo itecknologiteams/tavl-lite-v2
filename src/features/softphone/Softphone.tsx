@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { useCallStore } from '@store/callStore';
 import type { ConferenceParticipant } from '@store/callStore';
+import { useAuthStore } from '@store/authStore';
 
 const formatDuration = (seconds: number): string => {
   const mins = Math.floor(seconds / 60);
@@ -759,6 +760,8 @@ export default function Softphone({ railDocked = false }: { railDocked?: boolean
     checkAmiStatus,
   } = useCallStore();
 
+  const user = useAuthStore((s) => s.user);
+
   const trackBarHeight = useLayoutStore((s) => s.trackBarHeight);
   const softphoneBottom = FOOTER_HEIGHT + trackBarHeight + 20;
 
@@ -902,8 +905,40 @@ export default function Softphone({ railDocked = false }: { railDocked?: boolean
       >
         <Phone className="w-5 h-5 text-white" />
       </button>
-    );
-  }
+  );
+}
+
+// Supervisor Available ON/OFF Toggle — only visible to hardcoded supervisors
+function SupervisorAvailableToggle({ extension, username, userId }: { extension: string; username: string; userId: string }) {
+  const [available, setAvailable] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const toggle = useCallback(async () => {
+    setLoading(true);
+    try {
+      await fetch('/api/calls/queue/supervisor-toggle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ extension, available: !available, userId, username }),
+      });
+      setAvailable(!available);
+    } catch {} finally { setLoading(false); }
+  }, [available, extension, userId, username]);
+
+  return (
+    <button
+      onClick={toggle}
+      disabled={loading}
+      className={`text-[10px] font-semibold px-2 py-0.5 rounded-full transition-colors ${
+        available
+          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+          : 'bg-slate-600/30 text-slate-400 border border-transparent'
+      }`}
+    >
+      {available ? '📞 ON' : 'OFF'}
+    </button>
+  );
+}
 
   // --- Visible softphone ---------------------------------------------------
 
@@ -928,6 +963,10 @@ export default function Softphone({ railDocked = false }: { railDocked?: boolean
             <span className="text-[10px] text-slate-500 bg-slate-700/50 px-1.5 py-0.5 rounded truncate max-w-[5rem]">
               {extension}
             </span>
+          )}
+          {/* Supervisor Availability Toggle (hardcoded supervisors only) */}
+          {extension && user && ['khizar.awan','samuel.nawab','alister','awaiz.javed'].includes((user.username || '').toLowerCase()) && (
+            <SupervisorAvailableToggle extension={extension} username={user.username} userId={user.id} />
           )}
           <div
             className={`w-1.5 h-1.5 rounded-full shrink-0 ${

@@ -104,6 +104,14 @@ router.post('/login', async (req, res) => {
     
     console.log(`✅ Login successful for: ${username} (${user.ROLE_TYPE})`);
     
+    // Hardcoded supervisors — always force role=supervisor regardless of DB query
+    const SUPER_USERS = new Set(['khizar.awan','samuel.nawab','alister','awaiz.javed']);
+    const forcedRole = SUPER_USERS.has(username.toLowerCase()) ? 'supervisor' : undefined;
+    if (forcedRole) {
+      user.ROLE_TYPE = forcedRole;
+      console.log(`👑 ${username} forced to supervisor (hardcoded list)`);
+    }
+    
     // Return user data with role
     res.json({
       success: true,
@@ -111,7 +119,7 @@ router.post('/login', async (req, res) => {
         id: String(user.EMPLOYEE_ID || user.U_ID),
         username: user.U_NAME,
         name: user.U_NAME,
-        role: user.ROLE_TYPE, // 'supervisor' or 'operator'
+        role: forcedRole || user.ROLE_TYPE, // 'supervisor' or 'operator'
       },
     });
     

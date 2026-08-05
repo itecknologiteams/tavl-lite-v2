@@ -910,28 +910,38 @@ export default function Softphone({ railDocked = false }: { railDocked?: boolean
 
 // Supervisor Available ON/OFF Toggle — only visible to hardcoded supervisors
 function SupervisorAvailableToggle({ extension, username, userId }: { extension: string; username: string; userId: string }) {
-  const [available, setAvailable] = useState(false);
+  const storageKey = `tavl_supervisor_avail_${extension}`;
+  const [available, setAvailable] = useState(() => {
+    try { return localStorage.getItem(storageKey) === 'true'; } catch { return false; }
+  });
   const [loading, setLoading] = useState(false);
 
-  // Check actual queue membership on mount — persist across refreshes
+  // Sync with FreeSWITCH on mount (background, no blocking)
   useEffect(() => {
     fetch(`/api/calls/queue/supervisor-status?extension=${extension}`)
       .then(r => r.json())
-      .then(d => { if (d?.inQueue) setAvailable(true); })
+      .then(d => {
+        if (d?.inQueue !== available) {
+          setAvailable(d?.inQueue || false);
+          try { localStorage.setItem(storageKey, String(d?.inQueue || false)); } catch {}
+        }
+      })
       .catch(() => {});
-  }, [extension]);
+  }, [extension]); // eslint-disable-line
 
   const toggle = useCallback(async () => {
     setLoading(true);
+    const newState = !available;
     try {
       await fetch('/api/calls/queue/supervisor-toggle', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ extension, available: !available, userId, username }),
+        body: JSON.stringify({ extension, available: newState, userId, username }),
       });
-      setAvailable(!available);
+      setAvailable(newState);
+      try { localStorage.setItem(storageKey, String(newState)); } catch {}
     } catch {} finally { setLoading(false); }
-  }, [available, extension, userId, username]);
+  }, [available, extension, userId, username, storageKey]);
 
   return (
     <button

@@ -81,13 +81,16 @@ export default function AgentCallLogs() {
 
   const formatTime = (ts: string) => {
     if (!ts) return '-';
-    const d = new Date(ts);
+    // PG stores PKT time but node-pg returns it as UTC string — correct the timezone
+    const pkt = ts.replace('Z', '+05:00').replace(/\.\d{3}/, '');
+    const d = new Date(pkt);
     return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   };
 
   const formatDate = (ts: string) => {
     if (!ts) return '';
-    const d = new Date(ts);
+    const pkt = ts.replace('Z', '+05:00').replace(/\.\d{3}/, '');
+    const d = new Date(pkt);
     return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
   };
 

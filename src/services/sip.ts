@@ -112,7 +112,7 @@ class SipService {
             let crmUser = '';
             const auth = sessionStorage.getItem('tavl-auth-session');
             if (auth) crmUser = JSON.parse(auth)?.state?.user?.username || '';
-            const body = JSON.stringify({ extension: ext, crmUsername: crmUser, key: 'F5', onCall: !!onCall });
+            const body = JSON.stringify({ extension: ext, crmUsername: crmUser, key: 'F5', onCall: !!(onCall || ringing) });
             navigator.sendBeacon('/api/calls/agent-key-log', new Blob([body], { type: 'application/json' }));
           } catch {}
         }

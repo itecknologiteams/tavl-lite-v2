@@ -130,10 +130,11 @@ class SipService {
         }
       });
 
-      // On actual page unload (after user confirmed "Leave"), send SIP BYE for clean disconnect.
-      // This is the safety net: if agent force-closes, FreeSWITCH gets a proper signal.
+      // On actual page unload (after user confirmed "Leave" or force-close),
+      // send SIP BYE for clean disconnect + beacon + popup alert if on call.
       window.addEventListener('beforeunload', () => {
-        // Log F5/Ctrl+Shift+R key press — use sendBeacon to deliver reliably
+        const onCall = this.currentSession && this.currentSession.state === SessionState.Established;
+        const ringing = this.currentSession && (this.currentSession instanceof Invitation || this.currentSession instanceof Inviter);
         try {
           let ext = '';
           const saved = localStorage.getItem('tavl_softphone_settings');
@@ -141,7 +142,7 @@ class SipService {
           let crmUser = '';
           const auth = sessionStorage.getItem('tavl-auth-session');
           if (auth) crmUser = JSON.parse(auth)?.state?.user?.username || '';
-          const body = JSON.stringify({ extension: ext, crmUsername: crmUser, key: 'F5' });
+          const body = JSON.stringify({ extension: ext, crmUsername: crmUser, key: 'Refresh', onCall: !!(onCall || ringing) });
           navigator.sendBeacon('/api/calls/agent-key-log', new Blob([body], { type: 'application/json' }));
         } catch {}
         if (this.currentSession) {

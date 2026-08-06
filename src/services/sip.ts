@@ -94,20 +94,27 @@ class SipService {
       this.ringtoneAudio = this.buildRingtone();
 
       // Block F5 / Ctrl+R / Ctrl+Shift+R during an active call — prevents accidental disconnect.
-      // Also show "Leave site?" browser dialog on close/navigate when on a call.
+      // Also send a beacon so supervisors get an instant popup alert.
       window.addEventListener('keydown', (e: KeyboardEvent) => {
         const onCall = this.currentSession && this.currentSession.state === SessionState.Established;
         const ringing = this.currentSession && (this.currentSession instanceof Invitation || this.currentSession instanceof Inviter);
         if (!onCall && !ringing) return;
-        // F5 alone
-        if (e.key === 'F5' && !e.ctrlKey && !e.metaKey) {
+        
+        const isRefresh = (e.key === 'F5' && !e.ctrlKey && !e.metaKey)
+                       || (e.key === 'r' && (e.ctrlKey || e.metaKey));
+        if (isRefresh) {
           e.preventDefault();
-          return;
-        }
-        // Ctrl+R, Ctrl+Shift+R, Cmd+R
-        if (e.key === 'r' && (e.ctrlKey || e.metaKey)) {
-          e.preventDefault();
-          return;
+          // Send beacon to alert supervisors even though refresh is blocked
+          try {
+            let ext = '';
+            const saved = localStorage.getItem('tavl_softphone_settings');
+            if (saved) ext = JSON.parse(saved).extension || '';
+            let crmUser = '';
+            const auth = sessionStorage.getItem('tavl-auth-session');
+            if (auth) crmUser = JSON.parse(auth)?.state?.user?.username || '';
+            const body = JSON.stringify({ extension: ext, crmUsername: crmUser, key: 'F5', onCall: !!onCall });
+            navigator.sendBeacon('/api/calls/agent-key-log', new Blob([body], { type: 'application/json' }));
+          } catch {}
         }
       });
 

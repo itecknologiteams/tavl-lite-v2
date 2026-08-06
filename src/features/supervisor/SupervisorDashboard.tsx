@@ -36,6 +36,7 @@ import CDRDashboard from './components/CDRDashboard';
 import LiveCallsPanel from './components/LiveCallsPanel';
 import { SupervisorAlertDashboard, DistributionRulesManager, PerformanceReports, AlertTypeConfigManager, LiveDistributionMonitor, SupervisorVehicleLookup } from '@features/alerts';
 import Softphone, { IncomingCallPopup } from '@features/softphone/Softphone';
+import F5AlertPopup from './components/F5AlertPopup';
 import { ScreenPop } from '@features/softphone';
 import Toaster from '@components/Toaster';
 
@@ -360,6 +361,7 @@ export default function SupervisorDashboard() {
       <IncomingCallPopup />
       <ScreenPop />
       <Toaster />
+      <F5AlertPopup />
     </div>
   );
 }

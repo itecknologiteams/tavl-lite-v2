@@ -892,14 +892,28 @@ router.get('/agent-call-logs', async (req: Request, res: Response) => {
 
 /**
  * POST /api/calls/agent-key-log
- * Log agent F5 / Ctrl+Shift+R key press (beacon from beforeunload)
+ * Log agent F5 / Ctrl+Shift+R key press (beacon from beforeunload or keydown).
+ * If agent was on an active call, broadcast alert popup to all supervisors.
  */
 router.post('/agent-key-log', async (req: Request, res: Response) => {
   try {
-    const { extension, crmUsername, key } = req.body;
+    const { extension, crmUsername, key, onCall } = req.body;
     if (!extension) return res.status(400).json({ success: false, error: 'extension required' });
     const { insertAgentKeyLog } = await import('../db/alertDistribution');
     await insertAgentKeyLog(extension, crmUsername, key || 'F5');
+
+    // If agent was on an active call, broadcast popup to all supervisors
+    if (onCall) {
+      const { broadcast } = await import('../index');
+      broadcast('supervisorF5Alert', {
+        extension,
+        crmUsername: crmUsername || extension,
+        timestamp: new Date().toISOString(),
+        key: key || 'F5',
+      });
+      console.log(`🚨 F5 ALERT: Ext ${extension} (${crmUsername || 'unknown'}) pressed ${key || 'F5'} during active call`);
+    }
+
     res.json({ success: true });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });

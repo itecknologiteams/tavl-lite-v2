@@ -299,7 +299,7 @@ export default function LiveCallsPanel() {
               <div className="h-1 rounded-full transition-all duration-1000"
                    style={{ width: `${Math.min(100, sl)}%`, backgroundColor: slClr }} />
             </div>
-            <div className="text-[9px] text-white/30 mt-0.5">Service Level (20s)</div>
+            <div className="text-[9px] text-white/30 mt-0.5">Service Level (15m)</div>
           </div>
         </div>
 

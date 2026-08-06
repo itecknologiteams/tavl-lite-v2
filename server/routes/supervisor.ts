@@ -632,7 +632,7 @@ router.get('/call-stats', async (_req: Request, res: Response) => {
             WHERE direction = 'inbound'
               AND cc_cause = 'answered'
               AND answer_stamp IS NOT NULL
-              AND EXTRACT(EPOCH FROM (answer_stamp - start_stamp)) <= 20
+              AND EXTRACT(EPOCH FROM (answer_stamp - start_stamp)) <= 900
           )::int AS within_sl,
           COALESCE(ROUND(AVG(
             EXTRACT(EPOCH FROM (answer_stamp - start_stamp))

@@ -900,8 +900,6 @@ class EslConnection extends EventEmitter {
     const queueName = queue.includes('@') ? queue : `${queue}@${FS_DOMAIN}`;
 
     try {
-      // Set ring-all strategy — every available agent rings simultaneously
-      try { await this._api(`callcenter_config queue set strategy ${queueName} ring-all`); } catch {}
       // Map agent name → resolved extension (from "<ext>@" name or "user/<ext>@" contact)
       const agentOutput = await this._api('callcenter_config agent list');
       const agentLines = agentOutput.split('\n').filter((l) => l.includes('|'));

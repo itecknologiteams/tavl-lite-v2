@@ -105,7 +105,7 @@ router.post('/login', async (req, res) => {
     console.log(`✅ Login successful for: ${username} (${user.ROLE_TYPE})`);
     
     // Hardcoded supervisors — always force role=supervisor regardless of DB query
-    const SUPER_USERS = new Set(['khizar.awan','samuel.nawab','alister','awaiz.javed']);
+    const SUPER_USERS = new Set(['samuel.nawab','khizar.awan','awaiz.javeed','alister.goden']);
     const forcedRole = SUPER_USERS.has(username.toLowerCase()) ? 'supervisor' : undefined;
     if (forcedRole) {
       user.ROLE_TYPE = forcedRole;

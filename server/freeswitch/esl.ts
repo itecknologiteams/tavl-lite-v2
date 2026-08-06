@@ -743,7 +743,7 @@ class EslConnection extends EventEmitter {
     try {
       // Ensure agent exists and is set to Available
       try { await this._api(`callcenter_config agent add ${agent} callback`); } catch {}
-      try { await this._api(`callcenter_config agent set contact ${agent} user/${extension}@${FS_DOMAIN}`); } catch {}
+      try { await this._api(`callcenter_config agent set contact ${agent} {call_timeout=15}user/${extension}@${FS_DOMAIN}`); } catch {}
       // Backoff windows before the queue may re-dial this agent after a failed leg.
       // FS defaults these to 0 for dynamically-added agents, which causes immediate
       // re-ring on the same agent after a decline. Match the values used by the

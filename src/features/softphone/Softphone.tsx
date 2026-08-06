@@ -916,19 +916,6 @@ function SupervisorAvailableToggle({ extension, username, userId }: { extension:
   });
   const [loading, setLoading] = useState(false);
 
-  // Sync with FreeSWITCH on mount (background, no blocking)
-  useEffect(() => {
-    fetch(`/api/calls/queue/supervisor-status?extension=${extension}`)
-      .then(r => r.json())
-      .then(d => {
-        if (d?.inQueue !== available) {
-          setAvailable(d?.inQueue || false);
-          try { localStorage.setItem(storageKey, String(d?.inQueue || false)); } catch {}
-        }
-      })
-      .catch(() => {});
-  }, [extension]); // eslint-disable-line
-
   const toggle = useCallback(async () => {
     setLoading(true);
     const newState = !available;

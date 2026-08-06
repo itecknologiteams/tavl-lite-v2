@@ -796,9 +796,9 @@ class SipService {
 
   reject() {
     if (this.currentSession instanceof Invitation) {
+      this.sendDeclineBeacon();
       this.currentSession.reject();
       this.stopRingtone();
-      this.sendDeclineBeacon();
     }
   }
 
